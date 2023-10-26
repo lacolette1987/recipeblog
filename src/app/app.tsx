@@ -1,12 +1,69 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-import styles from './app.module.css';
+import { useNavigate } from 'react-router-dom';
+import { auth } from './firebase-config';
+import { signOut } from 'firebase/auth';
+import { ThemeProvider, createTheme, CssBaseline, AppBar, Typography } from '@mui/material';
+import Container from '@mui/material/Container';
+import Header from './components/header';
+import '@fontsource/roboto/300.css';
+import '@fontsource/roboto/400.css';
+import '@fontsource/roboto/500.css';
+import '@fontsource/roboto/700.css';
+import AppRoutes from "./routes/routes";
 
-import NxWelcome from './nx-welcome';
 
-export function App() {
+
+const App = () => {
+
+  const currentUser = auth.currentUser;
+  const defaultTheme = createTheme({
+    typography: {
+      fontFamily: 'Roboto, sans-serif',
+    },
+    palette: {
+      background: {
+        default: '#f3f3f3',
+      },
+    },
+  });
+  const navigate = useNavigate();
+
+
+  const handleLogout = () => {
+
+    signOut(auth).then(() => {
+      navigate("/login");
+    });
+  }
+
+
+
   return (
-    <div>
-      <NxWelcome title="recipeblog" />
+    <div className="App">
+        <ThemeProvider theme={defaultTheme}>
+          <CssBaseline />
+          <AppBar position="static">
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              sx={{
+                mr: 2,
+                display: { xs: 'none', md: 'flex' },
+                fontFamily: 'monospace',
+                fontWeight: 700,
+                letterSpacing: '.3rem',
+                color: 'inherit',
+                textDecoration: 'none',
+              }}
+            >
+              LOGO
+            </Typography>
+            <Header user={currentUser} handleLogout={handleLogout} />
+          </AppBar>
+          <Container>
+            <AppRoutes />
+          </Container>
+        </ThemeProvider>
     </div>
   );
 }
