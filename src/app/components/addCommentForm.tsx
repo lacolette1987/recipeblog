@@ -2,8 +2,11 @@ import React from 'react'
 
 
 
-export const addCommentForm = () => {
+export const AddCommentForm = () => {
     return (
-        <h1>Add comment</h1>
+        <div>
+            <h1>Add comment</h1>
+            <p>Coming soon...</p>
+        </div>
     )
 }

@@ -10,6 +10,7 @@ import '@fontsource/roboto/500.css';
 import '@fontsource/roboto/700.css';
 import AppRoutes from "./routes/routes";
 
+import styles from './app.module.css';
 
 
 const App = () => {
@@ -21,7 +22,7 @@ const App = () => {
     },
     palette: {
       background: {
-        default: '#f3f3f3',
+        default: '#f5f5f5',
       },
     },
   });

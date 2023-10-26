@@ -11,6 +11,7 @@ interface AddBlogFormProps {
     uploadProcess: number;
     setFile: (file: File) => void;
     submitForm: (form: BlogForm) => void;
+    // tags: string[],
 }
 
 
@@ -18,12 +19,14 @@ export interface BlogForm {
     title: string,
     category: string,
     description: string,
+    // tags: string[],
 };
 
 const initialState = {
     title: "",
     category: "",
     description: "",
+    // tags: [],
 };
 
 const categoryoption = [
@@ -46,6 +49,10 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
             [name]: value,
         }));
     };
+
+    // const handleTags = (tags: string[]) => {
+    //     setForm({ ...form, tags});
+    // };
 
     const onCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setForm({...form, category: event.target.value});
@@ -83,6 +90,15 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     value={title}
                     onChange={handleChange}
                 />
+                <select value={category} onChange={onCategoryChange}>
+                    <option>Bitte wählen Sie eine Kategorie</option>
+                    {categoryoption.map((option, index) => (
+                        <option value={option || ""} key={index}>
+                            {option}
+                        </option>
+                    ))}
+                </select>
+                {/* <ReactTagInput tags={tags} palceholder="Tags" onChange={handleTags}/> */}
                 <TextField
                     margin="normal"
                     required
@@ -95,17 +111,6 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     name="description"
                     onChange={handleChange}
                 />
-                <select
-                    value={category}
-                    onChange={onCategoryChange}
-                >
-                    <option>Bitte wählen Sie eine Kategorie</option>
-                    {categoryoption.map((option, index) => (
-                        <option value={option || ""} key={index}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
                 <div>
                     <input type='file' onChange={handleFileChange}/>
                 </div>

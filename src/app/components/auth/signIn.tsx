@@ -1,11 +1,13 @@
 import React from 'react';
 import TextField from '@mui/material/TextField';
 
+
 interface SignInFormProps {
   email: string;
   password: string;
   handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
+
 
 const SignInForm: React.FC<SignInFormProps> = ({ email, password, handleChange }) => {
   return (
@@ -18,16 +20,16 @@ const SignInForm: React.FC<SignInFormProps> = ({ email, password, handleChange }
         label="E-Mail"
         name="email"
         autoComplete="email"
-        autoFocus
         value={email}
         onChange={handleChange}
+        autoFocus
       />
       <TextField
         margin="normal"
         required
         fullWidth
         name="password"
-        label="Passwort"
+        label="Password"
         type="password"
         id="password"
         autoComplete="current-password"

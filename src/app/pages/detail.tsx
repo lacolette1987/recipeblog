@@ -2,6 +2,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { db } from '../firebase-config';
+import { AddCommentForm } from '../components/addCommentForm';
 
 interface AddBlogProps {
   imgUrl: string;
@@ -45,6 +46,7 @@ const Detail = () => {
       <h2>{blog?.title}</h2>
       <div>{blog?.timestamp.toDate().toDateString()}</div>
       <div>{blog?.description}</div>
+      <AddCommentForm />
     </div>
   )
 }
