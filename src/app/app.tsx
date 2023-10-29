@@ -16,12 +16,16 @@ import styles from './app.module.css';
 const App = () => {
 
   const currentUser = auth.currentUser;
-  const defaultTheme = createTheme({
+  const theme = createTheme({
     typography: {
       fontFamily: 'Roboto, sans-serif',
+      fontSize: 18,
     },
     palette: {
-      background: {
+      primary: {
+        main: '#FF5733',
+      },
+        background: {
         default: '#f5f5f5',
       },
     },
@@ -40,7 +44,7 @@ const App = () => {
 
   return (
     <div className="App">
-        <ThemeProvider theme={defaultTheme}>
+        <ThemeProvider theme={theme}>
           <CssBaseline />
           <AppBar position="static">
             <Typography

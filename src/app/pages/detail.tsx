@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { db } from '../firebase-config';
 import { AddCommentForm } from '../components/addCommentForm';
+import { Box, Container, CssBaseline } from '@mui/material';
 
 interface AddBlogProps {
   imgUrl: string;
@@ -40,13 +41,18 @@ const Detail = () => {
 
   return (
     <div>
-      <img src={blog?.imgUrl} alt={blog?.title} />
-      <div>{blog?.timestamp.toDate().toDateString()}</div>
-      <div>By {blog?.author}</div>
-      <h2>{blog?.title}</h2>
-      <div>{blog?.timestamp.toDate().toDateString()}</div>
-      <div>{blog?.description}</div>
-      <AddCommentForm />
+      <Container component="main" >
+      <CssBaseline />
+        <Box sx={{ display: 'flex', flexDirection: 'column', }}>
+          <img src={blog?.imgUrl} alt={blog?.title} />
+          <div>{blog?.timestamp.toDate().toDateString()}</div>
+          <div>By {blog?.author}</div>
+          <h2>{blog?.title}</h2>
+          <div>{blog?.timestamp.toDate().toDateString()}</div>
+          <div>{blog?.description}</div>
+          <AddCommentForm />
+        </Box>
+      </Container>
     </div>
   )
 }

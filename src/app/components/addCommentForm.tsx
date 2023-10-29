@@ -1,12 +1,39 @@
 import React from 'react'
+import { TextField, Typography } from '@mui/material'
 
 
 
 export const AddCommentForm = () => {
     return (
         <div>
-            <h1>Add comment</h1>
-            <p>Coming soon...</p>
+        <Typography variant="h3" component="div" gutterBottom={true}>
+            Comments
+        </Typography>
+        <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="name"
+            label="Your name"
+            name="name"
+            autoComplete="name"
+            // value={email}
+            // onChange={handleChange}
+            autoFocus
+        />
+        <TextField
+            margin="normal"
+            required
+            fullWidth
+            multiline
+            id="comment"
+            label="Your comment"
+            name="name"
+            autoComplete="comment"
+            // value={email}
+            // onChange={handleChange}
+            autoFocus
+        />
         </div>
     )
 }

@@ -39,7 +39,7 @@ interface BlogSectionProps {
                       {item.description}
                     </Typography>
                     <Link to={`/detail/${item.id}`}>
-                      <Button size="small" color="primary">Read more</Button>
+                      <Button variant="outlined" disableElevation>Read more</Button>
                     </Link>
                     <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }} />
                   </CardContent>
