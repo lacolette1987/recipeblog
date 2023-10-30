@@ -1,36 +1,17 @@
 import {AppBar, createTheme, CssBaseline, ThemeProvider, Typography} from '@mui/material';
 import Container from '@mui/material/Container';
 import Header from './components/header';
-import '@fontsource/roboto/300.css';
-import '@fontsource/roboto/400.css';
-import '@fontsource/roboto/500.css';
-import '@fontsource/roboto/700.css';
 import AppRoutes from "./routes/routes";
 import {AuthProvider} from "./context/AuthContext";
+import myTheme from './components/theme/myTheme';
 
 
 const App = () => {
 
-    const theme = createTheme({
-        typography: {
-            fontFamily: 'Roboto, sans-serif',
-            fontSize: 18,
-        },
-        palette: {
-            primary: {
-                main: '#FF5733',
-            },
-            background: {
-                default: '#f5f5f5',
-            },
-        },
-    });
-
-
     return (
         <div className="App">
             <AuthProvider>
-                <ThemeProvider theme={theme}>
+                <ThemeProvider theme={myTheme}>
                     <CssBaseline/>
                     <AppBar position="static">
                         <Typography

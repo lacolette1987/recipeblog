@@ -3,7 +3,7 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import User from "../models/User";
-
+import EditIcon from '@mui/icons-material/Edit';
 
 interface BlogSectionProps {
   blogs: any[];
@@ -42,6 +42,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                       <Button variant="outlined" disableElevation>Read more</Button>
                     </Link>
                     { userId ? <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }}></DeleteOutlinedIcon> : '' }
+                    { userId ? <EditIcon style={{ cursor: "pointer" }}></EditIcon> : '' }
                   </CardContent>
                 </Card>
               </Container>
