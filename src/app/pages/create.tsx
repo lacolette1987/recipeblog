@@ -1,7 +1,7 @@
 import AddBlogForm, { BlogForm } from '../components/addBlogForm';
 import { useEffect, useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
-import { auth, db, storage } from '../firebase-config';
+import { db, storage } from '../firebase-config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
 import useAuth from "../context/AuthContext";

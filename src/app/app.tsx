@@ -1,4 +1,3 @@
-import {useNavigate} from 'react-router-dom';
 import {AppBar, createTheme, CssBaseline, ThemeProvider, Typography} from '@mui/material';
 import Container from '@mui/material/Container';
 import Header from './components/header';
@@ -26,8 +25,6 @@ const App = () => {
             },
         },
     });
-    const navigate = useNavigate();
-
 
 
     return (
