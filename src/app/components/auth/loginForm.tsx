@@ -9,10 +9,10 @@ import { Avatar, Box, Button, Container, CssBaseline } from "@mui/material";
 
 
 interface LoginProps {
-    handleSubmit: (cred: FormState) => void;
+    handleSubmit: (cred: AuthFormState) => void;
 }
 
-export interface FormState {
+export interface AuthFormState {
     email: string;
     password: string;
     firstName: string;
@@ -21,7 +21,7 @@ export interface FormState {
     isSignUpMode: boolean;
 }
 
-const initialState: FormState = {
+const initialState: AuthFormState = {
     firstName: '',
     lastName: '',
     email: '',
@@ -32,7 +32,7 @@ const initialState: FormState = {
 
 export const LoginForm: React.FC<LoginProps> = ({handleSubmit}) => {
 
-    const [formState, setFormState] = useState<FormState>(initialState);
+    const [formState, setFormState] = useState<AuthFormState>(initialState);
     const {isSignUpMode, email, password, firstName, lastName} = formState;
 
     const handleChange = (e: ChangeEvent<HTMLInputElement>) => {

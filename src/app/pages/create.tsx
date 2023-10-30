@@ -4,10 +4,11 @@ import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { auth, db, storage } from '../firebase-config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
+import useAuth from "../context/AuthContext";
 
 
 const Create = () => {
-const user = auth.currentUser!;
+const {user} = useAuth();
 
   const [file, setFile] = useState<File | null>(null);
   const [uploadProcess, setUploadProcess] = useState<number>(0);
@@ -20,8 +21,8 @@ const user = auth.currentUser!;
           ...form,
           imgUrl,
           timestamp: serverTimestamp(),
-          author: user.displayName,
-          userId: user.uid
+          author: user?.displayName,
+          userId: user?.uid
       });
       navigate("/");
 

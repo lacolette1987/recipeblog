@@ -2,16 +2,16 @@ import { Avatar, Box, Button, Card, CardContent, Container, Grid, Typography } f
 import React from 'react'
 import { Link } from 'react-router-dom';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import { User } from 'firebase/auth';
+import User from "../models/User";
 
 
 interface BlogSectionProps {
   blogs: any[];
-  user: User;
+  user?: User;
   handleDelete: (id: any) => void;
 }
 
-  const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) => {
+const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) => {
 
   const userId = user?.uid
 
@@ -41,7 +41,7 @@ interface BlogSectionProps {
                     <Link to={`/detail/${item.id}`}>
                       <Button variant="outlined" disableElevation>Read more</Button>
                     </Link>
-                    <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }} />
+                    { userId ? <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }}></DeleteOutlinedIcon> : '' }
                   </CardContent>
                 </Card>
               </Container>

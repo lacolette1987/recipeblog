@@ -1,13 +1,13 @@
 import React, {useState} from 'react';
-import {User} from 'firebase/auth';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import User from "../models/User";
 
 
 
 interface AddBlogFormProps {
-    user: User;
+    user?: User;
     uploadProcess: number;
     setFile: (file: File) => void;
     submitForm: (form: BlogForm) => void;

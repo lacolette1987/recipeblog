@@ -2,9 +2,10 @@ import { DocumentData, collection, deleteDoc, doc, onSnapshot } from 'firebase/f
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase-config';
 import BlogSection from '../components/blogsection';
+import useAuth from "../context/AuthContext";
 
 const Home = () => {
-  const user = auth.currentUser!;
+  const {user} = useAuth();
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<DocumentData[]>([]);
 
