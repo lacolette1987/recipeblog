@@ -13,6 +13,7 @@ interface AddBlogProps {
   title: string;
   author: string;
   description: string;
+  ingredients: string;
 }
 
 const Detail = () => {
@@ -48,6 +49,7 @@ const Detail = () => {
           <div>{blog?.timestamp.toDate().toDateString()}</div>
           <div>By {blog?.author}</div>
           <h2>{blog?.title}</h2>
+          <p>{blog?.ingredients}</p>
           <div>{blog?.timestamp.toDate().toDateString()}</div>
           <div>{blog?.description}</div>
           <AddCommentForm />

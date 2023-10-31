@@ -18,25 +18,27 @@ export interface BlogForm {
     title: string,
     category: string,
     description: string,
+    ingredients: string,
 };
 
 const initialState = {
     title: "",
     category: "",
     description: "",
+    ingredients: "",
 };
 
 const categoryoption = [
     "Vorspeise",
+    "Apéro",
     "Hauptgang",
     "Dessert",
-    "Apéro"
 ];
 
 const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submitForm}) => {
 
     const [form, setForm] = useState(initialState);
-    const {title, category, description} = form;
+    const {title, category, description, ingredients} = form;
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,6 +93,18 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                         </option>
                     ))}
                 </select>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="outlined-multiline-flexible"
+                    label="Ingredients"
+                    multiline
+                    maxRows={4}
+                    value={ingredients}
+                    name="ingredients"
+                    onChange={handleChange}
+                />
                 <TextField
                     margin="normal"
                     required

@@ -30,6 +30,7 @@ const Header: React.FC<{ user: User | null; handleLogout?: () => void }> = ({
                 <li>
                     <Link to={'/create'}>Create</Link>
                 </li>
+                {/* Hier funktioniert noch etwas nicht */}
                 {userId ? (
                     <div>
                         <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
