@@ -4,6 +4,7 @@ import Header from './components/header';
 import AppRoutes from "./routes/routes";
 import { AuthProvider } from "./context/auth-context";
 import myTheme from './theme/my-theme';
+import Footer from './components/footer';
 
 
 
@@ -18,6 +19,7 @@ const App = () => {
                     <Container maxWidth="lg">
                         <AppRoutes/>
                     </Container>
+                    <Footer />
                 </ThemeProvider>
             </AuthProvider>
         </div>

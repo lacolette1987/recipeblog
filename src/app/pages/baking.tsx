@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Desert = () => {
+const Baking = () => {
   return (
     <div>Dessert</div>
   )
 }
 
-export default Desert
+export default Baking

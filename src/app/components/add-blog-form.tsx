@@ -29,10 +29,8 @@ const initialState = {
 };
 
 const categoryoption = [
-    "Vorspeise",
-    "Apéro",
-    "Hauptgang",
-    "Dessert",
+    "Kochen",
+    "Backen",
 ];
 
 const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submitForm}) => {

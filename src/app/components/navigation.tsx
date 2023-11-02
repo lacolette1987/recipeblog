@@ -28,6 +28,12 @@ const Navigation: React.FC<{ user: User | null; handleLogout?: () => void }> = (
                                 <Link to={'/'}>Home</Link>
                             </li>
                             <li>
+                                <Link to={'/cooking'}>Cooking</Link>
+                            </li>
+                            <li>
+                                <Link to={'/baking'}>Baking</Link>
+                            </li>
+                            <li>
                                 <Link to={'/create'}>Create</Link>
                             </li>
                             {/* Hier funktioniert noch etwas nicht */}

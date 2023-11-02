@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase-config';
 import BlogSection from '../components/blogsection';
 import useAuth from "../context/auth-context";
-import { Grid, Typography } from '@mui/material';
+import { Avatar, Button, Card, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 const Home = () => {
@@ -51,6 +51,10 @@ const Home = () => {
     <div>
       <Typography variant="h1">This is the start</Typography>
       <Typography>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</Typography>
+
+
+
+
       <Grid container spacing={2}>
         <Grid item xs={4}>
         {/* <Search>
@@ -62,7 +66,12 @@ const Home = () => {
               inputProps={{ 'aria-label': 'search' }}
             />
           </Search> */}
-          <Typography>Coming soon...</Typography>
+          <Typography>Search coming soon...</Typography>
+            <Card>
+              <CardContent component="div">
+              <Typography>Coming soon...</Typography>
+              </CardContent>
+            </Card>
         </Grid>
         <Grid item xs={8}>
         <Typography>Coming soon...</Typography>
