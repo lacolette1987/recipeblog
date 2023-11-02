@@ -17,7 +17,8 @@ const SignIn: React.FC = () => {
     }, [user]);
 
 
-    return (<>
+    return (
+        <>
             <LoginForm handleSubmit={login}></LoginForm>
             {`${loading}`}
         </>

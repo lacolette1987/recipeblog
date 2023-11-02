@@ -3,7 +3,8 @@ import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import User from "../models/user";
-
+import UploadFileIcon from '@mui/icons-material/UploadFile';
+import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, Container } from '@mui/material';
 
 
 interface AddBlogFormProps {
@@ -47,9 +48,10 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
         }));
     };
 
-    const onCategoryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        setForm({...form, category: event.target.value});
+    const onCategoryChange = (e: SelectChangeEvent<string>) => {
+        setForm({ ...form, category: e.target.value });
     };
+    
 
     const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -67,7 +69,8 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
 
     return (
         <div>
-            <Typography variant="h1">This is the Blog</Typography>
+      <Container component="main" maxWidth="xs">
+            <Typography variant="h1">Add a recipe</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"
@@ -81,14 +84,23 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     value={title}
                     onChange={handleChange}
                 />
-                <select value={category} onChange={onCategoryChange}>
-                    <option>Bitte wählen Sie eine Kategorie</option>
-                    {categoryoption.map((option, index) => (
-                        <option value={option || ""} key={index}>
-                            {option}
-                        </option>
-                    ))}
-                </select>
+                <FormControl fullWidth>
+                    <InputLabel id="category">Category</InputLabel>
+                    <Select
+                        fullWidth
+                        labelId="category-label"
+                        id="demo-select-small"
+                        value={category}
+                        label="Category"
+                        onChange={onCategoryChange}
+                        >
+                        {categoryoption.map((option, index) => (
+                            <MenuItem value={option} key={index}>
+                                {option}
+                            </MenuItem>
+                        ))}
+                    </Select>
+                </FormControl>
                 <TextField
                     margin="normal"
                     required
@@ -113,11 +125,13 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     name="description"
                     onChange={handleChange}
                 />
-                <div>
-                    <input type='file' onChange={handleFileChange}/>
-                </div>
+                <Button component="label" variant="outlined" startIcon={<UploadFileIcon />}>
+                    Upload image
+                    <input type="file" accept=".jpg" hidden onChange={handleFileChange} />
+                </Button>
                 <Button type="submit" variant="outlined" disabled={uploadProcess !== null && uploadProcess < 100}>Create</Button>
             </form>
+            </Container>
         </div>
     )
 }

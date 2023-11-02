@@ -51,10 +51,6 @@ const Home = () => {
     <div>
       <Typography variant="h1">This is the start</Typography>
       <Typography>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</Typography>
-
-
-
-
       <Grid container spacing={2}>
         <Grid item xs={4}>
         {/* <Search>
@@ -67,11 +63,11 @@ const Home = () => {
             />
           </Search> */}
           <Typography>Search coming soon...</Typography>
-            <Card>
-              <CardContent component="div">
-              <Typography>Coming soon...</Typography>
-              </CardContent>
-            </Card>
+          <Card>
+            <CardContent component="div">
+            <Typography>Coming soon...</Typography>
+            </CardContent>
+          </Card>
         </Grid>
         <Grid item xs={8}>
         <Typography>Coming soon...</Typography>
