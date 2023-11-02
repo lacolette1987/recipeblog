@@ -2,8 +2,8 @@ import {AppBar, createTheme, CssBaseline, ThemeProvider, Typography} from '@mui/
 import Container from '@mui/material/Container';
 import Header from './components/header';
 import AppRoutes from "./routes/routes";
-import {AuthProvider} from "./context/AuthContext";
-import myTheme from './components/theme/myTheme';
+import {AuthProvider} from "./context/auth-context";
+import myTheme from './theme/my-theme';
 
 
 const App = () => {
@@ -14,22 +14,7 @@ const App = () => {
                 <ThemeProvider theme={myTheme}>
                     <CssBaseline/>
                     <AppBar position="static">
-                        <Typography
-                            variant="h6"
-                            noWrap
-                            component="a"
-                            sx={{
-                                mr: 2,
-                                display: {xs: 'none', md: 'flex'},
-                                fontFamily: 'monospace',
-                                fontWeight: 700,
-                                letterSpacing: '.3rem',
-                                color: 'inherit',
-                                textDecoration: 'none',
-                            }}
-                        >
-                            LOGO
-                        </Typography>
+                        <Typography>LOGO</Typography>
                         <Header user={null}/>
                     </AppBar>
                     <Container>

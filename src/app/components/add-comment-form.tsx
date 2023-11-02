@@ -6,9 +6,7 @@ import { TextField, Typography } from '@mui/material'
 export const AddCommentForm = () => {
     return (
         <div>
-        <Typography variant="h3" component="div" gutterBottom={true}>
-            Comments
-        </Typography>
+        <Typography variant="h2">Comments</Typography>
         <TextField
             margin="normal"
             required

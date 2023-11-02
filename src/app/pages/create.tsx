@@ -1,10 +1,10 @@
-import AddBlogForm, { BlogForm } from '../components/addBlogForm';
+import AddBlogForm, { BlogForm } from '../components/add-blog-form';
 import { useEffect, useState } from 'react';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import { db, storage } from '../firebase-config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
 import { useNavigate } from 'react-router-dom';
-import useAuth from "../context/AuthContext";
+import useAuth from "../context/auth-context";
 
 
 const Create = () => {

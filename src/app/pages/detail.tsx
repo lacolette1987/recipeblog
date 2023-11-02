@@ -2,8 +2,8 @@ import { doc, getDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { db } from '../firebase-config';
-import { AddCommentForm } from '../components/addCommentForm';
-import { Box, Container, CssBaseline } from '@mui/material';
+import { AddCommentForm } from '../components/add-comment-form';
+import { Box, Container, CssBaseline, Typography } from '@mui/material';
 
 interface AddBlogProps {
   imgUrl: string;
@@ -45,10 +45,10 @@ const Detail = () => {
       <Container component="main" >
       <CssBaseline />
         <Box sx={{ display: 'flex', flexDirection: 'column', }}>
+        <Typography variant="h1">{blog?.title}</Typography>
           <img src={blog?.imgUrl} alt={blog?.title} />
           <div>{blog?.timestamp.toDate().toDateString()}</div>
           <div>By {blog?.author}</div>
-          <h2>{blog?.title}</h2>
           <p>{blog?.ingredients}</p>
           <div>{blog?.timestamp.toDate().toDateString()}</div>
           <div>{blog?.description}</div>

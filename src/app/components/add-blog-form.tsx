@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import User from "../models/User";
+import User from "../models/user";
 
 
 
@@ -69,9 +69,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
 
     return (
         <div>
-            <Typography component="h1" variant="h3">
-                Blog
-            </Typography>
+            <Typography variant="h1">This is the Blog</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"
@@ -97,7 +95,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     margin="normal"
                     required
                     fullWidth
-                    id="outlined-multiline-flexible"
+                    id="outlined-multiline-static"
                     label="Ingredients"
                     multiline
                     maxRows={4}

@@ -2,7 +2,7 @@ import { Avatar, Box, Button, Card, CardContent, Container, Grid, Typography } f
 import React from 'react'
 import { Link } from 'react-router-dom';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import User from "../models/User";
+import User from "../models/user";
 import EditIcon from '@mui/icons-material/Edit';
 
 interface BlogSectionProps {
@@ -17,7 +17,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
 
   return (
     <div>
-      <h2>Blogeinträge</h2>
+      <Typography variant="h2">Neueste Einträge</Typography>
       {blogs?.map((item) => (
         <Box sx={{ flexGrow: 1 }} key={item.id}>
           <Grid container spacing={2}>
@@ -32,12 +32,8 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                       {item.timestamp.toDate().toDateString()}
                     </div>
                     <img src={item.imgUrl} alt={item.title} />
-                    <Typography variant="h4" component="div" gutterBottom={true}>
-                      {item.title}
-                    </Typography>
-                    <Typography color="text.secondary" variant="body2">
-                      {item.description}
-                    </Typography>
+                    <Typography variant="h3">{item.title}</Typography>
+                    <Typography variant="body2">{item.description}</Typography>
                     <Link to={`/detail/${item.id}`}>
                       <Button variant="outlined" disableElevation>Read more</Button>
                     </Link>

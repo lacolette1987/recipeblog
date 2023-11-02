@@ -2,7 +2,8 @@ import { DocumentData, collection, deleteDoc, doc, onSnapshot } from 'firebase/f
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase-config';
 import BlogSection from '../components/blogsection';
-import useAuth from "../context/AuthContext";
+import useAuth from "../context/auth-context";
+import { Typography } from '@mui/material';
 
 const Home = () => {
   const {user} = useAuth();
@@ -47,7 +48,8 @@ const Home = () => {
 
   return (
     <div>
-      <h1>This is the home page</h1>
+      <Typography variant="h1">This is the start</Typography>
+      <Typography>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</Typography>
       <BlogSection blogs={blogs} user={user} handleDelete={handleDelete} />
     </div>
   );

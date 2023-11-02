@@ -1,6 +1,6 @@
 import Typography from "@mui/material/Typography";
-import SignUpForm from "./signUp";
-import SignInForm from "./signIn";
+import SignUpForm from "./sign-up";
+import SignInForm from "./sign-in";
 import React, {ChangeEvent, FormEvent, useState} from "react";
 import { Avatar, Box, Button, Container, CssBaseline } from "@mui/material";
 
@@ -65,9 +65,7 @@ export const LoginForm: React.FC<LoginProps> = ({handleSubmit}) => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <Box sx={{ marginTop: 8, display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
-            <Typography component="h1" variant="h5">
-                {!isSignUpMode ? 'Sign-In' : 'Sign-Up'}
-            </Typography>
+            <Typography variant="h1">{!isSignUpMode ? 'Sign-In' : 'Sign-Up'}</Typography>
             <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
                 <p>Icon?</p>
             </Avatar>

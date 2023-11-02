@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
-import {LoginForm} from "../components/auth/loginForm";
+import {LoginForm} from "../components/auth/loginform";
 import {useNavigate} from "react-router-dom";
-import useAuth from "../context/AuthContext";
+import useAuth from "../context/auth-context";
 
 
 const SignIn: React.FC = () => {

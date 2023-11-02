@@ -5,7 +5,7 @@ import Create from '../pages/create';
 import Detail from '../pages/detail';
 import Edit from '../pages/edit';
 import SignIn from '../pages/login';
-import {PrivateRoutes} from "../components/privateRoutes";
+import {PrivateRoutes} from "../components/private-routes";
 
 
 
