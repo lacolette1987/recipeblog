@@ -3,13 +3,14 @@ import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase-config';
 import BlogSection from '../components/blogsection';
 import useAuth from "../context/auth-context";
-import { Avatar, Button, Card, CardContent, CardMedia, Grid, Link, Typography } from '@mui/material';
+import { Avatar, Button, Card, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Link, Typography } from '@mui/material';
 import { Search } from '@mui/icons-material';
 
 const Home = () => {
   const {user} = useAuth();
   const [loading, setLoading] = useState(true);
   const [blogs, setBlogs] = useState<DocumentData[]>([]);
+  const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
     const unsub = onSnapshot(
@@ -45,6 +46,8 @@ const Home = () => {
     }
   };
 
+
+
   console.log("blogs", blogs);
 
   return (
@@ -70,7 +73,7 @@ const Home = () => {
           </Card>
         </Grid>
         <Grid item xs={8}>
-        <Typography>Coming soon...</Typography>
+          <Typography>Coming soon...</Typography>
           <BlogSection blogs={blogs} user={user} handleDelete={handleDelete} />
         </Grid>
       </Grid>

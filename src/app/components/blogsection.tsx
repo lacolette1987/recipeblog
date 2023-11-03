@@ -1,9 +1,10 @@
-import { Avatar, Box, Button, Card, CardActions, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import User from "../models/user";
 import EditIcon from '@mui/icons-material/Edit';
+import DialogDelete from './dialog-delete';
 
 interface BlogSectionProps {
   blogs: any[];
@@ -14,6 +15,8 @@ interface BlogSectionProps {
 const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) => {
 
   const userId = user?.uid
+  const [value, setValue] = React.useState<number | null>(2);
+
 
   return (
     <div>
@@ -24,8 +27,14 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
             <Card>
               <CardMedia component="img" image={item.imgUrl} title={item.title} />
               <CardContent>
-                <Typography gutterBottom variant="h3">{item.title}</Typography>
-                
+                <Rating
+                  name="simple-controlled"
+                  value={value}
+                  onChange={(event, newValue) => {
+                    setValue(newValue);
+                  }}
+                />
+                <Typography variant="h3">{item.title}</Typography>
                 <p><strong>{item.category}</strong></p>
                 <div>
                   <p>{item.author}</p>
@@ -34,11 +43,13 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                 <Link to={`/detail/${item.id}`}>
                   <Button variant="outlined" disableElevation>Read more</Button>
                 </Link>
+                <DialogDelete handleDelete={handleDelete} />
               </CardContent>
-              <CardActions>
+              <Button autoFocus size="small">{ userId ? <EditIcon style={{ cursor: "pointer" }}></EditIcon> : '' }</Button>
+              {/* <CardActions>
                 <Button size="small">{ userId ? <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }}></DeleteOutlinedIcon> : '' }</Button>
-                <Button size="small">{ userId ? <EditIcon style={{ cursor: "pointer" }}></EditIcon> : '' }</Button>
-              </CardActions>
+                <Button autoFocus size="small">{ userId ? <EditIcon style={{ cursor: "pointer" }}></EditIcon> : '' }</Button>
+              </CardActions> */}
             </Card>
           </Grid>
         ))}
