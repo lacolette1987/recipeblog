@@ -10,9 +10,7 @@ import SignIn from '../pages/login';
 import {PrivateRoutes} from "../components/private-routes";
 
 
-
   const AppRoutes = () => {
-
     return (
         <Routes>
             <Route path="/" element={<Home/>}/>

@@ -3,35 +3,54 @@ import { createTheme } from "@mui/material";
 
 const myTheme = createTheme({
     typography: {
-        fontFamily: 'AR One Sans, sans-serif',
+        fontFamily: 'Quattrocento, serif',
         body1: {
             fontSize: 19,
             marginBottom: 10,
+            fontWeight: 400,
         },
         body2: {
             fontSize: 17,
             marginBottom: 10,
             color: '#000000',
         },
+        caption: {
+            fontSize: 17,
+            marginBottom: 10,
+            color: '#e1ac3b',
+            fontWeight: 600,
+        },
         h1: {
-            fontFamily: 'Suez One, sans-serif',
-            fontSize: 40,
+            fontFamily: 'Oswald, sans-serif',
+            fontSize: 45,
             marginBottom: 20,
+            fontWeight: 400,
+            textTransform: "uppercase",
+            letterSpacing: 2
         },
         h2: {
-            fontFamily: 'Suez One, sans-serif',
+            fontFamily: 'Oswald, sans-serif',
+            fontWeight: 400,
             fontSize: 30,
             marginBottom: 10,
+            textTransform: "uppercase",
+            letterSpacing: 1,
         },
         h3: {
-            fontFamily: 'Suez One, sans-serif',
-            fontSize: 25,
+            fontFamily: 'Oswald, sans-serif',
+            fontWeight: 400,
+            fontSize: 24,
             marginBottom: 10,
+            textTransform: "uppercase",
+            letterSpacing: 1
         },
     },
     palette: {
         primary: {
-            main: '#FF5733',
+            main: '#d3e5e7',
+        },
+        secondary: {
+            main: '#e1ac3b',
         },
         background: {
             default: '#f5f5f5',

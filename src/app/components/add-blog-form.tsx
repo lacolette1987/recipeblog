@@ -18,12 +18,14 @@ interface AddBlogFormProps {
 export interface BlogForm {
     title: string,
     category: string,
+    lead: string,
     description: string,
     ingredients: string,
 };
 
 const initialState = {
     title: "",
+    lead: "",
     category: "",
     description: "",
     ingredients: "",
@@ -37,7 +39,7 @@ const categoryoption = [
 const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submitForm}) => {
 
     const [form, setForm] = useState(initialState);
-    const {title, category, description, ingredients} = form;
+    const {title, category, lead, description, ingredients} = form;
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -61,12 +63,23 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (title && description && category) {
+        if (title && lead && description && ingredients && category) {
             submitForm(form);
         }
     };
-
-
+    // const tags = [
+    //     { title: 'Herbst' },
+    //     { title: 'Weihnachten' },
+    //     { title: 'Geburtstag' },
+    //     { title: 'Halloween' },
+    //     { title: 'Ostern' },
+    //     { title: 'Apéro' },
+    //     { title: 'Hauptgang' },
+    //     { title: 'Dessert' },
+    //     { title: 'Vegetarisch' },
+    //     { title: 'Festlich' },
+    //   ];
+    
     return (
         <div>
       <Container component="main" maxWidth="xs">
@@ -101,6 +114,23 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                         ))}
                     </Select>
                 </FormControl>
+                {/* <Stack spacing={3} sx={{ width: 500 }}>
+                    <Autocomplete
+                        multiple
+                        id="tags-outlined"
+                        options={tags}
+                        getOptionLabel={(option) => option.title}
+                        defaultValue={[tags[13]]}
+                        filterSelectedOptions
+                        renderInput={(params) => (
+                        <TextField
+                            {...params}
+                            label="filterSelectedOptions"
+                            placeholder="Favorites"
+                        />
+                        )}
+                    />
+                </Stack> */}
                 <TextField
                     margin="normal"
                     required
@@ -111,6 +141,18 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     maxRows={4}
                     value={ingredients}
                     name="ingredients"
+                    onChange={handleChange}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="outlined-multiline-flexible"
+                    label="lead"
+                    multiline
+                    maxRows={4}
+                    value={lead}
+                    name="lead"
                     onChange={handleChange}
                 />
                 <TextField
@@ -136,4 +178,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
     )
 }
 
+
+
+  
 export default AddBlogForm

@@ -1,10 +1,9 @@
 import { DocumentData, collection, deleteDoc, doc, onSnapshot } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react';
-import { auth, db } from '../firebase-config';
+import { db } from '../firebase-config';
 import BlogSection from '../components/blogsection';
 import useAuth from "../context/auth-context";
-import { Avatar, Button, Card, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Grid, Link, Typography } from '@mui/material';
-import { Search } from '@mui/icons-material';
+import { Card, CardContent, Grid, TextField, Typography } from '@mui/material';
 
 const Home = () => {
   const {user} = useAuth();
@@ -52,29 +51,20 @@ const Home = () => {
 
   return (
     <div>
-      <Typography variant="h1">This is the start</Typography>
+      <Typography variant="h1">Welcome, foodlover!</Typography>
       <Typography>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</Typography>
-      <Grid container spacing={2}>
+      <Typography variant="h2">Recently added</Typography>
+      <Grid container spacing={5}>
+        <Grid item xs={8}>
+          <BlogSection blogs={blogs} user={user} handleDelete={handleDelete} />
+        </Grid>
         <Grid item xs={4}>
-        {/* <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Search…"
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </Search> */}
-          <Typography>Search coming soon...</Typography>
+          <TextField id="outlined-basic" label="Search" variant="outlined" />
           <Card>
             <CardContent component="div">
             <Typography>Coming soon...</Typography>
             </CardContent>
           </Card>
-        </Grid>
-        <Grid item xs={8}>
-          <Typography>Coming soon...</Typography>
-          <BlogSection blogs={blogs} user={user} handleDelete={handleDelete} />
         </Grid>
       </Grid>
 

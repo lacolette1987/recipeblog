@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Dialog, DialogActions, DialogContent, DialogContentText, Grid, Rating, Typography } from '@mui/material';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -6,28 +6,42 @@ import User from "../models/user";
 import EditIcon from '@mui/icons-material/Edit';
 import DialogDelete from './dialog-delete';
 
+
+
 interface BlogSectionProps {
   blogs: any[];
   user?: User;
   handleDelete: (id: any) => void;
 }
 
+
 const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) => {
 
   const userId = user?.uid
   const [value, setValue] = React.useState<number | null>(2);
 
+  const [open, setOpen] = React.useState(false);
+
+  const handleClickOpen = () => {
+      setOpen(true);
+  };
+
+  const handleClose = () => {
+      setOpen(false);
+  };
 
   return (
     <div>
-      <Typography variant="h2">Neueste Einträge</Typography>
-      <Grid container spacing={4}>
+      <Grid container spacing={5}>
         {blogs?.map((item) => (
           <Grid item xs={12} sm={12} md={6} key={item.id}>
-            <Card>
-              <CardMedia component="img" image={item.imgUrl} title={item.title} />
+            <Card sx={{ borderRadius: 0, boxShadow: 2 }}>
+              <Link to={`/detail/${item.id}`}>
+                <CardMedia component="img" image={item.imgUrl} title={item.title} />
+              </Link>
               <CardContent>
                 <Rating
+                  size="small" 
                   name="simple-controlled"
                   value={value}
                   onChange={(event, newValue) => {
@@ -35,21 +49,35 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                   }}
                 />
                 <Typography variant="h3">{item.title}</Typography>
+                <Typography>{item.lead}</Typography>
                 <p><strong>{item.category}</strong></p>
                 <div>
                   <p>{item.author}</p>
-                  {item.timestamp.toDate().toDateString()}
                 </div>
                 <Link to={`/detail/${item.id}`}>
                   <Button variant="outlined" disableElevation>Read more</Button>
                 </Link>
-                <DialogDelete handleDelete={handleDelete} />
+                {/* <DialogDelete handleDelete={handleDelete} /> */}
+                <Button variant="outlined" onClick={handleClickOpen}>
+                  <DeleteOutlinedIcon />
+                </Button>
+                <Dialog
+                  open={open}
+                  onClose={handleClose}
+                  aria-labelledby="alert-dialog-title"
+                  aria-describedby="alert-dialog-description"
+                >
+                  <DialogContent>
+                      <DialogContentText id="alert-dialog-description">
+                          Are you sure you want to delete this recipe?
+                      </DialogContentText>
+                  </DialogContent>
+                  <DialogActions>
+                      <Button onClick={handleClose}>Cancel</Button>
+                      <Button size="small">{ userId ? <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }}></DeleteOutlinedIcon> : '' }</Button>
+                  </DialogActions>
+                </Dialog>
               </CardContent>
-              <Button autoFocus size="small">{ userId ? <EditIcon style={{ cursor: "pointer" }}></EditIcon> : '' }</Button>
-              {/* <CardActions>
-                <Button size="small">{ userId ? <DeleteOutlinedIcon onClick={() => handleDelete(item.id)} style={{ cursor: "pointer" }}></DeleteOutlinedIcon> : '' }</Button>
-                <Button autoFocus size="small">{ userId ? <EditIcon style={{ cursor: "pointer" }}></EditIcon> : '' }</Button>
-              </CardActions> */}
             </Card>
           </Grid>
         ))}
