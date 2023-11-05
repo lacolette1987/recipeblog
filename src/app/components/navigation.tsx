@@ -46,32 +46,20 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
 
     return (
         <nav>
-            <ul>
-                <li>
-                    <Link to={'/'} onClick={handleSetActive}>Home</Link>
-                </li>
-                <li>
-                    <Link to={'/cooking'}>Cooking</Link>
-                </li>
-                <li>
-                    <Link to={'/baking'}>Baking</Link>
-                </li>
-                <li>
-                    <Link to={'/create'}>Create</Link>
-                </li>
-                {/* Hier funktioniert noch etwas nicht */}
-                {userId ? (
-                    <div>
-                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
-                        <p>Hallo {user?.displayName}</p>
-                        <Button onClick={onLogoutClick} variant="outlined">Logout</Button>
-                    </div>
-                ) : (
-                    <li>
-                        <Link to={'/login'}>Login</Link>
-                    </li>
-                )}
-            </ul>
+            <Link color="text.primary" to={'/'} onClick={handleSetActive}>Home</Link>
+            <Link to={'/cooking'}>Cooking</Link>
+            <Link to={'/baking'}>Baking</Link>
+            <Link to={'/create'}>Create</Link>
+        {/* Hier funktioniert noch etwas nicht */}
+        {userId ? (
+            <div>
+                <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
+                <p>Hallo {user?.displayName}</p>
+                <Button onClick={onLogoutClick} variant="outlined">Logout</Button>
+            </div>
+        ) : (
+              <Link to={'/login'}>Login</Link>
+          )}
         </nav>
 )}
 

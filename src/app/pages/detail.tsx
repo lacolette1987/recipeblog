@@ -2,7 +2,7 @@ import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
 import React, { useState, useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { db } from '../firebase-config';
-import { Box, Card, CardContent, CardMedia, Container, Grid, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
 import AddCommentForm, { CommentForm } from '../components/add-comment-form';
 
 interface AddBlogProps {
@@ -16,9 +16,9 @@ interface AddBlogProps {
   lead: string;
   description: string;
   ingredients: string;
-  commentaryname: string;
-  comment: string;
 }
+
+
 
 const Detail = () => {
 
@@ -26,17 +26,16 @@ const Detail = () => {
   const [blog, setBlog] = useState<AddBlogProps | null>(null);
   const navigate = useNavigate();
 
-  const createComment = async (form:CommentForm) => {
+  const createComment = async (form: any) => {
     try {
-      await addDoc(collection(db, "comments"), {
-          ...form
+      await addDoc(collection(db, 'comments'), {
+        ...form,
       });
       navigate('/');
-
     } catch (err) {
-        console.log(err);
+      console.log(err);
     }
-  }
+  };
 
 
 
@@ -76,13 +75,17 @@ const Detail = () => {
             </CardContent>
           </Card>
           <Typography>{blog?.lead}</Typography>
-          
           <Typography>{blog?.timestamp.toDate().toDateString()}</Typography>
+          
+          <Typography variant='caption'>by {blog?.author}</Typography>
         </Grid>
       </Grid>
       <Typography variant="h3">Hier sollten die Kommentarte erscheinen.</Typography>
-      <div>{blog?.comment}</div>
-      <div>{blog?.commentaryname}</div>
+      <Card variant="outlined">
+        <Typography>Kommentare...</Typography>
+          {/* <Typography>{comments.comment}</Typography>
+          <Typography>{comments.commentaryname}</Typography> */}
+      </Card>
     </div>
   )
 }

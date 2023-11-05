@@ -1,6 +1,6 @@
 import React from 'react'
 import {User} from 'firebase/auth';
-import { AppBar, Container, Grid, Typography } from '@mui/material';
+import { AppBar, Container, Grid, Toolbar, Typography } from '@mui/material';
 import Navigation from './navigation';
 import { useState } from 'react';
 
@@ -17,6 +17,7 @@ const Header: React.FC<HeaderProps> = ({ user, handleLogout }) => {
 
     return (
         <AppBar position="static">
+            <Toolbar sx={{ flexWrap: 'wrap' }}>
             <Container maxWidth="lg">
                 <Grid container spacing={3}>
                     <Grid item xs>
@@ -27,6 +28,7 @@ const Header: React.FC<HeaderProps> = ({ user, handleLogout }) => {
                 </Grid>
             </Grid>
         </Container>
+        </Toolbar>
     </AppBar>
 )}
 

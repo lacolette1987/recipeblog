@@ -55,7 +55,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                   <p>{item.author}</p>
                 </div>
                 <Link to={`/detail/${item.id}`}>
-                  <Button variant="outlined" disableElevation>Read more</Button>
+                  <Button color="secondary" variant="outlined" disableElevation>Read more</Button>
                 </Link>
                 {/* <DialogDelete handleDelete={handleDelete} /> */}
                 <Button variant="outlined" onClick={handleClickOpen}>

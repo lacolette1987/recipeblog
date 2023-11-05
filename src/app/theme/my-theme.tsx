@@ -44,13 +44,18 @@ const myTheme = createTheme({
             textTransform: "uppercase",
             letterSpacing: 1
         },
+        button: {
+            fontFamily: 'Oswald, sans-serif',
+            fontSize: 16,
+            letterSpacing: 1,
+        }
     },
     palette: {
         primary: {
             main: '#d3e5e7',
         },
         secondary: {
-            main: '#e1ac3b',
+            main: '#000000',
         },
         background: {
             default: '#f5f5f5',
