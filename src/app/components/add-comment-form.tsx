@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, TextField, Typography } from '@mui/material'
+import { Button, Rating, TextField, Typography } from '@mui/material'
 
 
 
@@ -9,12 +9,12 @@ interface AddCommentFormProps {
 }
 
 export interface CommentForm {
-    commentaryname: string,
+    nickname: string,
     comment: string,
 };
 
 const initialState = {
-    commentaryname: "",
+    nickname: "",
     comment: "",
 };
 
@@ -23,7 +23,8 @@ const initialState = {
 const AddCommentForm: React.FC<AddCommentFormProps>  = ({submitForm}) => {
 
     const [form, setForm] = useState(initialState);
-    const {commentaryname, comment} = form;
+    const {nickname, comment} = form;
+    const [value, setValue] = React.useState<number | null>(null);
 
 
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,7 +37,7 @@ const AddCommentForm: React.FC<AddCommentFormProps>  = ({submitForm}) => {
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (commentaryname && comment) {
+        if (nickname && comment) {
             submitForm(form);
         }
     };
@@ -45,17 +46,23 @@ const AddCommentForm: React.FC<AddCommentFormProps>  = ({submitForm}) => {
 
     return (
         <div>
-            <Typography variant="h2">Comments</Typography>
+            <Typography variant="h2">Kommentare</Typography>
             <form onSubmit={handleSubmit}>
+                <Rating
+                  size='small'
+                  name='simple-controlled'
+                  value={value}
+                  // onChange={handleChange}
+                  />
                 <TextField
                     margin="normal"
                     required
                     fullWidth
-                    id="commentaryname"
-                    label="Your name"
-                    name="commentaryname"
-                    autoComplete="commentaryname"
-                    value={commentaryname}
+                    id="nickname"
+                    label="Dein Name"
+                    name="nickname"
+                    autoComplete="nickname"
+                    value={nickname}
                     onChange={handleChange}
                     autoFocus
                 />
@@ -65,14 +72,14 @@ const AddCommentForm: React.FC<AddCommentFormProps>  = ({submitForm}) => {
                     fullWidth
                     multiline
                     id="comment"
-                    label="Your comment"
+                    label="Dein Kommentar"
                     name="comment"
                     autoComplete="comment"
                     value={comment}
                     onChange={handleChange}
                     autoFocus
                 />
-                <Button type="submit" variant="outlined">Comment</Button>
+                <Button type="submit" variant="outlined">Kommentieren</Button>
            </form>
         </div>
     )

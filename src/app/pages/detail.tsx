@@ -1,93 +1,114 @@
-import { addDoc, collection, doc, getDoc } from 'firebase/firestore';
-import React, { useState, useEffect } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
+import { addDoc, collection, doc, getDoc, getDocs } from 'firebase/firestore';
+import React, { useEffect, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 import { db } from '../firebase-config';
 import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material';
-import AddCommentForm, { CommentForm } from '../components/add-comment-form';
-
-interface AddBlogProps {
-  comments: any[];
-  imgUrl: string;
-  timestamp: {
-    toDate(): Date;
-  };
-  title: string;
-  author: string;
-  lead: string;
-  description: string;
-  ingredients: string;
-}
-
-
+import AddCommentForm from '../components/add-comment-form';
+import { Comments } from '../models/Comments';
+import useBlogs from '../hooks/useBlogs';
 
 const Detail = () => {
 
-  const { userId } = useParams();
-  const [blog, setBlog] = useState<AddBlogProps | null>(null);
+  const { blogId } = useParams();
+  const {blogs, queryBlogs} = useBlogs();
+  const [comments, setComments] = useState<Comments>([]);
   const navigate = useNavigate();
 
   const createComment = async (form: any) => {
+    if(!blogId)
+      return;
+
     try {
-      await addDoc(collection(db, 'comments'), {
-        ...form,
+      const comment = form;
+      const commentsRef = collection(db, `blogs`, blogId, 'comments');
+
+      await addDoc(commentsRef, {
+        ...form
       });
-      navigate('/');
+      setComments([...comments, comment]);
     } catch (err) {
       console.log(err);
     }
   };
 
-
-
   useEffect(() => {
-    userId && getBlogDetail();
-  }, [userId]);
+    queryBlogs();
+  }, []);
 
-  const getBlogDetail = async () => {
-    if (!userId) {
+
+
+
+  // useEffect(() => {
+  //   if(blogId){
+  //     queryBlogs(blogId);
+  //     getComments();
+  //   }
+  // }, [blogId]);
+
+  const getComments = async () => {
+    if (!blogId) {
       return;
     }
 
-    const docRef = doc(db, "blogs", userId);
+    const blogRef = doc(db, 'blogs', blogId);
+    const commentsRef = collection(db, `blogs`, blogId, 'comments');
 
     try {
-      const blogDetail = await getDoc(docRef);
-      setBlog(blogDetail.data() as AddBlogProps | null);
+      const commentsRaw = await getDocs(commentsRef);
+      setComments(commentsRaw.docs.map(doc => ({
+        uid: doc.id,
+        nickname: doc.data().nickname,
+        comment: doc.data().comment
+      })));
+      console.log('comments: ', commentsRaw.docs.map(doc => ({
+        uid: doc.id,
+        nickname: doc.data().nickname,
+        comment: doc.data().comment
+      })));
     } catch (error) {
-      console.error("Fehler beim Abrufen von Blogdetails:", error);
+      console.error('Fehler beim Abrufen von Blogdetails:', error);
     }
   };
 
+  const formatTimestamp = (timestamp: any) => {
+    if (timestamp && timestamp.toDate) {
+      return timestamp.toDate().toLocaleString();
+    }
+    return '';
+  };
+
+
+
   return (
     <div>
-      <Typography align="center" variant="h1">{blog?.title}</Typography>
-      <Typography variant='caption'>by {blog?.author}</Typography>
+      <Typography align='center' variant='h1'>{blogs[0]?.title}</Typography>
+      <Typography variant='caption'>by {blogs[0]?.author}</Typography>
       <Grid container spacing={8}>
         <Grid item xs={8}>
-          <CardMedia component="img" image={blog?.imgUrl} title={blog?.title} />
-          <div>{blog?.description}</div>
-          <AddCommentForm submitForm={createComment}/>
+          <CardMedia component='img' image={blogs[0]?.imgUrl} title={blogs[0]?.title} />
+          <Typography>{blogs[0]?.timestamp ? formatTimestamp(blogs[0]?.timestamp) : ''}</Typography>
+          <div>{blogs[0]?.description}</div>
+          <AddCommentForm submitForm={createComment} />
+          {comments.map((comment) => (
+            <Card key={comment.uid} variant='outlined'>
+              <Typography>von {comment.nickname}</Typography>
+              <Typography>{comment.comment}</Typography>
+            </Card>
+          ))}
         </Grid>
         <Grid item xs={4}>
           <Card>
-            <CardContent component="div">
-              <Typography>{blog?.ingredients}</Typography>
+            <CardContent component='div'>
+              <Typography>{blogs[0]?.ingredients}</Typography>
             </CardContent>
           </Card>
-          <Typography>{blog?.lead}</Typography>
-          <Typography>{blog?.timestamp.toDate().toDateString()}</Typography>
-          
-          <Typography variant='caption'>by {blog?.author}</Typography>
+          <Typography>{blogs[0]?.lead}</Typography>
+          <Typography>{blogs[0]?.timestamp.toDate().toDateString()}</Typography>
+          <Typography variant='caption'>by {blogs[0]?.author}</Typography>
         </Grid>
       </Grid>
-      <Typography variant="h3">Hier sollten die Kommentarte erscheinen.</Typography>
-      <Card variant="outlined">
-        <Typography>Kommentare...</Typography>
-          {/* <Typography>{comments.comment}</Typography>
-          <Typography>{comments.commentaryname}</Typography> */}
-      </Card>
     </div>
-  )
-}
+  );
+};
 
-export default Detail
+export default Detail;

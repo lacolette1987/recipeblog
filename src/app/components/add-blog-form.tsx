@@ -2,9 +2,12 @@ import React, {useState} from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
-import User from "../models/user";
+import User from "../models/User";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { FormControl, InputLabel, Select, MenuItem, SelectChangeEvent, Container } from '@mui/material';
+import { FormControl, SelectChangeEvent, Container, Autocomplete, Stack, FormControlLabel, Radio, RadioGroup } from '@mui/material';
+import { collection, addDoc } from 'firebase/firestore';
+import { db } from '../firebase-config';
+
 
 
 interface AddBlogFormProps {
@@ -30,11 +33,6 @@ const initialState = {
     description: "",
     ingredients: "",
 };
-
-const categoryoption = [
-    "Kochen",
-    "Backen",
-];
 
 const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submitForm}) => {
 
@@ -66,20 +64,10 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
         if (title && lead && description && ingredients && category) {
             submitForm(form);
         }
-    };
-    // const tags = [
-    //     { title: 'Herbst' },
-    //     { title: 'Weihnachten' },
-    //     { title: 'Geburtstag' },
-    //     { title: 'Halloween' },
-    //     { title: 'Ostern' },
-    //     { title: 'Apéro' },
-    //     { title: 'Hauptgang' },
-    //     { title: 'Dessert' },
-    //     { title: 'Vegetarisch' },
-    //     { title: 'Festlich' },
-    //   ];
-    
+    };          
+
+
+
     return (
         <div>
       <Container component="main" maxWidth="xs">
@@ -90,53 +78,48 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     required
                     fullWidth
                     id="title"
-                    label="Titel"
+                    label="Rezepttitel"
                     name="title"
                     autoComplete="title"
                     autoFocus
                     value={title}
                     onChange={handleChange}
                 />
-                <FormControl fullWidth>
-                    <InputLabel id="category">Category</InputLabel>
-                    <Select
-                        fullWidth
-                        labelId="category-label"
-                        id="demo-select-small"
+                <FormControl>
+                    <RadioGroup
+                        row
+                        aria-labelledby="demo-row-radio-buttons-group-label"
+                        name="row-radio-buttons-group"
                         value={category}
-                        label="Category"
                         onChange={onCategoryChange}
-                        >
-                        {categoryoption.map((option, index) => (
-                            <MenuItem value={option} key={index}>
-                                {option}
-                            </MenuItem>
-                        ))}
-                    </Select>
+                    >
+                    <FormControlLabel value="Kochen" control={<Radio />} label="Kochen" />
+                       <FormControlLabel value="Backen" control={<Radio />} label="Backen" />
+                    </RadioGroup>
                 </FormControl>
-                {/* <Stack spacing={3} sx={{ width: 500 }}>
-                    <Autocomplete
-                        multiple
-                        id="tags-outlined"
-                        options={tags}
-                        getOptionLabel={(option) => option.title}
-                        defaultValue={[tags[13]]}
-                        filterSelectedOptions
-                        renderInput={(params) => (
+                <Stack>
+                <Autocomplete
+                    fullWidth
+                    multiple
+                    id="tags-standard"
+                    options={tags}
+                    getOptionLabel={(option) => option.title}
+                    // onChange={handleTagsChange}
+                    renderInput={(params) => (
                         <TextField
                             {...params}
-                            label="filterSelectedOptions"
-                            placeholder="Favorites"
+                            variant="standard"
+                            label="Tags"
                         />
-                        )}
-                    />
-                </Stack> */}
+                    )}
+                />            
+                </Stack>
                 <TextField
                     margin="normal"
                     required
                     fullWidth
                     id="outlined-multiline-static"
-                    label="Ingredients"
+                    label="Zutaten"
                     multiline
                     maxRows={4}
                     value={ingredients}
@@ -148,7 +131,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     required
                     fullWidth
                     id="outlined-multiline-flexible"
-                    label="lead"
+                    label="Einleitung"
                     multiline
                     maxRows={4}
                     value={lead}
@@ -160,7 +143,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     required
                     fullWidth
                     id="outlined-multiline-flexible"
-                    label="Description"
+                    label="Beschreibung"
                     multiline
                     maxRows={4}
                     value={description}
@@ -168,17 +151,30 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     onChange={handleChange}
                 />
                 <Button component="label" variant="outlined" startIcon={<UploadFileIcon />}>
-                    Upload image
+                    Bild hochladen
                     <input type="file" accept=".jpg" hidden onChange={handleFileChange} />
                 </Button>
-                <Button type="submit" variant="outlined" disabled={uploadProcess !== null && uploadProcess < 100}>Create</Button>
+                <Button type="submit" variant="outlined" disabled={uploadProcess !== null && uploadProcess < 100}>Erstellen</Button>
             </form>
             </Container>
         </div>
     )
 }
 
-
+const tags = [
+  { title: 'Gebäck' },
+  { title: 'Frühling' },
+  { title: 'Ostern' },
+  { title: 'Weihnachten' },
+  { title: 'Halloween' },
+  { title: 'Herbst' },
+  { title: 'Geburtstag' },
+  { title: 'Vegetarisch' },
+  { title: 'Vegan' },
+  { title: 'Frühstück' },
+  { title: 'Apéro' },
+  { title: 'Dessert' },
+];
 
   
 export default AddBlogForm
