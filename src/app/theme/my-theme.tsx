@@ -4,7 +4,22 @@ import { createTheme } from "@mui/material";
 
 
 const myTheme = createTheme({
-        typography: {
+    components: {
+        MuiButton: {
+          styleOverrides: {
+            root: {
+              fontSize: '1rem',
+              borderRadius: 0,
+              letterSpacing: 1.4,
+              paddingTop: 12,
+              paddingBottom: 8,
+              paddingLeft: 25,
+              paddingRight: 25,
+            },
+          },
+        },
+    },
+    typography: {
         fontFamily: 'Quattrocento, serif',
         body1: {
             fontSize: 18,
