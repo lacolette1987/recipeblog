@@ -1,60 +1,46 @@
 import React, { useEffect } from 'react';
-import { Button, CardMedia, Grid, Stack, Typography } from '@mui/material';
-import useBlogs from '../hooks/useBlogs';
+import { Button, CardMedia, Grid, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
+import useBlogs from '../hooks/useBlogs';
 
 
 
 const Baking = () => {
-  const { blogs, queryBlogs, loading, error } = useBlogs();
+  const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
+
 
   useEffect(() => {
-    // Lade die Blogs mit der Kategorie "Backen"
-    queryBlogs({ category: 'Backen' });
+    queryBlogs();
   }, []);
 
 
-  if (loading) {
-    return <div>Lade...</div>;
-  }
-
-  if (error) {
-    return <div>Fehler: {error}</div>;
-  }
-
-
-
-  
   return (
     <div>
       <Grid container spacing={4}>
-      {blogs.map((blog) => (
-          <div key={blog.uid}>
-          <Grid item xs={12} sm={12} md={6} key={blog.uid}>
-            <Link to={`/detail/${blog.uid}`}>
-              <CardMedia component='img' image={blog.imgUrl} title={blog.title} />
+        {blogs?.map((item) => (
+          <Grid item xs={12} sm={12} md={6} key={item.uid}>
+            <Link to={`/detail/${item.uid}`}>
+              <CardMedia component='img' image={item.imgUrl} title={item.title} />
             </Link>
-            <Stack></Stack>
-            <Link to={`/detail/${blog.uid}`}>
-              <Typography variant='h3'>{blog.title}</Typography>
+            <Link to={`/detail/${item.uid}`}>
+              <Typography variant='h3'>{item.title}</Typography>
             </Link>
-            <Typography>{blog.lead}</Typography>
-            <Typography><strong>{blog.category}</strong></Typography>
+            <Grid container spacing={1}>
+                  <Grid item>
+                  </Grid>
+                  <Grid item>
+                    <Typography>{item.duration} Min.</Typography>
+                  </Grid>
+                </Grid>
+            <Typography>{item.lead}</Typography>
             <Grid container>
               <Grid item xs={6}>
-                <Link to={`/detail/${blog.uid}`}>
+                <Link to={`/detail/${item.uid}`}>
                   <Button color='secondary' variant='outlined' disableElevation>Zum Rezept</Button>
                 </Link>
               </Grid>
-              {/* {userId ? (
-                <Grid item xs={6} textAlign={'right'}>
-                  <DeleteOutlinedIcon onClick={handleClickOpen}></DeleteOutlinedIcon>
-                </Grid>
-              ) : ""} */}
             </Grid>
-            {/* <DialogDelete isOpen={deleteDialogOpen} handleClose={() => setDeleteDialogOpen(false)} handleDelete={() => handleDeleteBlog(blog.uid)} /> */}
           </Grid>
-          </div>
         ))}
       </Grid>
     </div>

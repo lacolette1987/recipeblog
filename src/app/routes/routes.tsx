@@ -22,6 +22,7 @@ const AppRoutes = () => {
       <Route path='/Baking' element={<Baking />} />
       <Route path='/Cooking' element={<Cooking />} />
       <Route path='/detail/:blogId' element={<Detail />} />
+      {/* What is wrong?? <Route path="/detail/:userId" element={<Detail />} /> */}
       <Route path='/login' element={<SignIn />} />
     </Routes>
   );

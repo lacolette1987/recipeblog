@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import useBlogs from '../hooks/useBlogs';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
 const Home = () => {
   const user = useSelector((state: RootState) => state.auth.currentUser);
@@ -32,6 +33,14 @@ const Home = () => {
               </Link>
               <CardContent>
                 <Typography variant='h3'>{latestBlog.title}</Typography>
+                <Grid container spacing={1}>
+                  <Grid item>
+                    <AccessAlarmIcon fontSize='small' color='primary' />
+                  </Grid>
+                  <Grid item>
+                    <Typography>{latestBlog.duration} Min.</Typography>
+                  </Grid>
+                </Grid>
                 <Typography>{latestBlog.lead}</Typography>
               </CardContent>
             </Card>

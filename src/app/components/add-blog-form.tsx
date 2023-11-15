@@ -4,9 +4,8 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import User from "../models/User";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import { FormControl, SelectChangeEvent, Container, Autocomplete, Stack, FormControlLabel, Radio, RadioGroup } from '@mui/material';
-import { collection, addDoc } from 'firebase/firestore';
-import { db } from '../firebase-config';
+import DeleteIcon from '@mui/icons-material/Delete';
+import { FormControl, SelectChangeEvent, Container, Autocomplete, Stack, FormControlLabel, Radio, RadioGroup, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material';
 
 
 
@@ -24,6 +23,7 @@ export interface BlogForm {
     lead: string,
     description: string,
     ingredients: string,
+    duration: string,
 };
 
 const initialState = {
@@ -32,14 +32,31 @@ const initialState = {
     category: "",
     description: "",
     ingredients: "",
+    duration: "",
 };
 
 const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submitForm}) => {
 
     const [form, setForm] = useState(initialState);
-    const {title, category, lead, description, ingredients} = form;
+    const {title, category, lead, duration, description, ingredients} = form;
 
+    const [listItems, setListItems] = useState<string[]>([]);
+    const [listItemText, setListItemText] = useState<string>('');
+  
+    const handleAddListItem = () => {
+      if (listItemText.trim() !== '') {
+        setListItems([...listItems, listItemText]);
+        setListItemText('');
+      }
+    };
+  
+    const handleDeleteListItem = (index: number) => {
+        const updatedList = [...listItems];
+        updatedList.splice(index, 1);
+        setListItems(updatedList);
+      };
 
+      
     const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = event.target;
         setForm((prevForm) => ({
@@ -61,7 +78,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
-        if (title && lead && description && ingredients && category) {
+        if (title && lead && description && duration && ingredients && category) {
             submitForm(form);
         }
     };          
@@ -83,6 +100,18 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     autoComplete="title"
                     autoFocus
                     value={title}
+                    onChange={handleChange}
+                />
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="duration"
+                    label="Zeit"
+                    name="duration"
+                    autoComplete="duration"
+                    autoFocus
+                    value={duration}
                     onChange={handleChange}
                 />
                 <FormControl>
@@ -114,6 +143,36 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     )}
                 />            
                 </Stack>
+
+                <List>
+                    {listItems.map((item, index) => (
+                        <ListItem key={index}>
+                            <ListItemText primary={item} />
+                            <ListItemSecondaryAction>
+                                <IconButton
+                                    edge="end"
+                                    aria-label="delete"
+                                    onClick={() => handleDeleteListItem(index)}
+                                >
+                                <DeleteIcon />
+                                </IconButton>
+                            </ListItemSecondaryAction>
+                        </ListItem>
+                    ))}
+                </List>
+                <TextField
+                    label="Zutaten"
+                    variant="outlined"
+                    fullWidth
+                    value={listItemText}
+                    onChange={(e) => setListItemText(e.target.value)}
+                />
+                <Button variant="outlined" color="secondary" onClick={handleAddListItem}>
+                    Hinzufügen
+                </Button>
+
+
+
                 <TextField
                     margin="normal"
                     required

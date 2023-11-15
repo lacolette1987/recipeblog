@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import User from '../models/User';
 import DialogDelete from './dialog-delete';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
 
 interface BlogSectionProps {
@@ -49,8 +50,15 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
             <Link to={`/detail/${item.uid}`}>
               <Typography variant='h3'>{item.title}</Typography>
             </Link>
+            <Grid container spacing={1}>
+                  <Grid item>
+                    <AccessAlarmIcon fontSize='small' color='primary' />
+                  </Grid>
+                  <Grid item>
+                    <Typography>{item.duration} Min.</Typography>
+                  </Grid>
+                </Grid>
             <Typography>{item.lead}</Typography>
-            <Typography><strong>{item.category}</strong></Typography>
             <Grid container>
               <Grid item xs={6}>
                 <Link to={`/detail/${item.uid}`}>
