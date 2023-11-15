@@ -22,7 +22,7 @@ interface NavigationProps {
 const pages = [
   { label: 'Startseite', to: '/' },
   { label: 'Kochen', to: '/cooking' },
-  { label: 'Bachen', to: '/baking' },
+  { label: 'Backen', to: '/baking' },
 ];
 
 const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }) => {
@@ -108,7 +108,7 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
           {userId ? (
             <MenuItem onClick={handleCloseNavMenu}>
               <Link to={"/create"}>
-                <Typography textAlign='center'>Erstellen</Typography>
+                <Typography textAlign='center'>Erfassen</Typography>
               </Link>
             </MenuItem>
           ) : ""}
@@ -126,7 +126,7 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
           </Button>
         ))}
         {userId ? (
-        <Button component={Link} sx={{ my: 2, color: 'black', display: 'block' }} to={'/create'}>Erstellen</Button>
+        <Button component={Link} sx={{ my: 2, color: 'black', display: 'block' }} to={'/create'}>Erfassen</Button>
         ) : ""}
         </Box>
       {!userId ? (
