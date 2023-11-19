@@ -18,4 +18,16 @@ auth.setPersistence(browserSessionPersistence);
 const db = getFirestore(app);
 const storage = getStorage(app);
 
+
+// const addTagToFirestore = async (tagTitle: string) => {
+//   try {
+//     const tagsRef = collection(db, 'tags');
+//     await addDoc(tagsRef, { title: tagTitle });
+//     console.log('Tag erfolgreich hinzugefügt');
+//   } catch (error) {
+//     console.error('Fehler beim Hinzufügen des Tags: ', error);
+//   }
+// };
+
+
 export { auth, db, storage }; 

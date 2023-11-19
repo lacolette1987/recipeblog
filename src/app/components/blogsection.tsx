@@ -47,17 +47,19 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
               value={value}
               // onChange={handleChange}
             />
-            <Link to={`/detail/${item.uid}`}>
-              <Typography variant='h3'>{item.title}</Typography>
-            </Link>
-            <Grid container spacing={1}>
-                  <Grid item>
-                    <AccessAlarmIcon fontSize='small' color='primary' />
-                  </Grid>
-                  <Grid item>
-                    <Typography>{item.duration} Min.</Typography>
-                  </Grid>
-                </Grid>
+            <Grid container spacing={2} justifyContent={'space-between'}>
+              <Grid item>
+                <Typography variant='h3'>
+                  <Link to={`/detail/${item.uid}`}>{item.title}</Link>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Stack direction="row" alignItems="top" gap={1}>
+                  <AccessAlarmIcon color='primary' />
+                  <Typography>{blogs[0]?.duration} Min.</Typography>
+                </Stack>
+              </Grid>
+            </Grid>
             <Typography>{item.lead}</Typography>
             <Grid container>
               <Grid item xs={6}>
