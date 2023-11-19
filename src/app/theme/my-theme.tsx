@@ -72,8 +72,8 @@ const myTheme = createTheme({
             textTransform: "uppercase",
             letterSpacing: 1.1,
             a: {
-                color: '#000000', // Ersetze 'your-color' durch die gewünschte Farbe
-                textDecoration: 'none', // Ersetze 'your-text-decoration' durch die gewünschte Textdekoration
+                color: '#000000',
+                textDecoration: 'none',
               },
         },
         h4: {
