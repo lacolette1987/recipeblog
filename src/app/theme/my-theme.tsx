@@ -26,6 +26,7 @@ const myTheme = createTheme({
             },
           },
         },
+        
     },
     typography: {
         fontFamily: 'Quattrocento, serif',
@@ -36,9 +37,10 @@ const myTheme = createTheme({
             fontWeight: 300,
         },
         body2: {
-            fontSize: 17,
+            fontSize: 18,
+            lineHeight: 1.5,
             marginBottom: 10,
-            color: '#000000',
+            color: '#ffffff',
         },
         caption: {
             fontSize: 25,
@@ -46,6 +48,19 @@ const myTheme = createTheme({
             marginBottom: 10,
             fontWeight: 700,
             fontFamily: 'Quattrocento, serif',
+        },
+        subtitle1: {
+            fontSize: 18,
+            lineHeight: 1.3,
+            marginBottom: 10,
+            fontWeight: 700,
+            color: "#4f2f20",
+        },
+        subtitle2: {
+            fontSize: 18,
+            lineHeight: 1.3,
+            marginBottom: 10,
+            color: "#eeeeee",
         },
         h1: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -81,7 +96,7 @@ const myTheme = createTheme({
         h4: {
             fontSize: 17,
             marginBottom: 10,
-            color: '#e1ac3b',
+            color: '#4f2f20',
             fontWeight: 600,
         },
         button: {
@@ -94,6 +109,7 @@ const myTheme = createTheme({
     palette: {
         primary: {
             main: '#000000',
+            light: '#bca47c',
           },
           secondary: {
             main: '#4f2f20',

@@ -2,7 +2,7 @@ import { addDoc, collection, doc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebase-config';
-import { Card, CardContent, CardMedia, Grid, Stack, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
 import AddCommentForm from '../components/add-comment-form';
 import { Comments } from '../models/Comments';
 import useBlogs from '../hooks/useBlogs';
@@ -14,7 +14,7 @@ const Detail = () => {
 
   const { blogId } = useParams();
   const { blogs, querySingleBlog, loading, error } = useBlogs();
-  // TODO: useComments()
+  // TODO: colette, useComments()
   const [comments, setComments] = useState<Comments>([]);
 
   const createComment = async (form: any) => {
@@ -81,7 +81,7 @@ const Detail = () => {
 
 
   return (
-    <div>
+    <Container maxWidth='lg'>
       <Typography align='center' variant='h1'>{blogs[0]?.title}</Typography>
       <Typography variant='h4'>by {blogs[0]?.author}</Typography>
       <Grid container spacing={{ sm: 4, md: 8 }}>
@@ -91,9 +91,12 @@ const Detail = () => {
           <Typography>{blogs[0]?.description}</Typography>
           <AddCommentForm submitForm={createComment} />
           {comments.map((comment) => (
-            <Card key={comment.uid} variant='outlined'>
-              <Typography>von {comment.nickname}</Typography>
-              <Typography>{comment.comment}</Typography>
+            <Card key={comment.uid} elevation={0} style={{ marginTop: '20px' }}>
+              <CardContent>
+                <Typography variant='subtitle1'>von {comment.nickname}</Typography>
+                <Typography variant='subtitle2'>{blogs[0]?.timestamp ? formatTimestamp(blogs[0]?.timestamp) : ''}</Typography>
+                <Typography>{comment.comment}</Typography>
+              </CardContent>
             </Card>
           ))}
         </Grid>
@@ -117,7 +120,7 @@ const Detail = () => {
           <Typography variant='h4'>by {blogs[0]?.author}</Typography>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   );
 };
 
