@@ -22,16 +22,16 @@ export interface BlogForm {
     category: string,
     lead: string,
     description: string,
-    ingredients: string,
+    ingredients: string[],
     duration: string,
 };
 
-const initialState = {
+const initialState: BlogForm = {
     title: "",
     lead: "",
     category: "",
     description: "",
-    ingredients: "",
+    ingredients: [],
     duration: "",
 };
 
@@ -40,20 +40,19 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
     const [form, setForm] = useState(initialState);
     const {title, category, lead, duration, description, ingredients} = form;
 
-    const [listItems, setListItems] = useState<string[]>([]);
     const [listItemText, setListItemText] = useState<string>('');
   
     const handleAddListItem = () => {
       if (listItemText.trim() !== '') {
-        setListItems([...listItems, listItemText]);
+        setForm({...form, ingredients: [...form.ingredients, listItemText]});
         setListItemText('');
       }
     };
   
     const handleDeleteListItem = (index: number) => {
-        const updatedList = [...listItems];
+        const updatedList = [...form.ingredients];
         updatedList.splice(index, 1);
-        setListItems(updatedList);
+        setForm({...form, ingredients: updatedList});
       };
 
       
@@ -143,9 +142,21 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     )}
                 />            
                 </Stack>
+                <TextField
+                    margin="normal"
+                    required
+                    fullWidth
+                    id="outlined-multiline-static"
+                    label="Zutaten"
+                    multiline
+                    maxRows={4}
+                    value={ingredients}
+                    name="ingredients"
+                    onChange={handleChange}
+                />
 
                 <List>
-                    {listItems.map((item, index) => (
+                    {form.ingredients.map((item, index) => (
                         <ListItem key={index}>
                             <ListItemText primary={item} />
                             <ListItemSecondaryAction>
@@ -160,31 +171,9 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                         </ListItem>
                     ))}
                 </List>
-                <TextField
-                    label="Zutaten"
-                    variant="outlined"
-                    fullWidth
-                    value={listItemText}
-                    onChange={(e) => setListItemText(e.target.value)}
-                />
                 <Button variant="outlined" color="secondary" onClick={handleAddListItem}>
                     Hinzufügen
                 </Button>
-
-
-
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="outlined-multiline-static"
-                    label="Zutaten"
-                    multiline
-                    maxRows={4}
-                    value={ingredients}
-                    name="ingredients"
-                    onChange={handleChange}
-                />
                 <TextField
                     margin="normal"
                     required
