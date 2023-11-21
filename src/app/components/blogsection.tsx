@@ -43,12 +43,10 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
             <Link to={`/detail/${item.uid}`}>
               <CardMedia component='img' image={item.imgUrl} title={item.title} />
             </Link>
-            <Stack></Stack>
             <Rating
               size='small'
               name='simple-controlled'
               value={ratingValue}
-              // onChange={handleChange}
             />
             <Grid container spacing={2} justifyContent={'space-between'}>
               <Grid item>
@@ -58,7 +56,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
               </Grid>
               <Grid item>
                 <Stack direction='row' alignItems='top' gap={1}>
-                  <AccessAlarmIcon color='primary' />
+                  <AccessAlarmIcon color='secondary' />
                   <Typography>{item?.duration} Min.</Typography>
                 </Stack>
               </Grid>

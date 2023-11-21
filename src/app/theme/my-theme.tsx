@@ -1,3 +1,4 @@
+import { Palette } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 
@@ -53,7 +54,8 @@ const myTheme = createTheme({
             lineHeight: 1.3,
             fontWeight: 600,
             textTransform: "uppercase",
-            letterSpacing: 1.7
+            letterSpacing: 1.7,
+            color: '#4f2f20',
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -74,7 +76,7 @@ const myTheme = createTheme({
             a: {
                 color: '#000000',
                 textDecoration: 'none',
-              },
+            },
         },
         h4: {
             fontSize: 17,
@@ -91,11 +93,12 @@ const myTheme = createTheme({
     },
     palette: {
         primary: {
-            main: '#aadfdc',
-          },
-          secondary: {
             main: '#000000',
           },
+          secondary: {
+            main: '#4f2f20',
+          },
+          
           background: {
             default: '#f5f5f5',
         },

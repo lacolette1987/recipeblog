@@ -75,10 +75,12 @@ const LoginNav: React.FC<LoginNavProps> = ({ user, handleLogout, setActive }) =>
             open={Boolean(anchorElUser)}
             onClose={handleCloseUserMenu}
           >
-              <MenuItem onClick={handleCloseUserMenu}>
-                <Link to={'/profile'}>Profil</Link>
-                <Link onClick={onLogoutClick} to={'/'}>Logout</Link>
-              </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link to={'/profile'}>Profil</Link>
+            </MenuItem>
+            <MenuItem onClick={handleCloseUserMenu}>
+              <Link onClick={onLogoutClick} to={'/'}>Logout</Link>
+            </MenuItem>
           </Menu>
         </Box>
       ) : <Button component={Link} sx={{ my: 2, color: 'black', display: 'block' }} to={'/login'}>Login</Button>}

@@ -12,14 +12,11 @@ const Main = () => {
 
   return (<>
     <Header user={currentUser} />
-      <Box
-        sx={{
-          pt: 8,
-          pb: 8
-        }}
-      >
-      <AppRoutes />
-    </Box>
+      <main>
+        <Box sx={{ pt: 8, pb: 8 }}>
+          <AppRoutes />
+        </Box>
+      </main>
     <Footer />
   </>);
 };
