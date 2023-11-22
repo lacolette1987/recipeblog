@@ -63,6 +63,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                 </Stack>
               </Grid>
             </Grid>
+            <Typography>{item.tags}</Typography>
             <Typography>{item.lead}</Typography>
             <Grid container>
               <Grid item xs={6}>

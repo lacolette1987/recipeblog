@@ -16,14 +16,15 @@ const myTheme = createTheme({
           styleOverrides: {
             root: {
               borderRadius: 0,
-              fontWeight: 500,
+              fontWeight: 400,
               fontSize: 17,
               letterSpacing: 1.4,
               paddingTop: 10,
               paddingBottom: 8,
               paddingLeft: 20,
               paddingRight: 20,
-            },
+              fontFamily: 'Work Sans, sans-serif',
+              },
           },
         },
         
@@ -99,12 +100,6 @@ const myTheme = createTheme({
             color: '#4f2f20',
             fontWeight: 600,
         },
-        button: {
-            fontFamily: 'Work Sans, sans-serif',
-            fontSize: 16,
-            letterSpacing: 1,
-            borderRadius: 0,
-        }
     },
     palette: {
         primary: {

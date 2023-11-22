@@ -5,7 +5,7 @@ import Button from '@mui/material/Button';
 import User from "../models/User";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { FormControl, SelectChangeEvent, Container, Autocomplete, Stack, FormControlLabel, Radio, RadioGroup, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText } from '@mui/material';
+import { FormControl, SelectChangeEvent, Container, Stack, FormControlLabel, Radio, RadioGroup, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, Autocomplete } from '@mui/material';
 
 
 
@@ -22,7 +22,7 @@ export interface BlogForm {
     category: string,
     lead: string,
     description: string,
-    // tags: string[],
+    tags: string[],
     ingredients: string[],
     duration: string,
 };
@@ -32,7 +32,7 @@ const initialState: BlogForm = {
     lead: "",
     category: "",
     description: "",
-    // tags: [],
+    tags: [],
     ingredients: [],
     duration: "",
 };
@@ -66,13 +66,12 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
         }));
     };
 
-    // const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    //     const {name, value} = event.target;
-    //     setForm((prevForm) => ({
-    //         ...prevForm,
-    //         [name]: value,
-    //     }));
-    // };
+    const handleTagsChange = (event: any, newValue: { tagtitle: string; }[]) => {
+        setForm((prevForm) => ({
+            ...prevForm,
+            tags: newValue.map((tag) => tag.tagtitle), // Hier wird der tagtitle aus den ausgewählten Tags extrahiert
+        }));
+    };
 
     const onCategoryChange = (e: SelectChangeEvent<string>) => {
         setForm({ ...form, category: e.target.value });
@@ -90,14 +89,14 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
         if (title && lead && description && duration && ingredients && category) {
             submitForm(form);
         }
-    };          
+    };    
 
 
 
     return (
         <div>
       <Container component="main" maxWidth="xs">
-            <Typography variant="h1">Add a recipe</Typography>
+            <Typography variant="h1">Erfasse ein Rezept</Typography>
             <form onSubmit={handleSubmit}>
                 <TextField
                     margin="normal"
@@ -141,8 +140,8 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     multiple
                     id="tags-standard"
                     options={tags}
-                    getOptionLabel={(option) => option.title}
-                    // onChange={handleTagsChange}
+                    getOptionLabel={(option) => option.tagtitle}
+                    onChange={handleTagsChange}
                     renderInput={(params) => (
                         <TextField
                             {...params}
@@ -223,18 +222,18 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
 }
 
 const tags = [
-  { title: 'Gebäck' },
-  { title: 'Frühling' },
-  { title: 'Ostern' },
-  { title: 'Weihnachten' },
-  { title: 'Halloween' },
-  { title: 'Herbst' },
-  { title: 'Geburtstag' },
-  { title: 'Vegetarisch' },
-  { title: 'Vegan' },
-  { title: 'Frühstück' },
-  { title: 'Apéro' },
-  { title: 'Dessert' },
+  { tagtitle: 'Gebäck' },
+  { tagtitle: 'Frühling' },
+  { tagtitle: 'Ostern' },
+  { tagtitle: 'Weihnachten' },
+  { tagtitle: 'Halloween' },
+  { tagtitle: 'Herbst' },
+  { tagtitle: 'Geburtstag' },
+  { tagtitle: 'Vegetarisch' },
+  { tagtitle: 'Vegan' },
+  { tagtitle: 'Frühstück' },
+  { tagtitle: 'Apéro' },
+  { tagtitle: 'Dessert' },
 ];
 
   
