@@ -14,7 +14,7 @@ const AppRoutes = () => {
   return (
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path='/profile' element={<Profile user={null} />} />
+      <Route path='/profile' element={<Profile />} />
       <Route element={<PrivateRoutes />}>
         <Route path='/create' element={<Create />} />
         <Route path='/edit/:id' element={<Edit />} />

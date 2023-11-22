@@ -22,6 +22,7 @@ export interface BlogForm {
     category: string,
     lead: string,
     description: string,
+    // tags: string[],
     ingredients: string[],
     duration: string,
 };
@@ -31,6 +32,7 @@ const initialState: BlogForm = {
     lead: "",
     category: "",
     description: "",
+    // tags: [],
     ingredients: [],
     duration: "",
 };
@@ -38,7 +40,7 @@ const initialState: BlogForm = {
 const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submitForm}) => {
 
     const [form, setForm] = useState(initialState);
-    const {title, category, lead, duration, description, ingredients} = form;
+    const {title, category, lead, duration, description, ingredients } = form;
 
     const [listItemText, setListItemText] = useState<string>('');
   
@@ -63,6 +65,14 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
             [name]: value,
         }));
     };
+
+    // const handleTagsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    //     const {name, value} = event.target;
+    //     setForm((prevForm) => ({
+    //         ...prevForm,
+    //         [name]: value,
+    //     }));
+    // };
 
     const onCategoryChange = (e: SelectChangeEvent<string>) => {
         setForm({ ...form, category: e.target.value });
@@ -142,19 +152,22 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     )}
                 />            
                 </Stack>
-                <TextField
-                    margin="normal"
-                    required
-                    fullWidth
-                    id="outlined-multiline-static"
-                    label="Zutaten"
-                    multiline
-                    maxRows={4}
-                    value={ingredients}
-                    name="ingredients"
-                    onChange={handleChange}
-                />
-
+                {/* <Autocomplete
+    fullWidth
+    multiple
+    id="outlined-multiline-static"
+    options={tags}
+    getOptionLabel={(option) => option.title}
+    value={ingredients}
+    onChange={(event, newValue) => setForm({ ...form, ingredients: newValue })}
+    renderInput={(params) => (
+        <TextField
+            {...params}
+            variant="outlined"
+            label="Zutaten"
+        />
+    )}
+/> */}
                 <List>
                     {form.ingredients.map((item, index) => (
                         <ListItem key={index}>

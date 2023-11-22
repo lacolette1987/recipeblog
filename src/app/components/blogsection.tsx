@@ -7,6 +7,8 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 
 
+
+
 interface BlogSectionProps {
   blogs: any[];
   user?: User;
@@ -41,7 +43,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
         {blogs?.map((item) => (
           <Grid item xs={12} sm={12} md={6} key={item.uid}>
             <Link to={`/detail/${item.uid}`}>
-              <CardMedia component='img' image={item.imgUrl} title={item.title} />
+              <CardMedia style={{marginBottom: '10px'}} component='img' image={item.imgUrl} title={item.title} />
             </Link>
             <Rating
               size='small'

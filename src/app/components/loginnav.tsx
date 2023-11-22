@@ -10,6 +10,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import User from '../models/User';
 import PersonIcon from '@mui/icons-material/Person';
+import { Grid } from '@mui/material';
 
 interface LoginNavProps {
   user: User | undefined;
@@ -46,16 +47,19 @@ const LoginNav: React.FC<LoginNavProps> = ({ user, handleLogout, setActive }) =>
   };
 
   return (
-    <>
-      {!userId ? (
+    <Grid container>
+  <Grid item>
+  {!userId ? (
         <IconButton>
           <PersonIcon />
         </IconButton>
       ) : ""}
-      {userId ? (
+  </Grid>
+  <Grid item>
+  {userId ? (
         <Box sx={{ flexGrow: 0 }}>
           <Tooltip title='Open'>
-            <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+            <IconButton onClick={handleOpenUserMenu}>
               <PersonIcon />
             </IconButton>
           </Tooltip>
@@ -83,8 +87,10 @@ const LoginNav: React.FC<LoginNavProps> = ({ user, handleLogout, setActive }) =>
             </MenuItem>
           </Menu>
         </Box>
-      ) : <Button component={Link} sx={{ my: 2, color: 'black', display: 'block' }} to={'/login'}>Login</Button>}
-    </>
+      ) : <Button component={Link} sx={{ color: 'black', display: 'block' }} to={'/login'}>Login</Button>}
+
+</Grid>
+</Grid>
   );
 };
 

@@ -1,24 +1,12 @@
-import { Avatar, Button, Container } from '@mui/material';
-import { User } from 'firebase/auth';
-import React, { useState } from 'react'
-import Blog from '../models/Blog';
-
-
-
-
-interface ProfileProps {
-    user: User | null;
-  }
+import { Container } from '@mui/material';
 
   
-const Profile: React.FC<ProfileProps> = ({ user }) => {
-
-    const [blog, setBlog] = useState<Blog | null>(null);
+  
+  const Profile = () => {
     
     return (
         <Container maxWidth='lg'>
-            <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg"/>
-            <p>Hallo {blog?.author}</p>
+            <p>Hallo Name</p>
             <p>Hier sind alle meine Einträge.</p>
         </Container>
     )

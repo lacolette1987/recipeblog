@@ -1,4 +1,3 @@
-import { Palette } from "@mui/icons-material";
 import { createTheme } from "@mui/material";
 
 
@@ -13,13 +12,14 @@ const myTheme = createTheme({
               }
             `,
           },
-              MuiButton: {
+        MuiButton: {
           styleOverrides: {
             root: {
-              fontSize: '15px',
               borderRadius: 0,
+              fontWeight: 500,
+              fontSize: 17,
               letterSpacing: 1.4,
-              paddingTop: 12,
+              paddingTop: 10,
               paddingBottom: 8,
               paddingLeft: 20,
               paddingRight: 20,

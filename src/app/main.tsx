@@ -13,7 +13,7 @@ const Main = () => {
   return (<>
     <Header user={currentUser} />
     <main>
-      <Box sx={{ pt: 8, pb: 8 }}>
+      <Box sx={{ mb: 8, mt: 4, p: 0 }}>
         <AppRoutes />
       </Box>
     </main>
