@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react';
 import useBlogs from '../hooks/useBlogs';
 import BlogSection from '../components/blogsection';
-import { Card, Container, Grid, Typography } from '@mui/material';
+import { CardMedia, Container, Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 
 
 const Baking = () => {
-  const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
+  const { blogs, queryBlogs, deleteBlog } = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
 
   useEffect(() => {
@@ -39,9 +39,9 @@ const Baking = () => {
           </Grid>
         </Grid>
       </Container>
-      <Card>
-        <img src="assets/baking.jpg" alt="Beschreibung des Bildes" style={{ maxWidth: '100%', height: 'auto' }} />
-      </Card>
+      <CardMedia>
+        <img src="assets/baking.jpg" alt="Backen" style={{ maxWidth: '100%' }} />
+      </CardMedia>
     </>
   );
 };

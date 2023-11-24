@@ -1,66 +1,66 @@
 // import { useState, useEffect } from 'react';
-// import { collection, addDoc, getDocs, serverTimestamp } from 'firebase/firestore';
+// import { collection, addDoc, getDocs } from 'firebase/firestore';
 // import { db } from '../firebase-config';
 
-
+// interface Comment {
+//   uid: string;
+//   nickname: string;
+//   comment: string;
+// }
 
 // function useComments(blogId: string) {
+//   const [comments, setComments] = useState<Comment[]>([]); // Hier wird der Typ Comment[] angegeben
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState<string | null>(null);
 
-//   const [comments, setComments] = useState<Comment[]>([]);
-//   const [rating, setRating] = useState(0);
+//   const createComment = async (form: Comment) => { // Hier wird der Typ Comment verwendet
+//     if (!blogId) return;
 
-//   // Funktion zum Hinzufügen eines Kommentars
-//   const addComment = async (comment: any) => {
 //     try {
+//       const comment = form;
 //       const commentsRef = collection(db, 'blogs', blogId, 'comments');
-//       const docRef = await addDoc(commentsRef, comment);
-//       console.log('Kommentar erfolgreich hinzugefügt mit ID: ', docRef.id);
-//     } catch (error) {
-//       console.error('Fehler beim Hinzufügen des Kommentars: ', error);
-//     }
-//   };
 
-//   // Funktion zum Hinzufügen einer Bewertung
-//   const addRating = async (newRating: any) => {
-//     try {
-//       const ratingsRef = collection(db, 'blogs', blogId, 'ratings');
-//       const docRef = await addDoc(ratingsRef, {
-//         rating: newRating,
-//         timestamp: serverTimestamp()
+//       await addDoc(commentsRef, {
+//         ...form
 //       });
-//       console.log('Bewertung erfolgreich hinzugefügt mit ID: ', docRef.id);
-//     } catch (error) {
-//       console.error('Fehler beim Hinzufügen der Bewertung: ', error);
-//     }
+//       setComments([...comments, comment]);
+//     } catch (err) {
+//       setError(err.message);
+//     // }
 //   };
 
-//   // Funktion zum Abrufen von Kommentaren
-//   const getComments = async () => {
+//   const fetchComments = async () => {
+//     if (!blogId) return;
+
+//     setLoading(true);
+//     const commentsRef = collection(db, 'blogs', blogId, 'comments');
+
 //     try {
-//       const commentsRef = collection(db, 'blogs', blogId, 'comments');
-//       const querySnapshot = await getDocs(commentsRef);
-//       const commentList = querySnapshot.docs.map((doc) => ({
-//         id: doc.id,
-//         ...doc.data()
+//       const commentsSnapshot = await getDocs(commentsRef);
+//       const commentsData = commentsSnapshot.docs.map((doc) => ({
+//         uid: doc.id,
+//         nickname: doc.data().nickname,
+//         comment: doc.data().comment
 //       }));
-//       setComments(commentList);
+//       setComments(commentsData);
 //     } catch (error) {
-//       console.error('Fehler beim Abrufen der Kommentare: ', error);
+//       setError(error.message);
+//     } finally {
+//       setLoading(false);
 //     }
 //   };
 
 //   useEffect(() => {
-//     // Hier kannst du die Initialisierung der Kommentare und Bewertungen durchführen
-//     // Du kannst dies anpassen, um die Daten beim Laden der Detailseite zu initialisieren
-//     // getComments();
-//   }, []);
+//     if (blogId) {
+//       fetchComments();
+//     }
+//   }, [blogId]);
 
 //   return {
 //     comments,
-//     rating,
-//     addComment,
-//     addRating,
-//     getComments
+//     createComment,
+//     loading,
+//     error
 //   };
 // }
 

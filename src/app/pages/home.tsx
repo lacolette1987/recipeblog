@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import BlogSection from '../components/blogsection';
 import { Button, Card, CardContent, CardMedia, Container, Grid, Stack, TextField, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -6,14 +6,21 @@ import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import useBlogs from '../hooks/useBlogs';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+import SearchBar from '../components/searchbar';
+import { collection, getDocs, where } from 'firebase/firestore';
+import { db } from '../firebase-config';
+
+
 
 const Home = () => {
   const user = useSelector((state: RootState) => state.auth.currentUser);
   const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
     queryBlogs();
   }, []);
+
 
   const handleDelete = async (uid: string) => {
     console.log('deleting id:', uid);
@@ -21,6 +28,21 @@ const Home = () => {
     // Hx2IkCwwm531ThejKgkr
     await deleteBlog(uid);
   };
+
+
+  // const handleSearch = async (query: string) => {
+  //   const blogsRef = collection(db, 'blogs');
+  //   const q = query(blogsRef, where('title', '>=', query)); // Führen Sie eine Firestore-Abfrage zum Suchen nach Titeln durch
+  //   const querySnapshot = await getDocs(q);
+  
+  //   const results: any[] = []; // Hier deklarieren Sie den Typ von 'results' als ein Array von 'any'
+  //   querySnapshot.forEach((doc) => {
+  //     results.push(doc.data());
+  //   });
+  
+  //   setSearchResults(results);
+  // };
+  
 
   const latestBlog = blogs.length > 0 ? blogs[0] : null;
 
@@ -34,7 +56,8 @@ const Home = () => {
             <Typography>Lorem ipsum dolor sit et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lore ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam.</Typography>
             <Card>
               <CardContent component='div'>
-                <TextField id='outlined-basic' label='Search' variant='outlined' />
+              {/* <SearchBar onSearch={handleSearch} /> */}
+              <p>Search</p>
               </CardContent>
             </Card>
             <Card>

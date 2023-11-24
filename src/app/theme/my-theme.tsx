@@ -3,6 +3,7 @@ import { createTheme } from "@mui/material";
 
 
 
+
 const myTheme = createTheme({
     components: {
         MuiCssBaseline: {
@@ -65,13 +66,12 @@ const myTheme = createTheme({
         },
         h1: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontSize: 32,
+            fontSize: 33,
             marginBottom: 20,
-            lineHeight: 1.3,
+            lineHeight: 1.4,
             fontWeight: 600,
             textTransform: "uppercase",
-            letterSpacing: 1.7,
-            color: '#4f2f20',
+            letterSpacing: 1.5,
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -102,10 +102,13 @@ const myTheme = createTheme({
         },
     },
     palette: {
+        // mode: 'dark',
         primary: {
+            light: '#757ce8',
             main: '#000000',
-            light: '#bca47c',
-          },
+            dark: '#002884',
+            contrastText: '#fff',
+                },
           secondary: {
             main: '#4f2f20',
           },

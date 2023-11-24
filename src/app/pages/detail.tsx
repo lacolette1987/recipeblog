@@ -2,11 +2,12 @@ import { addDoc, collection, doc, getDocs } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { db } from '../firebase-config';
-import { Card, CardContent, CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Container, Grid, ListItem, Stack, Typography } from '@mui/material';
 import AddCommentForm from '../components/add-comment-form';
 import { Comments } from '../models/Comments';
 import useBlogs from '../hooks/useBlogs';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
+
 
 
 
@@ -46,6 +47,7 @@ const Detail = () => {
 
 
 
+
   const getComments = async () => {
     if (!blogId) {
       return;
@@ -80,13 +82,19 @@ const Detail = () => {
 
 
 
+
   return (
     <Container maxWidth='lg'>
-      <Typography align='center' variant='h1'>{blogs[0]?.title}</Typography>
-      <Typography variant='h4'>by {blogs[0]?.author}</Typography>
       <Grid container spacing={{ sm: 4, md: 8 }}>
         <Grid item xs={12} sm={6} md={8}>
+          <Typography variant='h1'>{blogs[0]?.title}</Typography>
+          <Typography variant='body1'>{blogs[0]?.lead}</Typography>
           <CardMedia component='img' image={blogs[0]?.imgUrl} title={blogs[0]?.title} />
+          {blogs[0]?.tags && blogs[0].tags.map((tags, index) => (
+            <Button key={index}>
+              {tags.trim()}
+            </Button>
+          ))}
           <Typography>{blogs[0]?.timestamp ? formatTimestamp(blogs[0]?.timestamp) : ''}</Typography>
           <Typography>{blogs[0]?.description}</Typography>
           <AddCommentForm submitForm={createComment} />
@@ -95,6 +103,7 @@ const Detail = () => {
               <CardContent>
                 <Typography variant='subtitle1'>von {comment.nickname}</Typography>
                 <Typography variant='subtitle2'>{blogs[0]?.timestamp ? formatTimestamp(blogs[0]?.timestamp) : ''}</Typography>
+                <Typography>{blogs[0]?.tags}</Typography>
                 <Typography>{comment.comment}</Typography>
               </CardContent>
             </Card>
@@ -110,14 +119,18 @@ const Detail = () => {
               <Typography>{blogs[0]?.duration} Min.</Typography>
             </Stack>
           </Grid>
-          <Card>
+          <Card elevation={0}>
             <CardContent component='div'>
-              <Typography>{blogs[0]?.ingredients}</Typography>
+              <Typography variant='h3'>Du brauchst</Typography>
+              {blogs[0]?.ingredients && blogs[0].ingredients.map((ingredient, index) => (
+                <ListItem key={index}>
+                  {ingredient.trim()}
+                </ListItem>
+              ))}
             </CardContent>
           </Card>
-          <Typography>{blogs[0]?.lead}</Typography>
           <Typography>{blogs[0]?.timestamp.toDate().toDateString()}</Typography>
-          <Typography variant='h4'>by {blogs[0]?.author}</Typography>
+          <Typography variant='h4'>Rezept von {blogs[0]?.author}</Typography>
         </Grid>
       </Grid>
     </Container>

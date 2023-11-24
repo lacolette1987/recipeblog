@@ -1,4 +1,4 @@
-import { Button, CardMedia, Grid, Rating, Stack, Typography } from '@mui/material';
+import { Button, CardMedia, Grid, ListItem, Rating, Stack, Typography } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import User from '../models/User';
@@ -63,7 +63,6 @@ const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) 
                 </Stack>
               </Grid>
             </Grid>
-            <Typography>{item.tags}</Typography>
             <Typography>{item.lead}</Typography>
             <Grid container>
               <Grid item xs={6}>

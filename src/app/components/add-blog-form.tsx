@@ -5,7 +5,8 @@ import Button from '@mui/material/Button';
 import User from "../models/User";
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
-import { FormControl, SelectChangeEvent, Container, Stack, FormControlLabel, Radio, RadioGroup, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, Autocomplete } from '@mui/material';
+import AddIcon from '@mui/icons-material/Add';
+import { FormControl, SelectChangeEvent, Container, Stack, FormControlLabel, Radio, RadioGroup, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, Autocomplete, Grid } from '@mui/material';
 
 
 
@@ -69,7 +70,7 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
     const handleTagsChange = (event: any, newValue: { tagtitle: string; }[]) => {
         setForm((prevForm) => ({
             ...prevForm,
-            tags: newValue.map((tag) => tag.tagtitle), // Hier wird der tagtitle aus den ausgewählten Tags extrahiert
+            tags: newValue.map((tag) => tag.tagtitle),
         }));
     };
 
@@ -151,22 +152,6 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                     )}
                 />            
                 </Stack>
-                {/* <Autocomplete
-    fullWidth
-    multiple
-    id="outlined-multiline-static"
-    options={tags}
-    getOptionLabel={(option) => option.title}
-    value={ingredients}
-    onChange={(event, newValue) => setForm({ ...form, ingredients: newValue })}
-    renderInput={(params) => (
-        <TextField
-            {...params}
-            variant="outlined"
-            label="Zutaten"
-        />
-    )}
-/> */}
                 <List>
                     {form.ingredients.map((item, index) => (
                         <ListItem key={index}>
@@ -183,9 +168,21 @@ const AddBlogForm: React.FC<AddBlogFormProps>  = ({uploadProcess, setFile, submi
                         </ListItem>
                     ))}
                 </List>
-                <Button variant="outlined" color="secondary" onClick={handleAddListItem}>
-                    Hinzufügen
-                </Button>
+                <Grid container spacing={2}>
+                    <Grid item xs={10}>
+                        <TextField
+                        fullWidth
+                        variant="outlined"
+                        label="Zutaten"
+                        value={listItemText}
+                        onChange={(e) => setListItemText(e.target.value)}
+                    />
+                    </Grid>
+                    <Grid item xs={2}>
+                        <Button variant="outlined" color="secondary" endIcon={<AddIcon />} onClick={handleAddListItem}></Button>
+                    </Grid>
+                </Grid>
+
                 <TextField
                     margin="normal"
                     required

@@ -17,6 +17,7 @@ function useBlogs() {
       ingredients: documentData.ingredients,
       lead: documentData.lead,
       description: documentData.description,
+      tags: documentData.tags,
       duration: documentData.duration,
       author: documentData.author,
       imgUrl: documentData.imgUrl,
@@ -82,7 +83,6 @@ function useBlogs() {
     }
     setLoading(false);
   };
-
 
 
   const deleteBlog = async (uid: string) => {
