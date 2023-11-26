@@ -1,19 +1,27 @@
-// import { useState, useEffect } from 'react';
 // import { collection, addDoc, getDocs } from 'firebase/firestore';
+// import { useState } from 'react';
 // import { db } from '../firebase-config';
 
-// interface Comment {
-//   uid: string;
-//   nickname: string;
-//   comment: string;
-// }
-
-// function useComments(blogId: string) {
-//   const [comments, setComments] = useState<Comment[]>([]); // Hier wird der Typ Comment[] angegeben
-//   const [loading, setLoading] = useState(false);
+// function useComments() {
+//     const [comments, setComments] = useState<{ uid: string; nickname: string; comment: string; }[] | null>(null);
+//     const [loading, setLoading] = useState(false);
 //   const [error, setError] = useState<string | null>(null);
 
-//   const createComment = async (form: Comment) => { // Hier wird der Typ Comment verwendet
+//   const queryAllComments = (blogId: string) => {
+//     const commentsRef = collection(db, 'blogs', blogId, 'comments');
+//     getDocs(commentsRef)
+//       .then((data) => {
+//         const commentsData: { uid: string; nickname: string; comment: string; }[] = data.docs.map((doc) => ({
+//           uid: doc.id,
+//           ...doc.data(),
+//         }));
+//         setComments(commentsData);
+//       })
+//       .catch((e) => {
+//         setError(e.message);
+//       });
+//   };
+//   const createComment = async (blogId: string, form: { nickname: string; comment: string }) => {
 //     if (!blogId) return;
 
 //     try {
@@ -21,46 +29,28 @@
 //       const commentsRef = collection(db, 'blogs', blogId, 'comments');
 
 //       await addDoc(commentsRef, {
-//         ...form
+//         ...form,
 //       });
-//       setComments([...comments, comment]);
+//       setComments((prevComments) => [...prevComments, comment]);
 //     } catch (err) {
-//       setError(err.message);
-//     // }
-//   };
-
-//   const fetchComments = async () => {
-//     if (!blogId) return;
-
-//     setLoading(true);
-//     const commentsRef = collection(db, 'blogs', blogId, 'comments');
-
-//     try {
-//       const commentsSnapshot = await getDocs(commentsRef);
-//       const commentsData = commentsSnapshot.docs.map((doc) => ({
-//         uid: doc.id,
-//         nickname: doc.data().nickname,
-//         comment: doc.data().comment
-//       }));
-//       setComments(commentsData);
-//     } catch (error) {
-//       setError(error.message);
-//     } finally {
-//       setLoading(false);
+//       console.log(err);
 //     }
 //   };
 
-//   useEffect(() => {
-//     if (blogId) {
-//       fetchComments();
+//   const getComments = (blogId: string) => {
+//     if (!blogId) {
+//       return;
 //     }
-//   }, [blogId]);
+
+//     queryAllComments(blogId);
+//   };
 
 //   return {
 //     comments,
 //     createComment,
+//     getComments,
 //     loading,
-//     error
+//     error,
 //   };
 // }
 

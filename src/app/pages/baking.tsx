@@ -4,6 +4,7 @@ import BlogSection from '../components/blogsection';
 import { CardMedia, Container, Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
+import { MainImage } from '../theme/my-theme';
 
 
 const Baking = () => {
@@ -39,9 +40,9 @@ const Baking = () => {
           </Grid>
         </Grid>
       </Container>
-      <CardMedia>
+      <MainImage>
         <img src="assets/baking.jpg" alt="Backen" style={{ maxWidth: '100%' }} />
-      </CardMedia>
+      </MainImage>
     </>
   );
 };
