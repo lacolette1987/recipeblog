@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import Typography from '@mui/material/Typography';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
@@ -6,45 +6,83 @@ import User from '../models/User';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
-import { FormControl, SelectChangeEvent, Container, Stack, FormControlLabel, Radio, RadioGroup, IconButton, List, ListItem, ListItemSecondaryAction, ListItemText, Autocomplete, Grid } from '@mui/material';
+import {
+  Autocomplete,
+  Container,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  List,
+  ListItem,
+  ListItemSecondaryAction,
+  ListItemText,
+  Radio,
+  RadioGroup,
+  SelectChangeEvent,
+  Slider,
+  Stack,
+} from '@mui/material';
 import { AddButton } from '../theme/my-theme';
+import { Link } from 'react-router-dom';
 
-interface AddBlogFormProps {
+interface BlogFormProps {
   user?: User;
   uploadProcess: number;
   setFile: (file: File) => void;
-  submitForm: (form: BlogForm) => void;
+  submitForm: (form: BlogFormState) => void;
+  initialFormState?: BlogFormState;
 }
 
-export interface BlogForm {
+export interface BlogFormState {
   title: string;
   category: string;
+  niveau: string;
   lead: string;
   description: string;
   tags: string[];
   ingredients: string[];
   duration: string;
+
+  isEditMode: boolean;
 }
 
-const initialState: BlogForm = {
+const initialState: BlogFormState = {
   title: '',
   lead: '',
   category: '',
+  niveau: '',
   description: '',
   tags: [],
   ingredients: [],
   duration: '',
+
+  isEditMode: false,
 };
 
-const AddBlogForm: React.FC<AddBlogFormProps> = ({
+const BlogForm: React.FC<BlogFormProps> = ({
   uploadProcess,
   setFile,
   submitForm,
+  initialFormState = initialState,
 }) => {
-  const [form, setForm] = useState(initialState);
-  const { title, category, lead, duration, description, ingredients } = form;
+  const [form, setForm] = useState(initialFormState);
+  const {
+    title,
+    category,
+    niveau,
+    lead,
+    duration,
+    description,
+    ingredients,
+    isEditMode,
+  } = form;
 
   const [listItemText, setListItemText] = useState<string>('');
+  const isSubmitDisabled = useMemo<boolean>(
+    () => (isEditMode ? false : uploadProcess !== null && uploadProcess < 100),
+    [isEditMode, uploadProcess]
+  );
 
   const handleAddListItem = () => {
     if (listItemText.trim() !== '') {
@@ -78,6 +116,10 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
     setForm({ ...form, category: e.target.value });
   };
 
+  const onNiveauChange = (e: SelectChangeEvent<string>) => {
+    setForm({ ...form, niveau: e.target.value });
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
@@ -93,8 +135,13 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
 
   return (
     <div>
-      <Container component="main" maxWidth="sm">
-        <Typography variant="h1">Erfasse ein Rezept</Typography>
+      <Container component="main" maxWidth="sm" sx={{ p: '70px 0' }}>
+        {!isEditMode ? (
+          <Typography variant="h1">Erfasse ein Rezept</Typography>
+        ) : (
+          <Typography variant="h1">Bearbeite dein Rezept</Typography>
+        )}
+
         <form onSubmit={handleSubmit}>
           <TextField
             margin="normal"
@@ -120,7 +167,7 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
             name="lead"
             onChange={handleChange}
           />
-          <FormControl>
+          <FormControl sx={{m: '0px 0px 20px 0px'}}>
             <RadioGroup
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
@@ -131,12 +178,12 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
               <FormControlLabel
                 value="Kochen"
                 control={<Radio />}
-                label="Kochen"
-              />
+                label={<Typography sx={{ m: '0px' }}>Kochen</Typography>}
+                />
               <FormControlLabel
                 value="Backen"
                 control={<Radio />}
-                label="Backen"
+                label={<Typography sx={{ m: '0px' }}>Backen</Typography>}
               />
             </RadioGroup>
           </FormControl>
@@ -146,7 +193,7 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
             fullWidth
             id="duration"
             label="Zeit"
-            type='number'
+            type="number"
             name="duration"
             autoComplete="duration"
             autoFocus
@@ -160,12 +207,41 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
               id="tags-standard"
               options={tags}
               getOptionLabel={(option) => option.tagtitle}
+              isOptionEqualToValue={(option, value) =>
+                option.tagtitle === value.tagtitle
+              }
               onChange={handleTagsChange}
+              value={form.tags.map((tag) => ({ tagtitle: tag }))}
               renderInput={(params) => (
                 <TextField {...params} variant="standard" label="Tags" />
               )}
             />
           </Stack>
+          <FormControl>
+            <RadioGroup
+              row
+              aria-labelledby="demo-row-radio-buttons-group-label"
+              name="row-radio-buttons-group"
+              value={niveau}
+              onChange={onNiveauChange}
+            >
+              <FormControlLabel
+                value="Einfach"
+                control={<Radio />}
+                label={<Typography sx={{ m: '0px' }}>Einfach</Typography>}
+              />
+              <FormControlLabel
+                value="Mittel"
+                control={<Radio />}
+                label={<Typography sx={{ m: '0px' }}>Mittel</Typography>}
+              />
+              <FormControlLabel
+                value="Schwierig"
+                control={<Radio />}
+                label={<Typography sx={{ m: '0px' }}>Schwierig</Typography>}
+              />
+            </RadioGroup>
+          </FormControl>
           <List>
             {form.ingredients.map((item, index) => (
               <ListItem disablePadding divider key={index}>
@@ -183,7 +259,7 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
             ))}
           </List>
           <Grid container>
-            <Grid item>
+            <Grid item xs={11}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -192,11 +268,10 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
                 onChange={(e) => setListItemText(e.target.value)}
               />
             </Grid>
-            <Grid item>
+            <Grid item xs={1}>
               <AddButton
                 variant="outlined"
-                color="secondary"
-                endIcon={<AddIcon />}
+                endIcon={<AddIcon style={{ fontSize: '25px' }} />}
                 onClick={handleAddListItem}
               ></AddButton>
             </Grid>
@@ -214,30 +289,55 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
             onChange={handleChange}
           />
           <Grid container spacing={2}>
-                <Grid item>
-                    <Button
-                    component="label"
-                    variant="outlined"
-                    startIcon={<UploadFileIcon />}
-                    >
-                        Bild hochladen
-                    <input
-                        type="file"
-                        accept=".jpg"
-                        hidden
-                        onChange={handleFileChange}
-                    />
-                    </Button>
-                </Grid>
-                <Grid item >
+            {!isEditMode ? (
+              <Grid item>
                 <Button
-                    type="submit"
-                    variant="outlined"
-                    disabled={uploadProcess !== null && uploadProcess < 100}
+                  component="label"
+                  variant="outlined"
+                  startIcon={<UploadFileIcon />}
                 >
-                Erstellen
+                  Bild hochladen
+                  <input
+                    type="file"
+                    accept=".jpg"
+                    hidden
+                    onChange={handleFileChange}
+                  />
                 </Button>
+              </Grid>
+            ) : (
+              ''
+            )}
+            <Grid item>
+              {!isEditMode ? (
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  disabled={isSubmitDisabled}
+                >
+                  Erstellen
+                </Button>
+              ) : (
+                <Button
+                  type="submit"
+                  variant="outlined"
+                  disabled={isSubmitDisabled}
+                >
+                  Update
+                </Button>
+              )}
             </Grid>
+            {isEditMode ? (
+              <Grid item>
+                <Link to={`/`}>
+                  <Button variant="outlined" color="primary">
+                    Abbrechen
+                  </Button>
+                </Link>
+              </Grid>
+            ) : (
+              ''
+            )}
           </Grid>
         </form>
       </Container>
@@ -246,18 +346,23 @@ const AddBlogForm: React.FC<AddBlogFormProps> = ({
 };
 
 const tags = [
-  { tagtitle: 'Gebäck' },
   { tagtitle: 'Frühling' },
-  { tagtitle: 'Ostern' },
-  { tagtitle: 'Weihnachten' },
-  { tagtitle: 'Halloween' },
+  { tagtitle: 'Sommer' },
   { tagtitle: 'Herbst' },
+  { tagtitle: 'Winter' },
+  { tagtitle: 'Gebäck' },
+  { tagtitle: 'Weihnachten' },
+  { tagtitle: 'Ostern' },
+  { tagtitle: 'Halloween' },
   { tagtitle: 'Geburtstag' },
   { tagtitle: 'Vegetarisch' },
   { tagtitle: 'Vegan' },
   { tagtitle: 'Frühstück' },
+  { tagtitle: 'Hauptgang' },
   { tagtitle: 'Apéro' },
   { tagtitle: 'Dessert' },
+  { tagtitle: 'Süss' },
+  { tagtitle: 'International' },
 ];
 
-export default AddBlogForm;
+export default BlogForm;

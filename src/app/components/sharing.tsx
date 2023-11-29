@@ -6,13 +6,17 @@ import { Grid } from '@mui/material';
 import { Link, useParams } from 'react-router-dom';
 import { IconStyle } from '../theme/my-theme';
 
-const Sharing = () => {
-  const { blogId } = useParams();
+interface SharingProps {
+  blogId: string,
+  title: string;
+}
+
+const Sharing:React.FC<SharingProps> = ({blogId, title}) => {
 
 
 
-  const emailSubject = 'Neues Rezept';
-  const emailBody = `Ich habe dieses Rezept entdeckt und dachte, es könnte dich interessieren: ${window.location.href}`;
+  const emailSubject = `Rezept ${title}`;
+  const emailBody = `Ich habe dieses Rezept entdeckt und dachte, es könnte dich interessieren: \n\n${title}:\n${window.location.href}`;
   const emailLink = `mailto:?subject=${encodeURIComponent(
     emailSubject
   )}&body=${encodeURIComponent(emailBody)}`;

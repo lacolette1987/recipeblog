@@ -8,8 +8,8 @@ import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
-import { auth } from '../firebase-config';
-import User from '../models/User';
+import { auth } from '../../firebase-config';
+import User from '../../models/User';
 
 
 
@@ -34,7 +34,7 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
   const onLogoutClick = async () => {
     console.log('on logout click');
     try {
-      await signOut(auth); // Benutzer ausloggen
+      await signOut(auth);
       if (handleLogout) {
         handleLogout();
       }
@@ -125,13 +125,13 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
             key={index}
             component={Link}
             to={page.to}
-            sx={{ my: 2, color: 'black', display: 'block' }}
+            sx={{ my: 2, color: 'black', m: '0px 40px 0px 0px', p: '15px 0px' }}
           >
             {page.label}
           </Button>
         ))}
         {userId && location.pathname !== '/create' ? (
-        <Button component={Link} sx={{ my: 2, color: 'black', display: 'block' }} to={'/create'}>Erfassen</Button>
+        <Button component={Link} sx={{ my: 2, color: 'black', m: 0, p: '15px 0px' }} to={'/create'}>Erfassen</Button>
         ) : ""}
         </Box>
     </>

@@ -2,7 +2,7 @@ import Blog from '../models/Blog';
 import { useState } from 'react';
 import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
 import { db } from '../firebase-config';
-import { BlogForm } from '../components/add-blog-form';
+import { BlogFormState } from '../components/blog-form';
 
 function useBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -15,6 +15,7 @@ function useBlogs() {
       uid: doc.id,
       title: documentData.title,
       category: documentData.category,
+      niveau: documentData.niveau,
       ingredients: documentData.ingredients,
       lead: documentData.lead,
       description: documentData.description,
@@ -59,6 +60,30 @@ function useBlogs() {
     );
 
     getDocs(categoryQuery)
+      .then((data) => {
+        const blogsData = data.docs.map((doc) => convertDocToBlog(doc));
+        setBlogs(blogsData);
+      })
+      .catch((e) => {
+        setError(e.message);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+
+
+  const queryNiveauBlog = (niveau: string) => {
+    setLoading(true);
+    const blogsRef = collection(db, 'blogs');
+    const niveauQuery = query(
+      blogsRef,
+      where('niveau', '==', niveau),
+      orderBy('timestamp', 'desc')
+    );
+
+    getDocs(niveauQuery)
       .then((data) => {
         const blogsData = data.docs.map((doc) => convertDocToBlog(doc));
         setBlogs(blogsData);

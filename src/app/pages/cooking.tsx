@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import useBlogs from '../hooks/useBlogs';
 import BlogSection from '../components/blogsection';
-import { CardMedia, Container, Grid, Typography } from '@mui/material';
+import { Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { MainImage } from '../theme/my-theme';
+import { MainContainer, MainImage } from '../theme/my-theme';
 
 
 const Cooking = () => {
@@ -17,8 +17,8 @@ const Cooking = () => {
 
   return (
     <>
-      <Container maxWidth='lg'>
-        <Grid container direction={'row-reverse'} spacing={{ sm: 4, md: 8 }}>
+      <MainContainer maxWidth='lg'>
+        <Grid container direction={'row-reverse'} spacing={{ sm: 4, md: 6 }}>
           <Grid item xs={12} sm={6} md={4}>
             <Grid item>
               <Typography>Tags...</Typography>
@@ -43,7 +43,7 @@ const Cooking = () => {
             </Grid>
           </Grid>
         </Grid>
-      </Container>
+      </MainContainer>
       <MainImage>
         <img src="assets/cooking.jpg" alt="Kochen" style={{ maxWidth: '100%'}} />
       </MainImage>

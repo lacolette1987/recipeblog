@@ -1,48 +1,57 @@
-import { Container, Typography } from '@mui/material';
-import React, { useState, useEffect } from 'react';
-// import { useParams, useHistory } from 'react-router-dom';
-// import { useBlogs, BlogForm } from './useBlogs'; // Annahme: Du hast bereits eine useBlogs-Funktion erstellt, um Blog-Informationen zu verwalten.
-
+import { Button, Container, Typography } from '@mui/material';
+import React, { useEffect, useMemo, useState } from 'react';
+import BlogForm, { BlogFormState } from '../components/blog-form';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
+import { Link, useNavigate, useParams } from 'react-router-dom';
+import useBlogs from '../hooks/useBlogs';
+import blogsService from '../services/blogs.service';
 
 const EditBlog = () => {
-  // const { uid } = useParams();
-  // const history = useHistory();
-  // const { blogs, querySingleBlog, updateBlog } = useBlogs(); // Annahme: Du hast eine Funktion updateBlog zum Aktualisieren von Blog-Beiträgen.
+  const navigate = useNavigate();
+  const { blogId } = useParams();
+  const { blogs, querySingleBlog } = useBlogs();
+  const blogForm = useMemo(
+    () =>
+      blogs[0]
+        ? ({ ...blogs[0], isEditMode: true } as BlogFormState)
+        : undefined,
+    [blogs]
+  );
 
-  // const [blogForm, setBlogForm] = useState<BlogForm>({
-  //   title: '',
-  //   category: '',
-  //   lead: '',
-  //   description: '',
-  //   tags: [],
-  //   ingredients: [],
-  //   duration: '',
-  // });
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const [uploadProcess, setUploadProcess] = useState<number>(0);
 
-  // useEffect(() => {
-  //   querySingleBlog(uid);
-  // }, [uid]);
+  useEffect(() => {
+    if (blogId) {
+      querySingleBlog(blogId);
+    }
+  }, []);
 
-  // useEffect(() => {
-  //   if (blogs.length > 0) {
-  //     setBlogForm(blogs[0]);
-  //   }
-  // }, [blogs]);
-
-  // const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const { name, value } = e.target;
-  //   setBlogForm({ ...blogForm, [name]: value });
-  // };
-
-  // const handleUpdateBlog = () => {
-  //   updateBlog(uid, blogForm);
-  //   history.push(`/detail/${uid}`);
-  // };
+  const submit = async (form: BlogFormState) => {
+    try {
+      const hasUpdated = await blogsService.updateBlog(blogId!, { ...form });
+      console.log('Update success!');
+      navigate(`/detail/${blogId}`);
+    } catch (e) {
+      // error
+      console.error('Update failed!', e);
+    }
+  };
 
   return (
     <Container maxWidth="lg">
-      <Typography variant='h1'>Rezept bearbeiten</Typography>
-      <Typography variant='body1'>Coming soon...</Typography>
+      {blogForm ? (
+        <BlogForm
+          user={currentUser}
+          uploadProcess={uploadProcess}
+          setFile={(file: File) => {}}
+          submitForm={submit}
+          initialFormState={blogForm}
+        ></BlogForm>
+      ) : (
+        <>'Loading</>
+      )}
     </Container>
   );
 };

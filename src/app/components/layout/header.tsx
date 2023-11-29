@@ -1,9 +1,9 @@
 import React from 'react'
 import { AppBar, Container, Grid } from '@mui/material';
 import Navigation from './navigation';
-import User from '../models/User';
-import LoginNav from './loginnav';
+import User from '../../models/User';
 import { Link } from 'react-router-dom';
+import LoginNav from './loginnav';
 
 interface HeaderProps {
     user: User | undefined;
@@ -20,7 +20,7 @@ const Header: React.FC<HeaderProps> = ({ user, handleLogout }) => {
                     <Grid container justifyContent={'space-between'}>
                         <Grid item>
                             <Link to={'/'}>
-                                <img src="assets/logo.png" alt="Beschreibung des Bildes" style={{ maxWidth: '150px', paddingTop: '40px', paddingBottom: '30px' }} />
+                                <img src="assets/logo.png" alt="Beschreibung des Bildes" style={{ maxWidth: '230px', paddingTop: '25px', paddingBottom: '15px' }} />
                             </Link>
                         </Grid>
                         <Grid item>
@@ -29,8 +29,8 @@ const Header: React.FC<HeaderProps> = ({ user, handleLogout }) => {
                     </Grid>
                 </Container>
             </AppBar>
-            <Container maxWidth="lg" sx={{ borderBottom: '1px solid #000000', borderTop: '1px solid #000000', marginTop: '50px' }}>
-                <Grid container justifyContent={'space-between'}>
+            <Container maxWidth="lg" sx={{ marginTop: '40px' }}>
+                <Grid container justifyContent={'space-between'} sx={{borderBottom: '1px solid #000000', borderTop: '1px solid #000000'}} alignItems={'center'}>
                     <Grid item>
                         <Navigation user={user} />
                     </Grid>
