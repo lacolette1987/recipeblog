@@ -55,6 +55,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
       <Typography variant='h2' sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
       <form onSubmit={handleSubmit}>
         <Rating
+        sx={{margin: '20px 0 20px 0'}}
           size='small'
           name='simple-controlled'
           value={rating}

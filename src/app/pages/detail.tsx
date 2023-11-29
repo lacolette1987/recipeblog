@@ -18,13 +18,20 @@ import useBlogs from '../hooks/useBlogs';
 import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import { MainContainer, TagButton, ZutatenCard } from '../theme/my-theme';
 import Sharing from '../components/sharing';
-import ListAltIcon from '@mui/icons-material/ListAlt';
+import FormatListBulletedIcon from '@mui/icons-material/FormatListBulleted';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 const Detail = () => {
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+
+
   const { blogId } = useParams();
   const { blogs, querySingleBlog, loading, error } = useBlogs();
+
+  
   // TODO: colette, useComments()
   const [comments, setComments] = useState<Comments>([]);
   console.log(`URL: ${encodeURIComponent(window.location.href)}`);
@@ -91,29 +98,48 @@ const Detail = () => {
 
   return (
     <MainContainer maxWidth="lg">
-      <Grid container sx={{padding: '0 0 20px 0'}}>
+      <Grid container sx={{padding: '0 0 20px 0'}} spacing={{ sm: 4, md: 6 }}>
         <Grid item xs={12} sm={6} md={8}>
           <Typography variant="h1">{blogs[0]?.title}</Typography>
+          <Grid item sx={{m: '0 0 10px 0'}}>
+            <Rating size="small" readOnly />
+          </Grid>
           <Typography variant="body1">{blogs[0]?.lead}</Typography>
         </Grid>
+        {currentUser ? (
+          <Grid item xs={12} sm={6} md={4}>
+            <Grid container spacing={1} justifyContent={'flex-end'}>
+              <Grid item>
+                <Link to={`/edit/${blogId}`}>
+                  <Typography color={'secondary'} fontSize={'14px'}>bearbeiten</Typography>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Link to={`/edit/${blogId}`}>
+                  <EditIcon fontSize='small' />
+                </Link>
+              </Grid>
+            </Grid>
+            <Grid container spacing={1} justifyContent={'flex-end'}>
+              <Grid item>
+                <Typography color={'secondary'} fontSize={'14px'}>löschen</Typography>
+              </Grid>
+              <Grid item>
+                <DeleteOutlinedIcon fontSize='small' />
+              </Grid>
+            </Grid>
+          </Grid>
+        ) : (
+          ''
+        )}
       </Grid>
       <Grid container spacing={{ sm: 4, md: 6 }}>
         <Grid item xs={12} sm={6} md={8}>
           <CardMedia component="img" sx={{ m: '7px 0px 30px 0px' }} image={blogs[0]?.imgUrl} title={blogs[0]?.title} />
-          <Grid container>
-            <Grid item>
-              <Link to={`/edit/${blogId}`}>
-                <EditIcon />
-              </Link>
-            </Grid>
-            <Grid item textAlign={'right'} xs={1}>
-              <DeleteOutlinedIcon />
-            </Grid>
-          </Grid>
           <Typography>{blogs[0]?.description}</Typography>
           <AddCommentForm submitForm={createComment} />
           {comments.map((comment) => (
-            <Card key={comment.uid} elevation={0} sx={{ marginTop: '20px' }}>
+            <Card key={comment.uid} elevation={0} sx={{ marginTop: '50px' }}>
               <CardContent>
                 <Grid container justifyContent={'space-between'}>
                   <Grid item>
@@ -165,18 +191,17 @@ const Detail = () => {
               <Grid
                 container
                 justifyContent={'space-between'}
-                alignItems={'center'}
               >
                 <Grid item>
-                  <Typography variant="h3">Du brauchst</Typography>
+                  <Typography variant="h3">Zutaten</Typography>
                 </Grid>
                 <Grid item>
-                  <ListAltIcon />
+                  <FormatListBulletedIcon />
                 </Grid>
               </Grid>
               {blogs[0]?.ingredients &&
                 blogs[0].ingredients.map((ingredient, index) => (
-                  <ListItem disablePadding key={index}>
+                  <ListItem key={index}>
                     {ingredient.trim()}
                   </ListItem>
                 ))}

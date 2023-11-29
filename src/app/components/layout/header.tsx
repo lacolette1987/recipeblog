@@ -4,6 +4,8 @@ import Navigation from './navigation';
 import User from '../../models/User';
 import { Link } from 'react-router-dom';
 import LoginNav from './loginnav';
+import Darkmode from '../darkmode';
+
 
 interface HeaderProps {
     user: User | undefined;
@@ -24,7 +26,7 @@ const Header: React.FC<HeaderProps> = ({ user, handleLogout }) => {
                             </Link>
                         </Grid>
                         <Grid item>
-                            <p>Darkmode</p>
+                            <Darkmode />
                         </Grid>
                     </Grid>
                 </Container>

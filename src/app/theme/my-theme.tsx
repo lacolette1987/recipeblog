@@ -61,7 +61,7 @@ const TagButton = styled(Button)(() => ({
 
 
   const ZutatenCard = styled(Card)(() => ({
-    margin: '30px 0px 20px 0px',
+    margin: '30px 0px 40px 0px',
   }));
 
 
@@ -77,7 +77,6 @@ const TagButton = styled(Button)(() => ({
 
 
   
-
 const myTheme = createTheme({
     components: {
         MuiCssBaseline: {
@@ -104,8 +103,11 @@ const myTheme = createTheme({
         MuiListItem: {
             styleOverrides: {
                 root: {
-                    padding: '10px 0px',
-                }
+                    padding: '6px 0px',
+                    '&:last-child': {
+                        padding: '6px 0px 0px 0px',
+                      },
+                                  }
             }
         },
         MuiTextField: {
@@ -204,14 +206,18 @@ const myTheme = createTheme({
         },
     },
     palette: {
+        // mode: 'dark',
         primary: {
             light: '#757ce8',
             main: '#000000',
-            dark: '#002884',
-            contrastText: '#fff',
+            dark: '#ffffff',
+            contrastText: '#ffffff',
         },
         secondary: {
-          main: '#4f2f20',
+          light: '#8e735b',
+          main: '#8e735b',
+          dark: '#8e735b',
+          contrastText: '#ffffff',
         },
         background: {
           default: '#f5f5f5',
