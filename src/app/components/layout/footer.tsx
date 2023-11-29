@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Footer = () => {
   return (
     <>
-      <Box bgcolor="#cab093">
+      <Box bgcolor="#d1b894">
         <PaddContainer maxWidth="lg">
           <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
             <FooterButton>

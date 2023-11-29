@@ -4,17 +4,17 @@ import { Button, Card, CardMedia, Container, Grid, createTheme } from "@mui/mate
 
 
 const TagButton = styled(Button)(() => ({
-    backgroundColor: '#8e735b',
+    backgroundColor: '#d1b894',
     borderRadius: '20px',
     fontSize: '12px',
-    margin: '0px 5px 5px 0px',
+    margin: '0px 8px 8px 0px',
     fontWeight: '700',
-    letterSpacing: 0.8,
-    padding: '6px 13px 3px 13px',
+    letterSpacing: 0.7,
+    padding: '4px 13px 3px 13px',
     color: '#ffffff',
     fontFamily: 'Work Sans, sans-serif',
     ":hover": {
-        backgroundColor: '#593d24',
+        backgroundColor: '#6b4829',
     }
   }));
 
@@ -33,6 +33,7 @@ const TagButton = styled(Button)(() => ({
     color: '#a4a2a1',
   };
 
+  
 
 
   const AddButton = styled(Button)(() => ({
@@ -55,7 +56,8 @@ const TagButton = styled(Button)(() => ({
 
 
   const MainContainer = styled(Container)(() => ({
-    padding: '70px 0px',
+    paddingTop: '70px',
+    paddingBottom: '70px',
   }));
 
 
@@ -208,15 +210,15 @@ const myTheme = createTheme({
     palette: {
         // mode: 'dark',
         primary: {
-            light: '#757ce8',
+            light: '#000000',
             main: '#000000',
             dark: '#ffffff',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#8e735b',
-          main: '#8e735b',
-          dark: '#8e735b',
+          light: '#d1b894',
+          main: '#593d24',
+          dark: '#382f1f',
           contrastText: '#ffffff',
         },
         background: {

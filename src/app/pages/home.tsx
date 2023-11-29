@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import BlogSection from '../components/blogsection';
-import { CardMedia, Container, Grid, Stack, Typography } from '@mui/material';
+import { CardMedia, Container, Grid, Rating, Stack, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
@@ -16,6 +16,7 @@ const Home = () => {
   const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
   const [searchQuery, setSearchQuery] = useState('');
   const latestBlog = useMemo(() => (blogs.length > 0 ? blogs[0] : null), [blogs]);
+  const [ratingValue, setRatingValue] = useState<number | null>(null);
 
   useEffect(() => {
     queryBlogs();
@@ -32,7 +33,7 @@ const Home = () => {
 
 
   return (
-    <MainContainer maxWidth='lg' sx={{p: '70px 0'}}>
+    <Container maxWidth='lg' sx={{p: '70px 0'}}>
       <Grid container direction="row-reverse" spacing={{ sm: 4, md: 6 }}>
         <Grid item xs={12} sm={6} md={4}>
           <Typography variant='h1'>Welcome, foodlover!</Typography>
@@ -62,6 +63,7 @@ const Home = () => {
                       sx={{paddingTop: '7px'}}
                     />
                   </Link>
+                  <Rating size="small" name="simple-controlled" value={ratingValue} />
                   <Typography variant='h3'>
                     <Link to={`/detail/${latestBlog.uid}`}>
                       {latestBlog.title}
@@ -86,7 +88,7 @@ const Home = () => {
           </Grid>
         </Grid>
       </Grid>
-    </MainContainer>
+    </Container>
   );
 };
 
