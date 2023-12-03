@@ -5,7 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 
 const Search = styled('div')(() => ({
   justifyContent: 'space-between',
-  margin: '30px 0px 30px 0px',
+  margin: '0px 0px 30px 0px',
   display: 'flex',
 }));
 

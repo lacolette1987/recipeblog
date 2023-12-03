@@ -45,7 +45,9 @@ const EditBlog = () => {
         <BlogForm
           user={currentUser}
           uploadProcess={uploadProcess}
-          setFile={(file: File) => {}}
+          setFile={(file: File) => {
+            //
+          }}
           submitForm={submit}
           initialFormState={blogForm}
         ></BlogForm>

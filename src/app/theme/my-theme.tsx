@@ -17,8 +17,6 @@ const TagButton = styled(Button)(() => ({
         backgroundColor: '#6b4829',
     }
   }));
-
-
   
   const FooterButton = styled(Button)(() => ({
     padding: '0',
@@ -33,7 +31,6 @@ const TagButton = styled(Button)(() => ({
     color: '#a4a2a1',
   };
 
-  
 
 
   const AddButton = styled(Button)(() => ({
@@ -55,26 +52,30 @@ const TagButton = styled(Button)(() => ({
 
 
 
-  const MainContainer = styled(Container)(() => ({
-    paddingTop: '70px',
-    paddingBottom: '70px',
-  }));
-
-
 
   const ZutatenCard = styled(Card)(() => ({
     margin: '30px 0px 40px 0px',
   }));
 
 
-  const PaddContainer = styled(Container)(() => ({
-    padding: '20px 0px 10px 0px',
+  const FooterContainer = styled(Container)(() => ({
+    paddingTop: '25px',
+    paddingBottom: '10px',
   }));
+
+
+  const MainContainer = styled(Container)(() => ({
+    paddingTop: '60px',
+    paddingBottom: '80px',
+  }));
+
 
 
   const ReadmoreButton = styled(Button)(() => ({
     margin: '10px 0px 0px 0px',
   }));
+
+
 
 
 
@@ -88,10 +89,32 @@ const myTheme = createTheme({
                 }
             `,
         },
-        MuiCardMedia: {
+        MuiLink: {
             styleOverrides: {
                 root: {
-                    margin: '0 0 15px 0',
+                    color: '#ffffff',
+                    textDecoration: 'none',
+                    '&:hover': {
+                        color: '#0000000',
+                        background: 'transparent',
+                      },
+                }
+            }
+        },
+        MuiCardContent: {
+            styleOverrides: {
+                root: {
+                    padding: '25px',
+                }
+            }
+        },
+        MuiFab: {
+            styleOverrides: {
+                root: {
+                    position: 'fixed',
+                    right: '30px',
+                    zIndex: 9999,
+                    bottom: '30px'
                 }
             }
         },
@@ -102,14 +125,18 @@ const myTheme = createTheme({
                 }
             }
         },
+        MuiRating: {
+            styleOverrides: {
+                root: {
+                    paddingBottom: '20px',
+                }
+            }
+        },
         MuiListItem: {
             styleOverrides: {
                 root: {
                     padding: '6px 0px',
-                    '&:last-child': {
-                        padding: '6px 0px 0px 0px',
-                      },
-                                  }
+                }
             }
         },
         MuiTextField: {
@@ -123,18 +150,40 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 0,
-                    fontWeight: 500,
+                    fontWeight: 400,
                     fontSize: 15,
                     letterSpacing: 1.3,
-                    padding: '6px 25px 6px 25px',
-                    fontFamily: 'Work Sans, sans-serif',
+                    padding: '8px 25px 6px 25px',
+                    fontFamily: 'Josefin Sans, sans-serif',
                     borderColor: '#000000',
-                    borderWidth: '1px'
+                    borderWidth: '1px',
+                    '&:hover': {
+                        backgroundColor: 'transparent',
+                        color: '#d1b894'
+                      },
+                },
+            },
+        },
+        MuiMenuItem: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 0,
+                    fontWeight: 400,
+                    fontSize: 15,
+                    textTransform: 'uppercase',
+                    letterSpacing: 1.3,
+                    padding: '14px 20px 10px 20px',
+                    fontFamily: 'Josefin Sans, sans-serif',
+                    margin: 0,
+                    '&:hover': {
+                        backgroundColor: '#d1b894',
+                        color: '#ffffff'
+                      },
                 },
             },
         },
     },
-    typography: {
+        typography: {
         fontFamily: 'Quattrocento, serif',
         body1: {
             fontSize: 18,
@@ -149,11 +198,10 @@ const myTheme = createTheme({
             color: '#ffffff',
         },
         caption: {
-            fontSize: 25,
+            fontSize: 18,
             lineHeight: 1.3,
             marginBottom: 10,
-            fontWeight: 700,
-            fontFamily: 'Quattrocento, serif',
+            fontWeight: 400,
         },
         subtitle1: {
             fontSize: 15,
@@ -175,7 +223,7 @@ const myTheme = createTheme({
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 600,
-            fontSize: 30,
+            fontSize: 28,
             marginBottom: 10,
             textTransform: "uppercase",
             letterSpacing: 1.7
@@ -206,9 +254,9 @@ const myTheme = createTheme({
             textTransform: "uppercase",
             letterSpacing: 1,
         },
-    },
+        },
     palette: {
-        // mode: 'dark',
+        // mode: mode,
         primary: {
             light: '#000000',
             main: '#000000',
@@ -227,4 +275,4 @@ const myTheme = createTheme({
     },
 });
 
-export { IconStyle, FooterButton, MainContainer, TagButton, ReadmoreButton, ZutatenCard, AddButton, PaddContainer, MainImage, myTheme };
+export { IconStyle, MainContainer, FooterButton, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };

@@ -1,5 +1,8 @@
 import {
+  Box,
   Button,
+  Card,
+  CardContent,
   CardMedia,
   Grid,
   Rating,
@@ -44,23 +47,25 @@ const BlogSection: React.FC<BlogSectionProps> = ({
     setDeleteDialogOpen(true);
   };
 
+
+
   return (
-    <div>
       <Grid container spacing={4}>
         {blogs?.map((item) => (
           <Grid item xs={12} sm={12} md={6} key={item.uid}>
+                <Card elevation={0}>
             <Link to={`/detail/${item.uid}`}>
               <CardMedia
-                style={{ marginBottom: '10px' }}
                 component="img"
                 image={item.imgUrl}
                 title={item.title}
               />
             </Link>
-            <Rating size="small" name="simple-controlled" value={ratingValue} />
+            <CardContent>
             <Typography variant="h3">
               <Link to={`/detail/${item.uid}`}>{item.title}</Link>
             </Typography>
+            <Rating size="small" name="simple-controlled" value={ratingValue} />
             <Typography>{item.lead}</Typography>
             <Grid container alignItems={'center'}>
               <Grid item xs={10}>
@@ -87,6 +92,8 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                 ''
               )}
             </Grid>
+            </CardContent>
+            </Card>
           </Grid>
         ))}
         <DialogDelete
@@ -95,7 +102,6 @@ const BlogSection: React.FC<BlogSectionProps> = ({
           handleDelete={handleDeleteBlog}
         />
       </Grid>
-    </div>
   );
 };
 

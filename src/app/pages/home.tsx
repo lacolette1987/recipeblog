@@ -1,13 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import BlogSection from '../components/blogsection';
-import { CardMedia, Container, Grid, Rating, Stack, Typography } from '@mui/material';
+import { Button, Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import useBlogs from '../hooks/useBlogs';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import SearchBar from '../components/search';
 import { MainContainer, ReadmoreButton } from '../theme/my-theme';
+import Blog from '../models/Blog';
+import { Stack } from '@mui/system';
+import Tags from '../components/layout/tags';
+
+
 
 
 const Home = () => {
@@ -17,11 +21,29 @@ const Home = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const latestBlog = useMemo(() => (blogs.length > 0 ? blogs[0] : null), [blogs]);
   const [ratingValue, setRatingValue] = useState<number | null>(null);
+  const [filteredBlogs, setFilteredBlogs] = useState<Blog[]>([]);
 
   useEffect(() => {
     queryBlogs();
   }, [searchQuery]);
 
+
+
+  useEffect(() => {
+    if (searchQuery === 'Weihnachten') {
+      const filteredBlogs = blogs.filter((blog) =>
+        blog.tags.includes('Weihnachten')
+      );
+      setFilteredBlogs(filteredBlogs);
+    } else {
+      setFilteredBlogs(blogs);
+    }
+  }, [searchQuery, blogs]);
+
+
+
+
+  
   const handleSearch = (query: string) => {
     setSearchQuery(query);
   };
@@ -31,51 +53,48 @@ const Home = () => {
     await deleteBlog(uid);
   };
 
-
   return (
-    <Container maxWidth='lg' sx={{p: '70px 0'}}>
-      <Grid container direction="row-reverse" spacing={{ sm: 4, md: 6 }}>
-        <Grid item xs={12} sm={6} md={4}>
-          <Typography variant='h1'>Welcome, foodlover!</Typography>
-          <Typography>
-            Begleite uns in unserer Küche, während wir die Aromen der Welt
-            entdecken und lernen, wie man aus einfachen Zutaten magische
-            Gerichte zaubert. Wir glauben daran, dass gutes Essen Menschen
-            zusammenbringt und Erinnerungen schafft. Also schnapp dir deine
-            Schürze, heize den Ofen vor und lass uns gemeinsam die Freude am
-            Kochen und Backen feiern! Willkommen in unserer kulinarischen Welt,
-            in der Geschmack, Kreativität und Genuss an erster Stelle stehen.
-          </Typography>
-          <SearchBar onSearch={handleSearch} />
-          <Typography variant='h3'>Tags</Typography>
-          <Typography variant='body1'>Coming soon...</Typography>
-        </Grid>
-        <Grid item xs={12} sm={6} md={8}>
+    <MainContainer maxWidth='lg'>
+      <Stack sx={{ m: '0 0 40px 0' }}>
+        <Typography variant='h1'>Welcome, foodlover!</Typography>
+        <Typography>
+          Begleite uns in unserer Küche, während wir die Aromen der Welt
+          entdecken und lernen, wie man aus einfachen Zutaten magische
+          Gerichte zaubert. Wir glauben daran, dass gutes Essen Menschen
+          zusammenbringt und Erinnerungen schafft. Also schnapp dir deine
+          Schürze, heize den Ofen vor und lass uns gemeinsam die Freude am
+          Kochen und Backen feiern! Willkommen in unserer kulinarischen Welt,
+          in der Geschmack, Kreativität und Genuss an erster Stelle stehen.
+        </Typography>
+      </Stack>
+      <Grid container spacing={{ sm: 4, md: 6 }}>
+        <Grid item xs={12} sm={7} md={8} sx={{paddingBottom: '30px'}}>
           <Grid container spacing={4}>
             <Grid item>
               {latestBlog && (
-                <>
+                <Card elevation={0}>
                   <Link to={`/detail/${latestBlog.uid}`}>
                     <CardMedia
                       component='img'
                       image={latestBlog.imgUrl}
                       title={latestBlog.title}
-                      sx={{paddingTop: '7px'}}
                     />
                   </Link>
-                  <Rating size="small" name="simple-controlled" value={ratingValue} />
-                  <Typography variant='h3'>
+                  <CardContent>
+                    <Typography variant='h3'>
+                      <Link to={`/detail/${latestBlog.uid}`}>
+                        {latestBlog.title}
+                      </Link>
+                    </Typography>
+                    <Rating size="small" name="simple-controlled" value={ratingValue} />
+                    <Typography>{latestBlog.lead}</Typography>
                     <Link to={`/detail/${latestBlog.uid}`}>
-                      {latestBlog.title}
+                      <ReadmoreButton variant='outlined' disableElevation>
+                        Zum Rezept
+                      </ReadmoreButton>
                     </Link>
-                  </Typography>
-                  <Typography>{latestBlog.lead}</Typography>
-                  <Link to={`/detail/${latestBlog.uid}`}>
-                    <ReadmoreButton variant='outlined' disableElevation>
-                      Zum Rezept
-                    </ReadmoreButton>
-                  </Link>
-                </>
+                  </CardContent>
+                </Card>
               )}
             </Grid>
             <Grid item>
@@ -87,8 +106,17 @@ const Home = () => {
             </Grid>
           </Grid>
         </Grid>
+        <Grid item xs={12} sm={5} md={4}>
+          <SearchBar onSearch={handleSearch} />
+          <Typography variant='h3'>Weihnachten</Typography>
+          {filteredBlogs.map((blog: Blog) => (
+            <div key={blog.uid}>
+              <Tags blog={blog} ratingValue={ratingValue} />
+            </div>
+          ))}
+        </Grid>
       </Grid>
-    </Container>
+    </MainContainer>
   );
 };
 

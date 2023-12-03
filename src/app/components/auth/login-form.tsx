@@ -2,8 +2,9 @@ import Typography from "@mui/material/Typography";
 import SignUpForm from "./sign-up";
 import SignInForm from "./sign-in";
 import React, { useState } from "react";
-import { Box, Button, Container, CssBaseline, Grid, Link } from "@mui/material";
+import { Box, Button, CssBaseline, Grid, Link } from "@mui/material";
 import { useForm } from 'react-hook-form';
+import { MainContainer } from "../../theme/my-theme";
 
 interface LoginProps {
     handleSubmit: (cred: AuthFormState) => void;
@@ -41,8 +42,7 @@ export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm }) =>
     };
 
     return (
-        <div>
-            <Container maxWidth="sm">
+            <MainContainer maxWidth="sm">
                 <CssBaseline />
                 <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}>
                     <Typography variant="h1">{!isSignUpMode ? 'Sign-In' : 'Sign-Up'}</Typography>
@@ -64,23 +64,22 @@ export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm }) =>
                         <Grid item>
                             {!isSignUpMode ? (
                                 <div>
-                                        Don't have an account?&nbsp;
-                                        <span style={{ cursor: 'pointer' }} onClick={() => setSignUp(true)}>
-                                            <strong>Sign Up</strong>
-                                        </span>
+                                    Don't have an account?&nbsp;
+                                    <span style={{ cursor: 'pointer' }} onClick={() => setSignUp(true)}>
+                                        <strong>Sign Up</strong>
+                                    </span>
                                 </div>
                             ) : (
                             <div>
-                                    Already have an account?&nbsp;
-                                    <span style={{ cursor: 'pointer' }} onClick={() => setSignUp(false)}>
-                                        <strong>Sign In</strong>
-                                    </span>
+                                Already have an account?&nbsp;
+                                <span style={{ cursor: 'pointer' }} onClick={() => setSignUp(false)}>
+                                    <strong>Sign In</strong>
+                                </span>
                             </div>
                             )}
                         </Grid>
                     </Grid>
                 </Box>
-            </Container>
-        </div>
+            </MainContainer>
     );
 }

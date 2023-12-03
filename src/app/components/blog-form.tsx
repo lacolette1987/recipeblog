@@ -23,7 +23,7 @@ import {
   Slider,
   Stack,
 } from '@mui/material';
-import { AddButton } from '../theme/my-theme';
+import { AddButton, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
 
 interface BlogFormProps {
@@ -134,8 +134,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
   };
 
   return (
-    <div>
-      <Container component="main" maxWidth="sm" sx={{ p: '70px 0' }}>
+      <MainContainer maxWidth="sm">
         {!isEditMode ? (
           <Typography variant="h1">Erfasse ein Rezept</Typography>
         ) : (
@@ -340,8 +339,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
             )}
           </Grid>
         </form>
-      </Container>
-    </div>
+      </MainContainer>
   );
 };
 

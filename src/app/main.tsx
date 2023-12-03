@@ -18,7 +18,7 @@ const Main = () => {
         <AppRoutes />
         {userId && location.pathname !== '/create' ? (
           <Link to="/create">
-            <Fab color="secondary" aria-label="add" style={{position: 'fixed', right: '30px', zIndex: 9999, bottom: '30px'}}>
+            <Fab color="secondary" aria-label="add" >
               <AddIcon />
             </Fab>
           </Link>
