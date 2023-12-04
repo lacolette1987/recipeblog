@@ -81,7 +81,16 @@ const TagButton = styled(Button)(() => ({
 
   
 const myTheme = createTheme({
-    components: {
+    breakpoints: {
+        values: {
+          xs: 0,
+          sm: 600,
+          md: 900,
+          lg: 1300,
+          xl: 1536,
+        },
+      },
+        components: {
         MuiCssBaseline: {
             styleOverrides: `
                 body {
@@ -92,7 +101,6 @@ const myTheme = createTheme({
         MuiLink: {
             styleOverrides: {
                 root: {
-                    color: '#ffffff',
                     textDecoration: 'none',
                     '&:hover': {
                         color: '#0000000',
@@ -104,7 +112,7 @@ const myTheme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    padding: '25px',
+                    padding: '20px',
                 }
             }
         },
@@ -143,6 +151,14 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     margin: '0px 0px 10px 0px',
+                    borderRadius: '0 !important',
+                }
+            }
+        },
+        MuiInputBase: {
+            styleOverrides: {
+                root: {
+                    borderRadius: '0 !important',
                 }
             }
         },
@@ -153,13 +169,15 @@ const myTheme = createTheme({
                     fontWeight: 400,
                     fontSize: 15,
                     letterSpacing: 1.3,
-                    padding: '8px 25px 6px 25px',
+                    padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#000000',
+                    borderColor: '#e0a349',
                     borderWidth: '1px',
+                    color: '#e0a349',
                     '&:hover': {
                         backgroundColor: 'transparent',
-                        color: '#d1b894'
+                        color: '#a19f9f',
+                        borderColor: '#a19f9f',
                       },
                 },
             },
@@ -213,10 +231,10 @@ const myTheme = createTheme({
         },
         h1: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontSize: 33,
-            marginBottom: 10,
+            fontSize: 45,
+            marginBottom: 20,
             lineHeight: 1.4,
-            fontWeight: 600,
+            fontWeight: 400,
             textTransform: "uppercase",
             letterSpacing: 1.5,
         },
@@ -230,8 +248,8 @@ const myTheme = createTheme({
         },
         h3: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontWeight: 600,
-            fontSize: 22,
+            fontWeight: 400,
+            fontSize: 27,
             marginBottom: 10,
             marginTop: 4,
             textTransform: "uppercase",
@@ -259,13 +277,13 @@ const myTheme = createTheme({
         // mode: mode,
         primary: {
             light: '#000000',
-            main: '#000000',
+            main: '#e0a349',
             dark: '#ffffff',
             contrastText: '#ffffff',
         },
         secondary: {
           light: '#d1b894',
-          main: '#593d24',
+          main: '#a19f9f',
           dark: '#382f1f',
           contrastText: '#ffffff',
         },
