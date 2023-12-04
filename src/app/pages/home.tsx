@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import BlogSection from '../components/blogsection';
-import { Button, Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
@@ -10,6 +10,8 @@ import { MainContainer, ReadmoreButton } from '../theme/my-theme';
 import Blog from '../models/Blog';
 import { Stack } from '@mui/system';
 import Tags from '../components/layout/tags';
+import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import EditIcon from '@mui/icons-material/Edit';
 
 
 
@@ -88,11 +90,33 @@ const Home = () => {
                     </Typography>
                     <Rating size="small" name="simple-controlled" value={ratingValue} />
                     <Typography>{latestBlog.lead}</Typography>
-                    <Link to={`/detail/${latestBlog.uid}`}>
-                      <ReadmoreButton variant='outlined' disableElevation>
-                        Zum Rezept
-                      </ReadmoreButton>
-                    </Link>
+
+                    <Grid container alignItems={'center'}>
+                      <Grid item xs={10}>
+                        <Link to={`/detail/${latestBlog.uid}`}>
+                          <ReadmoreButton variant="outlined" disableElevation>
+                            Zum Rezept
+                          </ReadmoreButton>
+                        </Link>
+                      </Grid>
+                      {user?.uid ? (
+                        <>
+                          <Grid item textAlign={'right'} xs={1}>
+                            <Link to={`/edit/${latestBlog.uid}`}>
+                              <EditIcon />
+                            </Link>
+                          </Grid>
+                          <Grid item textAlign={'right'} xs={1}>
+                            <DeleteOutlinedIcon />
+                            {/* <DeleteOutlinedIcon
+                              onClick={() => handleClickOpen(latestBlog.uid)}
+                            ></DeleteOutlinedIcon> */}
+                          </Grid>
+                        </>
+                      ) : (
+                        ''
+                      )}
+                    </Grid>
                   </CardContent>
                 </Card>
               )}

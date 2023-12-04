@@ -6,6 +6,7 @@ import User from '../models/User';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddIcon from '@mui/icons-material/Add';
+import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {
   Autocomplete,
   Container,
@@ -134,7 +135,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
   };
 
   return (
-      <MainContainer maxWidth="sm">
+      <MainContainer maxWidth="md">
         {!isEditMode ? (
           <Typography variant="h1">Erfasse ein Rezept</Typography>
         ) : (
@@ -270,7 +271,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
             <Grid item xs={1}>
               <AddButton
                 variant="outlined"
-                endIcon={<AddIcon style={{ fontSize: '25px' }} />}
+                endIcon={<AddCircleIcon style={{ fontSize: '35px' }} />}
                 onClick={handleAddListItem}
               ></AddButton>
             </Grid>

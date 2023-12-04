@@ -83,8 +83,9 @@ const LoginNav: React.FC<LoginNavProps> = ({
           </Box>
         ) : (
           <Button
+            disableRipple
             component={Link}
-            sx={{ display: 'block', p: '0px 0px' }}
+            sx={{ display: 'block', p: '0px', color: '#000000' }}
             to={'/login'}
           >
             Login

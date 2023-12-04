@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Button, Rating, TextField, Typography } from '@mui/material';
+import { ReadmoreButton } from '../theme/my-theme';
 
 
 interface AddCommentFormProps {
@@ -85,7 +86,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           onChange={handleChange}
           autoFocus
         />
-        <Button type='submit' variant='outlined'>Kommentieren</Button>
+        <ReadmoreButton variant="outlined" disableElevation>Kommentieren</ReadmoreButton>
       </form>
     </div>
   );

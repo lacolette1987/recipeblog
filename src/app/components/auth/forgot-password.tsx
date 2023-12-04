@@ -36,7 +36,7 @@ import { Controller } from 'react-hook-form';
     
 
     return (
-        <MainContainer maxWidth="sm">
+        <MainContainer maxWidth="md">
             <Typography variant='h1'>Passwort vergessen</Typography>
             <form onSubmit={handleSubmit}>
                 <input

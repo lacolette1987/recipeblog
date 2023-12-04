@@ -1,7 +1,7 @@
 import User from '../../models/User';
 import { createAsyncThunk, createSlice, Dispatch, PayloadAction } from '@reduxjs/toolkit';
 import { AuthFormState } from '../../components/auth/login-form';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile, sendEmailVerification } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 
 interface AuthState {
@@ -70,9 +70,6 @@ export const login = createAsyncThunk<
         const userCredential = await createUserWithEmailAndPassword(auth, credentials.email, credentials.password);
         const { user } = userCredential;
         const displayName = `${credentials.firstName} ${credentials.lastName}`;
-        
-        await sendEmailVerification(user);
-
         await updateProfile(user, {
           displayName: displayName
         });

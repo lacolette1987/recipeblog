@@ -117,7 +117,8 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
       </Box>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {pages.map((page, index) => (
-          <Button
+          <Button 
+            disableRipple
             key={index}
             component={Link}
             to={page.to}
@@ -127,7 +128,7 @@ const Navigation: React.FC<NavigationProps> = ({ user, handleLogout, setActive }
           </Button>
         ))}
         {userId && location.pathname !== '/create' ? (
-          <Button component={Link} sx={{ color: 'black', m: 0, p: '17px 0px 15px 0px' }} to={'/create'}>Erfassen</Button>
+          <Button disableRipple component={Link} sx={{ color: 'black', m: 0, p: '17px 0px 15px 0px' }} to={'/create'}>Erfassen</Button>
         ) : ""}
         </Box>
     </>

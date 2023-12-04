@@ -1,12 +1,9 @@
 import {
-  Box,
-  Button,
   Card,
   CardContent,
   CardMedia,
   Grid,
   Rating,
-  Stack,
   Typography,
 } from '@mui/material';
 import React, { useState } from 'react';
@@ -14,7 +11,6 @@ import { Link } from 'react-router-dom';
 import User from '../models/User';
 import DialogDelete from './dialog-delete';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
-import AccessAlarmIcon from '@mui/icons-material/AccessAlarm';
 import EditIcon from '@mui/icons-material/Edit';
 import { ReadmoreButton } from '../theme/my-theme';
 

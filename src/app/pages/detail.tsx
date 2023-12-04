@@ -88,7 +88,7 @@ const Detail = () => {
     <MainContainer maxWidth='lg'>
       <Grid container sx={{padding: '0 0 20px 0'}} spacing={{ sm: 4, md: 6 }}>
         <Grid item xs={12} sm={7} md={8}>
-          <Typography variant="h1">{blogs[0]?.title}</Typography>
+          <Typography variant="h1" sx={{mb: '0px'}}>{blogs[0]?.title}</Typography>
           <Grid item sx={{m: '0 0 10px 0'}}>
             <Rating size="small" readOnly />
           </Grid>
@@ -155,8 +155,26 @@ const Detail = () => {
           ))}
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
+          <ZutatenCard elevation={0}>
+            <CardContent component="div" sx={{p: '20px'}}>
+              <Grid
+                container
+                justifyContent={'space-between'}
+              >
+                <Grid item>
+                  <Typography variant="h3">Zutaten</Typography>
+                </Grid>
+              </Grid>
+              {blogs[0]?.ingredients &&
+                blogs[0].ingredients.map((ingredient, index) => (
+                  <ListItem key={index}>
+                    {ingredient.trim()}
+                  </ListItem>
+                ))}
+            </CardContent>
+          </ZutatenCard>
           <Grid container>
-            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid #42576e'}}>
+            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid rgba(0, 0, 0, 0.12)'}}>
               <Grid item>
                 <Typography sx={{fontWeight: '700'}}>Arbeitszeit:</Typography>
               </Grid>
@@ -164,7 +182,7 @@ const Detail = () => {
                 <Typography>{blogs[0]?.duration} Min.</Typography>
               </Grid>
             </Grid>
-            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid #42576e', p: '10px 0px 0px 0px' }}>
+            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid rgba(0, 0, 0, 0.12)', p: '10px 0px 0px 0px' }}>
               <Grid item>
                 <Typography sx={{fontWeight: '700'}}>Kategorie:</Typography>
               </Grid>
@@ -181,28 +199,7 @@ const Detail = () => {
               </Grid>
             </Grid>
           </Grid>
-          <ZutatenCard elevation={0}>
-            <CardContent component="div">
-              <Grid
-                container
-                justifyContent={'space-between'}
-              >
-                <Grid item>
-                  <Typography variant="h3">Zutaten</Typography>
-                </Grid>
-                <Grid item>
-                  <FormatListBulletedIcon />
-                </Grid>
-              </Grid>
-              {blogs[0]?.ingredients &&
-                blogs[0].ingredients.map((ingredient, index) => (
-                  <ListItem divider key={index}>
-                    {ingredient.trim()}
-                  </ListItem>
-                ))}
-            </CardContent>
-          </ZutatenCard>
-          <Grid sx={{ m: '30px 0px 20px 0px' }}>
+          <Grid sx={{ m: '20px 0px 20px 0px' }}>
             {blogs[0]?.tags &&
               blogs[0].tags.map((tags, index) => (
                 <TagButton key={index}>{tags.trim()}</TagButton>

@@ -4,7 +4,7 @@ import { FooterContainer } from '../../theme/my-theme';
 
 const Footer = () => {
   return (
-    <Box sx={{ background: '#cca23d' }}>
+    <Box sx={{ background: '#c58b64' }}>
       <FooterContainer maxWidth="lg">
         <Grid container justifyContent={'space-between'}>
           <Grid item sm={12} md={6}>

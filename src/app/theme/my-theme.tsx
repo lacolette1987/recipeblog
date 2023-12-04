@@ -4,7 +4,7 @@ import { Button, Card, CardMedia, Container, createTheme } from "@mui/material";
 
 
 const TagButton = styled(Button)(() => ({
-    backgroundColor: '#cca23d',
+    backgroundColor: '#c58b64',
     borderRadius: '20px',
     fontSize: '12px',
     margin: '0px 8px 8px 0px',
@@ -13,19 +13,11 @@ const TagButton = styled(Button)(() => ({
     padding: '6px 15px 4px 15px',
     color: '#ffffff',
     ":hover": {
-        backgroundColor: '#6b4829',
+        backgroundColor: '#5f4a3e',
+        color: '#ffffff',
     }
   }));
   
-  const FooterButton = styled(Button)(() => ({
-    padding: '0',
-    margin: '0px 40px 0px 0px',
-    a: {
-        color: '#000000',
-        textDecoration: 'none',
-    },
-}));
-
   const IconStyle = {
     color: '#a4a2a1',
   };
@@ -33,13 +25,13 @@ const TagButton = styled(Button)(() => ({
 
 
   const AddButton = styled(Button)(() => ({
-    padding: '15px 0px 0px 0',
+    padding: '10px 0px 0px 0',
     margin: 0,
     border: 0,
-    color: '#8e735b',
+    color: '#c58b64',
     ":hover": {
         border: 0,
-        backgroundColor: '#f5f5f5',
+        color: '#5f4a3e',
     }
   }));
 
@@ -51,9 +43,9 @@ const TagButton = styled(Button)(() => ({
 
 
 
-
   const ZutatenCard = styled(Card)(() => ({
-    margin: '30px 0px 40px 0px',
+    margin: '0px 0px 30px 0px',
+    background: '#ffffff',
   }));
 
 
@@ -73,9 +65,9 @@ const TagButton = styled(Button)(() => ({
   const ReadmoreButton = styled(Button)(() => ({
     margin: '10px 0px 0px 0px',
     '&:hover': {
-        backgroundColor: '#cca23d',
+        backgroundColor: '#c58b64',
         color: '#ffffff',
-        borderColor: '#cca23d',
+        borderColor: '#c58b64',
       },
 }));
 
@@ -89,14 +81,14 @@ const myTheme = createTheme({
         // mode: mode,
         primary: {
             light: '#000000',
-            main: '#42576e',
+            main: '#436c71',
             dark: '#ffffff',
             contrastText: '#ffffff',
         },
         secondary: {
           light: '#d1b894',
-          main: '#cca23d',
-          dark: '#382f1f',
+          main: '#5f4a3e',
+          dark: '#c58b64',
           contrastText: '#ffffff',
         },
         background: {
@@ -111,8 +103,8 @@ const myTheme = createTheme({
           lg: 1300,
           xl: 1536,
         },
-      },
-        components: {
+    },
+    components: {
         MuiCssBaseline: {
             styleOverrides: `
                 body {
@@ -165,7 +157,12 @@ const myTheme = createTheme({
         MuiListItem: {
             styleOverrides: {
                 root: {
-                    padding: '6px 0px',
+                    padding: '8px 0px 6px 0px',
+                    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+                    '&:last-child': {
+                        padding: '8px 0px 0px 0px',
+                        borderBottom: 0,
+                      },
                 }
             }
         },
@@ -193,12 +190,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#cca23d',
+                    borderColor: '#c58b64',
                     borderWidth: '1px',
-                    color: '#cca23d',
+                    color: '#c58b64',
                     '&:hover': {
                         backgroundColor: 'transparent',
-                        color: '#cca23d',
+                        color: '#c58b64',
                       },
                 },
             },
@@ -215,7 +212,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#d1b894',
+                        backgroundColor: '#c58b64',
                         color: '#ffffff'
                       },
                 },
@@ -229,6 +226,7 @@ const myTheme = createTheme({
             lineHeight: 1.5,
             marginBottom: 10,
             fontWeight: 300,
+            color: '#353535',
         },
         body2: {
             fontSize: 18,
@@ -247,34 +245,37 @@ const myTheme = createTheme({
             lineHeight: 1.3,
             marginBottom: 15,
             fontWeight: 600,
-            color: "#8e735b",
+            color: "#c58b64",
             letterSpacing: 0,
         },
         h1: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontSize: 45,
+            fontSize: 40,
             marginBottom: 20,
             lineHeight: 1.4,
             fontWeight: 400,
             textTransform: "uppercase",
             letterSpacing: 1.5,
+            color: '#353535'
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 600,
-            fontSize: 28,
+            fontSize: 26,
             marginBottom: 10,
             textTransform: "uppercase",
-            letterSpacing: 1.7
+            letterSpacing: 1.7,
+            color: '#353535'
         },
         h3: {
             fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 400,
-            fontSize: 27,
+            fontSize: 24,
             marginBottom: 10,
             marginTop: 4,
             textTransform: "uppercase",
             letterSpacing: 1,
+            color: '#353535',
             a: {
                 color: '#000000',
                 textDecoration: 'none',
@@ -296,4 +297,4 @@ const myTheme = createTheme({
         },
 });
 
-export { IconStyle, MainContainer, FooterButton, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };
+export { IconStyle, MainContainer, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };

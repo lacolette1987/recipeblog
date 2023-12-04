@@ -27,22 +27,25 @@ const initialState: AuthFormState = {
 };
 
 export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm }) => {
-    const { control, handleSubmit: handleFormSubmit, formState: { errors } } = useForm({
+    const { control, handleSubmit: handleFormSubmit, formState: { errors }, setValue, watch } = useForm<AuthFormState, string>({
         defaultValues: initialState,
     });
 
-    const [isSignUpMode, setIsSignUpMode] = useState(false);
-
+    const isSignUpMode = watch('isSignUpMode', false);
+    const setSignUpMode = (value: boolean) => {
+      setValue('isSignUpMode', value);
+    };
+  
     const setSignUp = (value: boolean) => {
-        setIsSignUpMode(value);
-    }
-
+        setValue('isSignUpMode', value);
+      };
+    
     const onSubmit = (formData: AuthFormState) => {
         submitForm(formData);
     };
 
     return (
-        <MainContainer maxWidth="sm">
+        <MainContainer maxWidth="md">
             <Typography variant="h1">{!isSignUpMode ? 'Anmelden' : 'Registrieren'}</Typography>
             <form onSubmit={handleFormSubmit(onSubmit)}>
                 {isSignUpMode && (
