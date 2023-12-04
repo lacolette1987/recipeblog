@@ -156,7 +156,7 @@ const Detail = () => {
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
           <Grid container>
-            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid #8e735b'}}>
+            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid #42576e'}}>
               <Grid item>
                 <Typography sx={{fontWeight: '700'}}>Arbeitszeit:</Typography>
               </Grid>
@@ -164,7 +164,7 @@ const Detail = () => {
                 <Typography>{blogs[0]?.duration} Min.</Typography>
               </Grid>
             </Grid>
-            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid #8e735b', p: '10px 0px 0px 0px' }}>
+            <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{borderBottom: '1px solid #42576e', p: '10px 0px 0px 0px' }}>
               <Grid item>
                 <Typography sx={{fontWeight: '700'}}>Kategorie:</Typography>
               </Grid>

@@ -18,7 +18,7 @@ const StyledInputBase = styled(InputBase)(() => ({
 }));
 
 const SearchIconWrapper = styled('div')(() => ({
-  backgroundColor: '#a19f9f',
+  backgroundColor: '#cca23d',
   color: '#ffffff',
   padding: '10px',
   pointerEvents: 'none',

@@ -1,18 +1,17 @@
 import styled from "@emotion/styled";
-import { Button, Card, CardMedia, Container, Grid, createTheme } from "@mui/material";
+import { Button, Card, CardMedia, Container, createTheme } from "@mui/material";
 
 
 
 const TagButton = styled(Button)(() => ({
-    backgroundColor: '#d1b894',
+    backgroundColor: '#cca23d',
     borderRadius: '20px',
     fontSize: '12px',
     margin: '0px 8px 8px 0px',
     fontWeight: '700',
     letterSpacing: 0.7,
-    padding: '4px 13px 3px 13px',
+    padding: '6px 15px 4px 15px',
     color: '#ffffff',
-    fontFamily: 'Work Sans, sans-serif',
     ":hover": {
         backgroundColor: '#6b4829',
     }
@@ -73,7 +72,12 @@ const TagButton = styled(Button)(() => ({
 
   const ReadmoreButton = styled(Button)(() => ({
     margin: '10px 0px 0px 0px',
-  }));
+    '&:hover': {
+        backgroundColor: '#cca23d',
+        color: '#ffffff',
+        borderColor: '#cca23d',
+      },
+}));
 
 
 
@@ -81,6 +85,24 @@ const TagButton = styled(Button)(() => ({
 
   
 const myTheme = createTheme({
+    palette: {
+        // mode: mode,
+        primary: {
+            light: '#000000',
+            main: '#42576e',
+            dark: '#ffffff',
+            contrastText: '#ffffff',
+        },
+        secondary: {
+          light: '#d1b894',
+          main: '#cca23d',
+          dark: '#382f1f',
+          contrastText: '#ffffff',
+        },
+        background: {
+          default: '#f5f5f5',
+        },
+    },
     breakpoints: {
         values: {
           xs: 0,
@@ -112,7 +134,7 @@ const myTheme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    padding: '20px',
+                    padding: '30px 20px 40px 20px',
                 }
             }
         },
@@ -171,13 +193,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#e0a349',
+                    borderColor: '#cca23d',
                     borderWidth: '1px',
-                    color: '#e0a349',
+                    color: '#cca23d',
                     '&:hover': {
                         backgroundColor: 'transparent',
-                        color: '#a19f9f',
-                        borderColor: '#a19f9f',
+                        color: '#cca23d',
                       },
                 },
             },
@@ -273,24 +294,6 @@ const myTheme = createTheme({
             letterSpacing: 1,
         },
         },
-    palette: {
-        // mode: mode,
-        primary: {
-            light: '#000000',
-            main: '#e0a349',
-            dark: '#ffffff',
-            contrastText: '#ffffff',
-        },
-        secondary: {
-          light: '#d1b894',
-          main: '#a19f9f',
-          dark: '#382f1f',
-          contrastText: '#ffffff',
-        },
-        background: {
-          default: '#f5f5f5',
-        },
-    },
 });
 
 export { IconStyle, MainContainer, FooterButton, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };

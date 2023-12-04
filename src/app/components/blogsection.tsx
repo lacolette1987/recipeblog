@@ -61,38 +61,38 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                 title={item.title}
               />
             </Link>
-            <CardContent>
-            <Typography variant="h3">
-              <Link to={`/detail/${item.uid}`}>{item.title}</Link>
-            </Typography>
-            <Rating size="small" name="simple-controlled" value={ratingValue} />
-            <Typography>{item.lead}</Typography>
-            <Grid container alignItems={'center'}>
-              <Grid item xs={10}>
-                <Link to={`/detail/${item.uid}`}>
-                  <ReadmoreButton variant="outlined" disableElevation>
-                    Zum Rezept
-                  </ReadmoreButton>
-                </Link>
-              </Grid>
-              {userId ? (
-                <>
-                  <Grid item xs={1}>
-                    <Link to={`/edit/${item.uid}`}>
-                      <EditIcon />
+              <CardContent>
+                <Typography variant="h3">
+                  <Link to={`/detail/${item.uid}`}>{item.title}</Link>
+                </Typography>
+                <Rating size="small" name="simple-controlled" value={ratingValue} />
+                <Typography>{item.lead}</Typography>
+                <Grid container alignItems={'center'}>
+                  <Grid item xs={10}>
+                    <Link to={`/detail/${item.uid}`}>
+                      <ReadmoreButton variant="outlined" disableElevation>
+                        Zum Rezept
+                      </ReadmoreButton>
                     </Link>
                   </Grid>
-                  <Grid item textAlign={'right'} xs={1}>
-                    <DeleteOutlinedIcon
-                      onClick={() => handleClickOpen(item.uid)}
-                    ></DeleteOutlinedIcon>
-                  </Grid>
-                </>
-              ) : (
-                ''
-              )}
-            </Grid>
-            </CardContent>
+                  {userId ? (
+                    <>
+                      <Grid item xs={1}>
+                        <Link to={`/edit/${item.uid}`}>
+                          <EditIcon />
+                        </Link>
+                      </Grid>
+                      <Grid item textAlign={'right'} xs={1}>
+                        <DeleteOutlinedIcon
+                          onClick={() => handleClickOpen(item.uid)}
+                        ></DeleteOutlinedIcon>
+                      </Grid>
+                    </>
+                  ) : (
+                    ''
+                  )}
+                </Grid>
+              </CardContent>
             </Card>
           </Grid>
         ))}
