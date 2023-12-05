@@ -1,8 +1,7 @@
 import Blog from '../models/Blog';
 import { useState } from 'react';
-import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query, updateDoc, where } from 'firebase/firestore';
+import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query,  where } from 'firebase/firestore';
 import { db } from '../firebase-config';
-import { BlogFormState } from '../components/blog-form';
 
 function useBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -24,6 +23,8 @@ function useBlogs() {
       author: documentData.author,
       imgUrl: documentData.imgUrl,
       timestamp: documentData.timestamp,
+      userId: documentData.userId,
+      avgRating: documentData.avgRating,
     } as Blog;
   };
 

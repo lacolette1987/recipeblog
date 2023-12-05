@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { InputBase } from '@mui/material';
 import { styled } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
+import { myTheme } from '../../theme/my-theme';
 
 const Search = styled('div')(() => ({
   justifyContent: 'space-between',
@@ -18,7 +19,7 @@ const StyledInputBase = styled(InputBase)(() => ({
 }));
 
 const SearchIconWrapper = styled('div')(() => ({
-  backgroundColor: '#c58b64',
+  backgroundColor: myTheme.palette.secondary.main,
   color: '#ffffff',
   padding: '10px',
   pointerEvents: 'none',
@@ -27,6 +28,9 @@ const SearchIconWrapper = styled('div')(() => ({
   justifyContent: 'center',
   width: '50px',
   height: '50px',
+  ":hover": {
+    backgroundColor: '#436c71',
+}
 }));
 
 function SearchBar({ onSearch }: { onSearch: (query: string) => void }) {

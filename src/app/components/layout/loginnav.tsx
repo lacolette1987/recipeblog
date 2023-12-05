@@ -62,7 +62,8 @@ const LoginNav: React.FC<LoginNavProps> = ({
               </IconButton>
             </Tooltip>
             <Menu
-              sx={{ mt: '45px' }}
+              elevation={0}
+              sx={{ mt: '40px' }}
               id="menu-appbar"
               anchorEl={anchorElUser}
               anchorOrigin={{

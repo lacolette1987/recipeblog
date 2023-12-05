@@ -1,12 +1,12 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import BlogSection from '../components/blogsection';
 import { Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
-import { useDispatch, useSelector } from 'react-redux';
+import {  useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import useBlogs from '../hooks/useBlogs';
-import SearchBar from '../components/search';
-import { MainContainer, ReadmoreButton } from '../theme/my-theme';
+import SearchBar from '../components/search/search';
+import { MainContainer, ReadmoreButton, myTheme } from '../theme/my-theme';
 import Blog from '../models/Blog';
 import { Stack } from '@mui/system';
 import Tags from '../components/layout/tags';
@@ -14,38 +14,19 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 
 
-
-
 const Home = () => {
-  const dispatch = useDispatch();
   const user = useSelector((state: RootState) => state.auth.currentUser);
+
   const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
-  const [searchQuery, setSearchQuery] = useState('');
   const latestBlog = useMemo(() => (blogs.length > 0 ? blogs[0] : null), [blogs]);
-  const [ratingValue, setRatingValue] = useState<number | null>(null);
-  const [filteredBlogs, setFilteredBlogs] = useState<Blog[]>([]);
+  const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Weihnachten')), [blogs]);
+
+  const [searchQuery, setSearchQuery] = useState('');
 
   useEffect(() => {
     queryBlogs();
-  }, [searchQuery]);
+  }, []);
 
-
-
-  useEffect(() => {
-    if (searchQuery === 'Weihnachten') {
-      const filteredBlogs = blogs.filter((blog) =>
-        blog.tags.includes('Weihnachten')
-      );
-      setFilteredBlogs(filteredBlogs);
-    } else {
-      setFilteredBlogs(blogs);
-    }
-  }, [searchQuery, blogs]);
-
-
-
-
-  
   const handleSearch = (query: string) => {
     setSearchQuery(query);
   };
@@ -88,9 +69,10 @@ const Home = () => {
                         {latestBlog.title}
                       </Link>
                     </Typography>
-                    <Rating size="small" name="simple-controlled" value={ratingValue} />
-                    <Typography>{latestBlog.lead}</Typography>
-
+                    {latestBlog.avgRating ? <Rating size="small" name="simple-controlled" value={latestBlog.avgRating} /> : ''}
+                    <Grid sx={{mb: '25px'}} item>
+                      <Typography>{latestBlog.lead}</Typography>
+                    </Grid>
                     <Grid container alignItems={'center'}>
                       <Grid item xs={10}>
                         <Link to={`/detail/${latestBlog.uid}`}>
@@ -100,19 +82,22 @@ const Home = () => {
                         </Link>
                       </Grid>
                       {user?.uid ? (
-                        <>
-                          <Grid item textAlign={'right'} xs={1}>
-                            <Link to={`/edit/${latestBlog.uid}`}>
-                              <EditIcon />
-                            </Link>
-                          </Grid>
-                          <Grid item textAlign={'right'} xs={1}>
-                            <DeleteOutlinedIcon />
-                            {/* <DeleteOutlinedIcon
-                              onClick={() => handleClickOpen(latestBlog.uid)}
-                            ></DeleteOutlinedIcon> */}
-                          </Grid>
-                        </>
+                        <Grid item xs={2}>
+                          <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
+                            <Grid item>
+                                <Link to={`/edit/${latestBlog.uid}`}>
+                                  <EditIcon sx={{color: myTheme.palette.secondary.main}} />
+                                </Link>
+                              </Grid>
+                              <Grid item>
+                                <DeleteOutlinedIcon sx={{color: myTheme.palette.secondary.main}} />
+                                {/* <DeleteOutlinedIcon
+                                  sx={{color: myTheme.palette.secondary.main}}
+                                  onClick={() => handleClickOpen(latestBlog.uid)}
+                                ></DeleteOutlinedIcon> */}
+                              </Grid>
+                            </Grid>
+                        </Grid>
                       ) : (
                         ''
                       )}
@@ -135,7 +120,7 @@ const Home = () => {
           <Typography variant='h3'>Weihnachten</Typography>
           {filteredBlogs.map((blog: Blog) => (
             <div key={blog.uid}>
-              <Tags blog={blog} ratingValue={ratingValue} />
+              <Tags blog={blog} ratingValue={0} />
             </div>
           ))}
         </Grid>
