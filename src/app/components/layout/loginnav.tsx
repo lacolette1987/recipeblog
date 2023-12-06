@@ -79,7 +79,7 @@ const LoginNav: React.FC<LoginNavProps> = ({
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem component={NavLink} sx={{ '&.active': { background: myTheme.palette.primary.dark, color: '#ffffff', }, }} to={'/profile'} onClick={handleCloseUserMenu}>Profil</MenuItem>
+              <MenuItem component={NavLink} sx={{ '&.active': { background: myTheme.palette.primary.main, color: '#ffffff', }, }} to={'/profile'} onClick={handleCloseUserMenu}>Profil</MenuItem>
               <MenuItem component={NavLink} to={'/'} onClick={onLogoutClick}>Logout</MenuItem>
             </Menu>
           </Box>

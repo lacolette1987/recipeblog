@@ -8,13 +8,13 @@ const myTheme = createTheme({
     palette: {
         primary: {
             light: '#d7dae8',
-            main: '#0e132b',
+            main: '#a5b9a0',
             dark: '#d9927f',
             contrastText: '#ffffff',
         },
         secondary: {
           light: '#f1e0d2',
-          main: '#b69d83',
+          main: '#b0745d',
           dark: '#d9927f',
           contrastText: '#ffffff',
         },
@@ -66,9 +66,9 @@ const myTheme = createTheme({
                     zIndex: 9999,
                     bottom: '30px',
                     color: '#ffffff',
-                    background: '#d9927f',
+                    background: '#ca862a',
                     '&:hover': {
-                        background: '#0e132b',
+                        background: '#c26e32',
                       },
                 }
             }
@@ -137,12 +137,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#d9927f',
+                    borderColor: '#aad15f',
                     borderWidth: '1px',
-                    color: '#d9927f',
+                    color: '#aad15f',
                     '&:hover': {
                         backgroundColor: 'transparent',
-                        color: '#d9927f',
+                        color: '#aad15f',
                       },
                 },
             },
@@ -159,7 +159,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#d9927f',
+                        backgroundColor: '#aad15f',
                         color: '#ffffff'
                       },
                 },

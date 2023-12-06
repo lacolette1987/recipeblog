@@ -116,7 +116,7 @@ const Navigation: React.FC<NavigationProps> = ({
               onClick={handleCloseNavMenu}
               sx={{
                 '&.active': {
-                  background: myTheme.palette.primary.dark,
+                  background: myTheme.palette.secondary.main,
                   color: '#ffffff'
                 }
     
@@ -150,7 +150,7 @@ const Navigation: React.FC<NavigationProps> = ({
               m: '0px 35px 0px 0px',
               p: '17px 0px 15px 0px',
               '&.active': {
-                color: myTheme.palette.primary.dark,
+                color: myTheme.palette.secondary.main,
               }
             }}
           >
@@ -166,7 +166,7 @@ const Navigation: React.FC<NavigationProps> = ({
               m: 0,
               p: '17px 0px 15px 0px',
             '&.active': {
-              color: myTheme.palette.primary.dark,
+              color: myTheme.palette.secondary.main,
             }
           }}
             to={'/create'}
