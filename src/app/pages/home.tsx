@@ -91,10 +91,6 @@ const Home = () => {
                               </Grid>
                               <Grid item>
                                 <DeleteOutlinedIcon sx={{color: myTheme.palette.secondary.main}} />
-                                {/* <DeleteOutlinedIcon
-                                  sx={{color: myTheme.palette.secondary.main}}
-                                  onClick={() => handleClickOpen(latestBlog.uid)}
-                                ></DeleteOutlinedIcon> */}
                               </Grid>
                             </Grid>
                         </Grid>

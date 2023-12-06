@@ -105,18 +105,8 @@ const Detail = () => {
             <Grid container spacing={1} justifyContent={'flex-end'}>
               <Grid item>
                 <Link to={`/edit/${blogId}`}>
-                  <Typography color={'secondary'} fontSize={'14px'}>bearbeiten</Typography>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link to={`/edit/${blogId}`}>
                   <EditIcon fontSize='small' />
                 </Link>
-              </Grid>
-            </Grid>
-            <Grid container spacing={1} justifyContent={'flex-end'}>
-              <Grid item>
-                <Typography color={'secondary'} fontSize={'14px'}>löschen</Typography>
               </Grid>
               <Grid item>
                 <Button onClick={handleDelete} size='small'>

@@ -21,7 +21,7 @@ interface NavigationProps {
 }
 
 const pages = [
-  { label: 'Startseite', to: '/' },
+  { label: 'Home', to: '/' },
   { label: 'Kochen', to: '/cooking' },
   { label: 'Backen', to: '/baking' },
 ];
