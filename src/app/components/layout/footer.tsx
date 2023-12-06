@@ -7,7 +7,7 @@ const Footer = () => {
     <Box sx={{ background: myTheme.palette.secondary.main }}>
       <FooterContainer maxWidth="lg">
         <Grid container justifyContent={'space-between'}>
-          <Grid item sm={12} md={6}>
+          <Grid item>
             <Grid container spacing={3}>
               <Grid item>
                 <Link href="/imprint">
@@ -26,7 +26,7 @@ const Footer = () => {
               </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={6}>
+          <Grid item>
             <Typography variant="body1" color={myTheme.palette.primary.contrastText}>
               © Copyright 2024, Colette Güntensperger
             </Typography>

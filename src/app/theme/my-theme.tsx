@@ -7,15 +7,15 @@ import { Button, Card, CardMedia, Container, createTheme } from "@mui/material";
 const myTheme = createTheme({
     palette: {
         primary: {
-            light: '#d7dae8',
-            main: '#a5b9a0',
-            dark: '#d9927f',
+            light: '#b8dfd1',
+            main: '#c4a971',
+            dark: '#2d656c',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#f1e0d2',
-          main: '#b0745d',
-          dark: '#d9927f',
+          light: '#efd78f',
+          main: '#000000',
+          dark: '#cb9b36',
           contrastText: '#ffffff',
         },
         background: {
@@ -66,9 +66,9 @@ const myTheme = createTheme({
                     zIndex: 9999,
                     bottom: '30px',
                     color: '#ffffff',
-                    background: '#ca862a',
+                    background: '#2d656c',
                     '&:hover': {
-                        background: '#c26e32',
+                        background: '#83a7a2',
                       },
                 }
             }
@@ -137,12 +137,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#aad15f',
+                    borderColor: '#2d656c',
                     borderWidth: '1px',
-                    color: '#aad15f',
+                    color: '#2d656c',
                     '&:hover': {
                         backgroundColor: 'transparent',
-                        color: '#aad15f',
+                        color: '#2d656c',
                       },
                 },
             },
@@ -159,7 +159,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#aad15f',
+                        backgroundColor: '#e8c248',
                         color: '#ffffff'
                       },
                 },
@@ -173,7 +173,7 @@ const myTheme = createTheme({
             lineHeight: 1.5,
             marginBottom: 10,
             fontWeight: 300,
-            color: '#373737',
+            color: '#000000',
         },
         caption: {
             fontSize: 18,
@@ -197,7 +197,7 @@ const myTheme = createTheme({
             fontWeight: 400,
             textTransform: "uppercase",
             letterSpacing: 1.5,
-            color: '#373737'
+            color: '#000000'
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -206,7 +206,7 @@ const myTheme = createTheme({
             marginBottom: 10,
             textTransform: "uppercase",
             letterSpacing: 1.7,
-            color: '#373737'
+            color: '#000000'
         },
         h3: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -216,9 +216,9 @@ const myTheme = createTheme({
             marginTop: 4,
             textTransform: "uppercase",
             letterSpacing: 1,
-            color: '#373737',
+            color: '#000000',
             a: {
-                color: '#373737',
+                color: '#000000',
                 textDecoration: 'none',
             },
         },
