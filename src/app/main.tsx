@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from './store/store';
 import { Link, useLocation } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
+import { myTheme } from './theme/my-theme';
 
 const Main = () => {
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
@@ -18,7 +19,7 @@ const Main = () => {
         <AppRoutes />
         {userId && location.pathname !== '/create' ? (
           <Link to="/create">
-            <Fab color="secondary" aria-label="add" style={{ boxShadow: 'none' }}>
+            <Fab aria-label="add" style={{ boxShadow: 'none' }}>
               <AddIcon  />
             </Fab>
           </Link>

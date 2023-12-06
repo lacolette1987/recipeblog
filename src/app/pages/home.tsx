@@ -69,7 +69,7 @@ const Home = () => {
                         {latestBlog.title}
                       </Link>
                     </Typography>
-                    {latestBlog.avgRating ? <Rating size="small" name="simple-controlled" value={latestBlog.avgRating} /> : ''}
+                    {latestBlog.avgRating ? <Rating readOnly size="small" name="simple-controlled" value={latestBlog.avgRating} /> : ''}
                     <Grid sx={{mb: '25px'}} item>
                       <Typography>{latestBlog.lead}</Typography>
                     </Grid>

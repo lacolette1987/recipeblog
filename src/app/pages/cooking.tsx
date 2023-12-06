@@ -16,7 +16,6 @@ const Cooking = () => {
   }, []);
 
   return (
-    <>
     <MainContainer maxWidth='lg'>
         <Stack sx={{ m: '0 0 40px 0' }}>
           <Typography variant="h1"> Kochen</Typography>
@@ -51,14 +50,6 @@ const Cooking = () => {
           </Grid>
         </Grid>
       </MainContainer>
-      <MainImage>
-        <img
-          src="assets/cooking.jpg"
-          alt="Kochen"
-          style={{ maxWidth: '100%' }}
-        />
-      </MainImage>
-    </>
   );
 };
 

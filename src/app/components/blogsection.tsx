@@ -51,7 +51,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({
               <Typography variant='h3'>
                 <Link to={`/detail/${item.uid}`}>{item.title}</Link>
               </Typography>
-              {item.avgRating ? <Rating size='small' name='simple-controlled' value={item.avgRating} /> : ''}
+              {item.avgRating ? <Rating readOnly size='small' name='simple-controlled' value={item.avgRating} /> : ''}
               <Grid sx={{ mb: '25px' }} item>
                 <Typography>{item.lead}</Typography>
               </Grid>

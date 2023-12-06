@@ -16,7 +16,6 @@ const Baking = () => {
   }, []);
 
   return (
-    <>
     <MainContainer maxWidth='lg'>
         <Stack sx={{ m: '0 0 40px 0' }}>
           <Typography variant="h1">Backen</Typography>
@@ -44,14 +43,6 @@ const Baking = () => {
           </Grid>
         </Grid>
       </MainContainer>
-      <MainImage>
-        <img
-          src="assets/baking.jpg"
-          alt="Backen"
-          style={{ maxWidth: '100%' }}
-        />
-      </MainImage>
-    </>
   );
 };
 

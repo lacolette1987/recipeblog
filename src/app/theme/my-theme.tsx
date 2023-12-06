@@ -65,6 +65,11 @@ const myTheme = createTheme({
                     right: '30px',
                     zIndex: 9999,
                     bottom: '30px',
+                    color: '#ffffff',
+                    background: '#d9927f',
+                    '&:hover': {
+                        background: '#0e132b',
+                      },
                 }
             }
         },
