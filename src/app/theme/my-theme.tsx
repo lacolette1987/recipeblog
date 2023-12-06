@@ -7,15 +7,15 @@ import { Button, Card, CardMedia, Container, createTheme } from "@mui/material";
 const myTheme = createTheme({
     palette: {
         primary: {
-            light: '#000000',
-            main: '#323232',
-            dark: '#acbc99',
+            light: '#d7dae8',
+            main: '#0e132b',
+            dark: '#d9927f',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#d1b894',
-          main: '#95c5b0',
-          dark: '#577e72',
+          light: '#f1e0d2',
+          main: '#b69d83',
+          dark: '#d9927f',
           contrastText: '#ffffff',
         },
         background: {
@@ -132,12 +132,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#95c5b0',
+                    borderColor: '#d9927f',
                     borderWidth: '1px',
-                    color: '#95c5b0',
+                    color: '#d9927f',
                     '&:hover': {
                         backgroundColor: 'transparent',
-                        color: '#95c5b0',
+                        color: '#d9927f',
                       },
                 },
             },
@@ -154,7 +154,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#95c5b0',
+                        backgroundColor: '#d9927f',
                         color: '#ffffff'
                       },
                 },
@@ -297,9 +297,9 @@ const TagButton = styled(Button)(() => ({
   const ReadmoreButton = styled(Button)(() => ({
     margin: '0px 0px 0px 0px',
     '&:hover': {
-        backgroundColor: myTheme.palette.secondary.main,
+        backgroundColor: myTheme.palette.primary.dark,
         color: '#ffffff',
-        borderColor: myTheme.palette.secondary.main,
+        borderColor: myTheme.palette.primary.dark,
       },
 }));
 
