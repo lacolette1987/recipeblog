@@ -5,27 +5,26 @@ import Button from '@mui/material/Button';
 import User from '../models/User';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
-import AddIcon from '@mui/icons-material/Add';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import {
   Autocomplete,
-  Container,
   FormControl,
   FormControlLabel,
   Grid,
   IconButton,
   List,
-  ListItem,
   ListItemSecondaryAction,
   ListItemText,
   Radio,
   RadioGroup,
   SelectChangeEvent,
-  Slider,
   Stack,
 } from '@mui/material';
-import { AddButton, MainContainer } from '../theme/my-theme';
+import { AddButton, AddList, AddListItem, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
+
+
+
 
 interface BlogFormProps {
   user?: User;
@@ -242,9 +241,9 @@ const BlogForm: React.FC<BlogFormProps> = ({
               />
             </RadioGroup>
           </FormControl>
-          <List>
+          <AddList>
             {form.ingredients.map((item, index) => (
-              <ListItem disablePadding divider key={index}>
+              <AddListItem disablePadding key={index}>
                 <ListItemText primary={item} />
                 <ListItemSecondaryAction>
                   <IconButton
@@ -255,10 +254,10 @@ const BlogForm: React.FC<BlogFormProps> = ({
                     <DeleteIcon />
                   </IconButton>
                 </ListItemSecondaryAction>
-              </ListItem>
+              </AddListItem>
             ))}
-          </List>
-          <Grid container>
+          </AddList>
+          <Grid container justifyContent={'space-between'}>
             <Grid item xs={11}>
               <TextField
                 fullWidth
@@ -268,7 +267,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
                 onChange={(e) => setListItemText(e.target.value)}
               />
             </Grid>
-            <Grid item xs={1}>
+            <Grid item xs={1} textAlign={'right'}>
               <AddButton
                 variant="outlined"
                 endIcon={<AddCircleIcon style={{ fontSize: '35px' }} />}
@@ -345,23 +344,20 @@ const BlogForm: React.FC<BlogFormProps> = ({
 };
 
 const tags = [
+  { tagtitle: 'Süss' },
+  { tagtitle: 'Salzig' },
   { tagtitle: 'Frühling' },
   { tagtitle: 'Sommer' },
   { tagtitle: 'Herbst' },
   { tagtitle: 'Winter' },
   { tagtitle: 'Gebäck' },
   { tagtitle: 'Weihnachten' },
-  { tagtitle: 'Ostern' },
-  { tagtitle: 'Halloween' },
-  { tagtitle: 'Geburtstag' },
   { tagtitle: 'Vegetarisch' },
   { tagtitle: 'Vegan' },
   { tagtitle: 'Frühstück' },
   { tagtitle: 'Hauptgang' },
   { tagtitle: 'Apéro' },
   { tagtitle: 'Dessert' },
-  { tagtitle: 'Süss' },
-  { tagtitle: 'International' },
 ];
 
 export default BlogForm;

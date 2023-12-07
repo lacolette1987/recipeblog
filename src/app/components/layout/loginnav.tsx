@@ -58,7 +58,11 @@ const LoginNav: React.FC<LoginNavProps> = ({
         {userId ? (
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip title="Open">
-              <IconButton disableRipple onClick={handleOpenUserMenu} sx={{ p: 0 }}>
+              <IconButton
+                disableRipple
+                onClick={handleOpenUserMenu}
+                sx={{ p: 0 }}
+              >
                 <PersonIcon />
               </IconButton>
             </Tooltip>
@@ -79,15 +83,37 @@ const LoginNav: React.FC<LoginNavProps> = ({
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              <MenuItem component={NavLink} sx={{ '&.active': { background: myTheme.palette.primary.main, color: '#ffffff', }, }} to={'/profile'} onClick={handleCloseUserMenu}>Profil</MenuItem>
-              <MenuItem component={NavLink} to={'/'} onClick={onLogoutClick}>Logout</MenuItem>
+              <MenuItem
+                component={NavLink}
+                sx={{
+                  '&.active': {
+                    background: myTheme.palette.primary.main,
+                    color: '#ffffff',
+                  },
+                }}
+                to={'/profile'}
+                onClick={handleCloseUserMenu}
+              >
+                Profil
+              </MenuItem>
+              <MenuItem component={NavLink} to={'/'} onClick={onLogoutClick}>
+                Logout
+              </MenuItem>
             </Menu>
           </Box>
         ) : (
           <Button
             disableRipple
             component={Link}
-            sx={{ display: 'block', p: '0px', color: '#000000' }}
+            sx={{
+              display: 'block',
+              p: '0px',
+              color: '#000000',
+              '&:hover': {
+                background: 'transparent',
+                color: myTheme.palette.primary.main,
+              },
+            }}
             to={'/login'}
           >
             Login

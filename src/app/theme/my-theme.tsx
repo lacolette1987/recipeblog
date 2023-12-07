@@ -1,5 +1,5 @@
 import styled from "@emotion/styled";
-import { Button, Card, CardMedia, Container, createTheme } from "@mui/material";
+import { Button, Card, CardMedia, Container, List, ListItem, createTheme } from "@mui/material";
 
 
 
@@ -7,15 +7,15 @@ import { Button, Card, CardMedia, Container, createTheme } from "@mui/material";
 const myTheme = createTheme({
     palette: {
         primary: {
-            light: '#b8dfd1',
-            main: '#c4a971',
-            dark: '#2d656c',
+            light: '#afc5b0',
+            main: '#6fb6b4',
+            dark: '#456368',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#efd78f',
-          main: '#000000',
-          dark: '#cb9b36',
+          light: '#f2cc74',
+          main: '#f5c343',
+          dark: '#000000',
           contrastText: '#ffffff',
         },
         background: {
@@ -66,9 +66,9 @@ const myTheme = createTheme({
                     zIndex: 9999,
                     bottom: '30px',
                     color: '#ffffff',
-                    background: '#2d656c',
+                    background: '#6fb6b4',
                     '&:hover': {
-                        background: '#83a7a2',
+                        background: '#000000',
                       },
                 }
             }
@@ -137,12 +137,13 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#2d656c',
+                    borderColor: '#6fb6b4',
                     borderWidth: '1px',
-                    color: '#2d656c',
+                    color: '#6fb6b4',
                     '&:hover': {
-                        backgroundColor: 'transparent',
-                        color: '#2d656c',
+                        backgroundColor: '#f5c343',
+                        borderColor: '#f5c343',
+                        color: '#ffffff',
                       },
                 },
             },
@@ -159,7 +160,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#e8c248',
+                        backgroundColor: '#6fb6b4',
                         color: '#ffffff'
                       },
                 },
@@ -254,7 +255,15 @@ const TagButton = styled(Button)(() => ({
         color: '#ffffff',
     }
   }));
+
   
+
+  const AddListItem = styled(ListItem)(() => ({
+    color: '#d32c26 !important',
+    padding: '10px 20px 0px 20px',
+}));
+
+
   const IconStyle = {
     color: '#a4a2a1',
   };
@@ -268,7 +277,8 @@ const TagButton = styled(Button)(() => ({
     color: myTheme.palette.secondary.main,
     ":hover": {
         border: 0,
-        color: myTheme.palette.primary.dark,
+        color: myTheme.palette.secondary.dark,
+        background: 'transparent',
     }
   }));
 
@@ -299,12 +309,19 @@ const TagButton = styled(Button)(() => ({
 
 
 
+  const AddList = styled(List)(() => ({
+    margin: '20px 0px',
+    background: '#ffffff',
+  }));
+
+
+
   const ReadmoreButton = styled(Button)(() => ({
-    margin: '0px 0px 0px 0px',
+    margin: '0px',
     '&:hover': {
-        backgroundColor: myTheme.palette.primary.dark,
+        backgroundColor: myTheme.palette.secondary.main,
+        borderColor: myTheme.palette.secondary.main,
         color: '#ffffff',
-        borderColor: myTheme.palette.primary.dark,
       },
 }));
 
@@ -312,4 +329,4 @@ const TagButton = styled(Button)(() => ({
 
 
 
-export { IconStyle, MainContainer, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };
+export { IconStyle, AddList, MainContainer, AddListItem, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };
