@@ -11,23 +11,23 @@ const Footer = () => {
             <Grid container spacing={3}>
               <Grid item>
                 <Link href="/imprint">
-                  <Typography variant="body1" sx={{ color: myTheme.palette.primary.contrastText}}>Impressum</Typography>
+                  <Typography variant="body1">Impressum</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/baking">
-                  <Typography variant="body1" sx={{ color: myTheme.palette.primary.contrastText}}>Backen</Typography>
+                  <Typography variant="body1">Backen</Typography>
                 </Link>
               </Grid>
               <Grid item>
                 <Link href="/cooking">
-                  <Typography variant="body1" sx={{ color: myTheme.palette.primary.contrastText}}>Kochen</Typography>
+                  <Typography variant="body1">Kochen</Typography>
                 </Link>
               </Grid>
             </Grid>
           </Grid>
           <Grid item>
-            <Typography variant="body1" sx={{ color: myTheme.palette.primary.contrastText}}>
+            <Typography variant="body1">
               © Copyright 2024, Colette Güntensperger
             </Typography>
           </Grid>

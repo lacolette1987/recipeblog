@@ -7,14 +7,14 @@ import { Button, Card, CardMedia, Container, List, ListItem, createTheme } from 
 const myTheme = createTheme({
     palette: {
         primary: {
-            light: '#7e6559',
-            main: '#7e6559',
+            light: '#cfc9df',
+            main: '#403a5a',
             dark: '#000000',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#e69f76',
-          main: '#498cb5',
+          light: '#e7ddd9',
+          main: '#c3b0a5',
           dark: '#000000',
           contrastText: '#ffffff',
         },
@@ -66,7 +66,7 @@ const myTheme = createTheme({
                     zIndex: 9999,
                     bottom: '30px',
                     color: '#ffffff',
-                    background: '#7e6559',
+                    background: '#79708f',
                     '&:hover': {
                         background: '#000000',
                       },
@@ -137,12 +137,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#7e6559',
+                    borderColor: '#79708f',
                     borderWidth: '1px',
-                    color: '#7e6559',
+                    color: '#79708f',
                     '&:hover': {
-                        backgroundColor: '#7e6559',
-                        borderColor: '#7e6559',
+                        backgroundColor: '#79708f',
+                        borderColor: '#79708f',
                         color: '#ffffff',
                       },
                 },
@@ -160,7 +160,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#7e6559',
+                        backgroundColor: '#c3b0a5',
                         color: '#ffffff'
                       },
                 },
@@ -187,7 +187,7 @@ const myTheme = createTheme({
             lineHeight: 1.3,
             marginBottom: 15,
             fontWeight: 600,
-            color: "#987648",
+            color: "#79708f",
             letterSpacing: 0,
         },
         h1: {
@@ -198,7 +198,7 @@ const myTheme = createTheme({
             fontWeight: 400,
             textTransform: "uppercase",
             letterSpacing: 1.5,
-            color: '#351a0f'
+            color: '#000000'
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -207,7 +207,7 @@ const myTheme = createTheme({
             marginBottom: 10,
             textTransform: "uppercase",
             letterSpacing: 1.7,
-            color: '#351a0f'
+            color: '#000000'
         },
         h3: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -217,7 +217,7 @@ const myTheme = createTheme({
             marginTop: 4,
             textTransform: "uppercase",
             letterSpacing: 1,
-            color: '#351a0f',
+            color: '#000000',
             a: {
                 color: '#000000',
                 textDecoration: 'none',
@@ -282,6 +282,16 @@ const TagButton = styled(Button)(() => ({
     }
   }));
 
+  const DeleteButton = styled(Button)(() => ({
+    background: 'transparent',
+    margin: 0,
+    padding: 0,
+    ":hover": {
+        color: myTheme.palette.secondary.dark,
+        background: 'transparent',
+    }
+  }));
+
 
   const MainImage = styled(CardMedia)(() => ({
     margin: '0px',
@@ -329,4 +339,4 @@ const TagButton = styled(Button)(() => ({
 
 
 
-export { IconStyle, AddList, MainContainer, AddListItem, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };
+export { IconStyle, AddList, DeleteButton, MainContainer, AddListItem, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };

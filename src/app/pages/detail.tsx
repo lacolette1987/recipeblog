@@ -6,7 +6,7 @@ import { Box, Button, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typo
 import AddCommentForm, { CommentForm } from '../components/add-comment-form';
 import { Comments } from '../models/Comments';
 import useBlogs from '../hooks/useBlogs';
-import { MainContainer, TagButton, ZutatenCard, myTheme } from '../theme/my-theme';
+import { DeleteButton, MainContainer, TagButton, ZutatenCard, myTheme } from '../theme/my-theme';
 import Sharing from '../components/sharing';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -102,7 +102,7 @@ const Detail = () => {
         </Grid>
         {currentUser ? (
         <Grid item xs={12} sm={5} md={4}>
-        <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
+        <Grid container alignItems={'center'} justifyContent={'flex-end'}>
               <Grid item>
                 <Link to={`/edit/${blogId}`}>
                   <EditIcon sx={{ 
@@ -115,7 +115,7 @@ const Detail = () => {
                 </Link>
               </Grid>
               <Grid item>
-              <Button onClick={handleDelete} size='small'>
+              <DeleteButton onClick={handleDelete} size='small'>
                 <DeleteOutlinedIcon
                   sx={{ 
                     color: myTheme.palette.secondary.main,
@@ -125,7 +125,7 @@ const Detail = () => {
                     },
                    }}
                 ></DeleteOutlinedIcon>
-                </Button>
+                </DeleteButton>
               </Grid>
             </Grid>
           </Grid>
