@@ -7,6 +7,7 @@ export const appStore = configureStore({
   }
 });
 
+
 appStore.dispatch(checkAuthStatus());
 
 export type RootState = ReturnType<typeof appStore.getState>;

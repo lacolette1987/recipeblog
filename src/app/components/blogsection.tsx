@@ -68,12 +68,25 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                     <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
                       <Grid item>
                         <Link to={`/edit/${item.uid}`}>
-                          <EditIcon sx={{ color: myTheme.palette.secondary.main }} />
+                          <EditIcon 
+                            sx={{ 
+                              color: myTheme.palette.secondary.main,
+                              transition: '.3s ease-out',
+                              '&:hover': {
+                                color: myTheme.palette.primary.main,
+                              },
+                                      }} />
                         </Link>
                       </Grid>
                       <Grid item>
                         <DeleteOutlinedIcon
-                          sx={{ color: myTheme.palette.secondary.main }}
+                          sx={{ 
+                            color: myTheme.palette.secondary.main,
+                            transition: '.3s ease-out',
+                            '&:hover': {
+                              color: myTheme.palette.primary.main,
+                            },
+                                  }}
                           onClick={() => handleClickOpen(item.uid)}
                         ></DeleteOutlinedIcon>
                       </Grid>

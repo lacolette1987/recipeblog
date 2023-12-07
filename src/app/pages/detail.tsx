@@ -105,13 +105,27 @@ const Detail = () => {
         <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
               <Grid item>
                 <Link to={`/edit/${blogId}`}>
-                  <EditIcon sx={{ color: myTheme.palette.secondary.main }} />
+                  <EditIcon sx={{ 
+                    color: myTheme.palette.secondary.main,
+                    transition: '.3s ease-out',
+                    '&:hover': {
+                      color: myTheme.palette.primary.main,
+                    },
+                  }} />
                 </Link>
               </Grid>
               <Grid item>
+              <Button onClick={handleDelete} size='small'>
                 <DeleteOutlinedIcon
-                  sx={{ color: myTheme.palette.secondary.main }}
+                  sx={{ 
+                    color: myTheme.palette.secondary.main,
+                    transition: '.3s ease-out',
+                    '&:hover': {
+                      color: myTheme.palette.primary.main,
+                    },
+                   }}
                 ></DeleteOutlinedIcon>
+                </Button>
               </Grid>
             </Grid>
           </Grid>

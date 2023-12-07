@@ -63,7 +63,14 @@ const LoginNav: React.FC<LoginNavProps> = ({
                 onClick={handleOpenUserMenu}
                 sx={{ p: 0 }}
               >
-                <PersonIcon />
+                <PersonIcon 
+                  sx={{ 
+                    color: myTheme.palette.primary.main,
+                    transition: '.3s ease-out',
+                    '&:hover': {
+                      color: myTheme.palette.secondary.main,
+                    },
+                  }} />
               </IconButton>
             </Tooltip>
             <Menu

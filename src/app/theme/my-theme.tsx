@@ -7,14 +7,14 @@ import { Button, Card, CardMedia, Container, List, ListItem, createTheme } from 
 const myTheme = createTheme({
     palette: {
         primary: {
-            light: '#afc5b0',
-            main: '#6fb6b4',
-            dark: '#456368',
+            light: '#7e6559',
+            main: '#7e6559',
+            dark: '#000000',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#f2cc74',
-          main: '#f5c343',
+          light: '#e69f76',
+          main: '#498cb5',
           dark: '#000000',
           contrastText: '#ffffff',
         },
@@ -66,7 +66,7 @@ const myTheme = createTheme({
                     zIndex: 9999,
                     bottom: '30px',
                     color: '#ffffff',
-                    background: '#6fb6b4',
+                    background: '#7e6559',
                     '&:hover': {
                         background: '#000000',
                       },
@@ -137,12 +137,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#6fb6b4',
+                    borderColor: '#7e6559',
                     borderWidth: '1px',
-                    color: '#6fb6b4',
+                    color: '#7e6559',
                     '&:hover': {
-                        backgroundColor: '#f5c343',
-                        borderColor: '#f5c343',
+                        backgroundColor: '#7e6559',
+                        borderColor: '#7e6559',
                         color: '#ffffff',
                       },
                 },
@@ -160,7 +160,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#6fb6b4',
+                        backgroundColor: '#7e6559',
                         color: '#ffffff'
                       },
                 },
@@ -187,7 +187,7 @@ const myTheme = createTheme({
             lineHeight: 1.3,
             marginBottom: 15,
             fontWeight: 600,
-            color: "#acbc99",
+            color: "#987648",
             letterSpacing: 0,
         },
         h1: {
@@ -198,7 +198,7 @@ const myTheme = createTheme({
             fontWeight: 400,
             textTransform: "uppercase",
             letterSpacing: 1.5,
-            color: '#000000'
+            color: '#351a0f'
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -207,7 +207,7 @@ const myTheme = createTheme({
             marginBottom: 10,
             textTransform: "uppercase",
             letterSpacing: 1.7,
-            color: '#000000'
+            color: '#351a0f'
         },
         h3: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -217,7 +217,7 @@ const myTheme = createTheme({
             marginTop: 4,
             textTransform: "uppercase",
             letterSpacing: 1,
-            color: '#000000',
+            color: '#351a0f',
             a: {
                 color: '#000000',
                 textDecoration: 'none',
