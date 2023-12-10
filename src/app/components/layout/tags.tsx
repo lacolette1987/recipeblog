@@ -2,7 +2,7 @@ import React from 'react';
 import { CardMedia, Grid, Rating, Typography } from '@mui/material';
 import { Link } from 'react-router-dom';
 import Blog from '../../models/Blog';
-import { Box } from '@mui/system';
+import { myTheme } from '../../theme/my-theme';
 
 interface TagsProps {
     blog: Blog;
@@ -19,7 +19,7 @@ const Tags: React.FC<TagsProps> = ({ blog, ratingValue }) => {
 
   return (
     <div key={blog.uid}>
-      <Grid container alignItems={'center'} sx={{ borderBottom: '1px solid #d5d4d4', p: '13px 0px' }} justifyContent={'space-between'}>
+      <Grid container alignItems={'center'} sx={{ borderColor: myTheme.palette.primary.light, borderStyle: 'solid', borderWidth: 0, borderBottomWidth: '1px', p: '13px 0px' }} justifyContent={'space-between'}>
         <Grid item xs={3}>
           <Link to={`/detail/${blog.uid}`}>
             <CardMedia

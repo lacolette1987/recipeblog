@@ -146,7 +146,6 @@ const Navigation: React.FC<NavigationProps> = ({
             component={NavLink}
             to={page.to}
             sx={{
-              color: 'black',
               m: '0px 35px 0px 0px',
               p: '17px 0px 15px 0px',
               '&.active': {
@@ -166,7 +165,6 @@ const Navigation: React.FC<NavigationProps> = ({
             disableRipple
             component={NavLink}
             sx={{
-              color: 'black',
               m: 0,
               p: '17px 0px 15px 0px',
             '&.active': {

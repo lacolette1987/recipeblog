@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import BlogSection from '../components/blogsection';
-import { Button, Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
+import { Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import {  useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
@@ -64,7 +64,7 @@ const Home = () => {
                     />
                   </Link>
                   <CardContent>
-                    <Typography variant='h3'>
+                    <Typography variant='h2'>
                       <Link to={`/detail/${latestBlog.uid}`}>
                         {latestBlog.title}
                       </Link>
@@ -113,7 +113,7 @@ const Home = () => {
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
           <SearchBar onSearch={handleSearch} />
-          <Typography variant='h3'>Weihnachten</Typography>
+          <Typography variant='h2'>Weihnachten</Typography>
           {filteredBlogs.map((blog: Blog) => (
             <div key={blog.uid}>
               <Tags blog={blog} ratingValue={0} />

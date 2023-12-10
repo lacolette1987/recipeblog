@@ -7,15 +7,15 @@ import { Button, Card, CardMedia, Container, List, ListItem, createTheme } from 
 const myTheme = createTheme({
     palette: {
         primary: {
-            light: '#cfc9df',
-            main: '#403a5a',
+            light: '#dddddd',
+            main: '#624a5c',
             dark: '#000000',
             contrastText: '#ffffff',
         },
         secondary: {
-          light: '#e7ddd9',
-          main: '#c3b0a5',
-          dark: '#000000',
+          light: '#d5d4d4',
+          main: '#c7a072',
+          dark: '#8b542e',
           contrastText: '#ffffff',
         },
         background: {
@@ -45,7 +45,7 @@ const myTheme = createTheme({
                 root: {
                     textDecoration: 'none',
                     '&:hover': {
-                        color: '#0000000',
+                        color: '#000000',
                         background: 'transparent',
                       },
                 }
@@ -54,7 +54,8 @@ const myTheme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    padding: '30px 20px 40px 20px',
+                    background: '#ffffff',
+                    padding: '30px 30px',
                 }
             }
         },
@@ -66,10 +67,17 @@ const myTheme = createTheme({
                     zIndex: 9999,
                     bottom: '30px',
                     color: '#ffffff',
-                    background: '#79708f',
+                    background: '#624a5c',
                     '&:hover': {
-                        background: '#000000',
+                        background: '#251820',
                       },
+                }
+            }
+        },
+        MuiAppBar: {
+            styleOverrides: {
+                root: {
+                    background: '#624a5c'
                 }
             }
         },
@@ -137,12 +145,12 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#79708f',
+                    borderColor: '#000000',
                     borderWidth: '1px',
-                    color: '#79708f',
+                    color: '#000000',
                     '&:hover': {
-                        backgroundColor: '#79708f',
-                        borderColor: '#79708f',
+                        backgroundColor: '#000000',
+                        borderColor: '#000000',
                         color: '#ffffff',
                       },
                 },
@@ -192,7 +200,7 @@ const myTheme = createTheme({
         },
         h1: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontSize: 40,
+            fontSize: 35,
             marginBottom: 20,
             lineHeight: 1.4,
             fontWeight: 400,
@@ -201,15 +209,6 @@ const myTheme = createTheme({
             color: '#000000'
         },
         h2: {
-            fontFamily: 'Josefin Sans, sans-serif',
-            fontWeight: 600,
-            fontSize: 26,
-            marginBottom: 10,
-            textTransform: "uppercase",
-            letterSpacing: 1.7,
-            color: '#000000'
-        },
-        h3: {
             fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 400,
             fontSize: 24,
@@ -223,11 +222,16 @@ const myTheme = createTheme({
                 textDecoration: 'none',
             },
         },
-        h4: {
+        h3: {
+            fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 600,
-            fontSize: 18,
+            fontSize: 26,
+            marginBottom: 10,
+            textTransform: "uppercase",
+            letterSpacing: 1.7,
+            color: '#000000'
         },
-        h5: {
+        h4: {
             fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 600,
             fontSize: 18,
@@ -241,17 +245,17 @@ const myTheme = createTheme({
 
 
 
-const TagButton = styled(Button)(() => ({
+const StyledTagButton = styled(Button)(() => ({
     backgroundColor: myTheme.palette.secondary.main,
     borderRadius: '20px',
     fontSize: '12px',
     margin: '0px 8px 8px 0px',
     fontWeight: '700',
     letterSpacing: 0.7,
-    padding: '6px 15px 4px 15px',
+    padding: '7px 15px 4px 15px',
     color: '#ffffff',
     ":hover": {
-        backgroundColor: myTheme.palette.secondary.dark,
+        backgroundColor: myTheme.palette.primary.main,
         color: '#ffffff',
     }
   }));
@@ -326,8 +330,19 @@ const TagButton = styled(Button)(() => ({
 
 
 
-  const ReadmoreButton = styled(Button)(() => ({
+  const StyledDarkButton = styled(Button)(() => ({
     margin: '0px',
+    padding: '20px 0px 0px 0px',
+    minWidth: 0,
+    '&:hover': {
+        background: 'transparent',
+      },
+}));
+
+const ReadmoreButton = styled(Button)(() => ({
+    margin: '0px',
+    borderColor: myTheme.palette.secondary.main,
+    color: myTheme.palette.secondary.main,
     '&:hover': {
         backgroundColor: myTheme.palette.secondary.main,
         borderColor: myTheme.palette.secondary.main,
@@ -335,8 +350,8 @@ const TagButton = styled(Button)(() => ({
       },
 }));
 
+  
 
 
 
-
-export { IconStyle, AddList, DeleteButton, MainContainer, AddListItem, TagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme };
+export { IconStyle, AddList, DeleteButton, MainContainer, AddListItem, StyledTagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme, StyledDarkButton };

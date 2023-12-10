@@ -1,12 +1,15 @@
-import {configureStore} from "@reduxjs/toolkit";
+import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import authReducer, { checkAuthStatus } from './auth/auth-slice';
+import darkModeReducer from './darkModeReducer';
 
-export const appStore = configureStore({
-  reducer: {
-    auth: authReducer,
-  }
+const rootReducer = combineReducers({
+  auth: authReducer,
+  darkMode: darkModeReducer,
 });
 
+export const appStore = configureStore({
+  reducer: rootReducer,
+});
 
 appStore.dispatch(checkAuthStatus());
 

@@ -1,7 +1,9 @@
 import Blog from '../models/Blog';
 import { useState } from 'react';
-import { collection, deleteDoc, doc, getDoc, getDocs, orderBy, query,  where } from 'firebase/firestore';
+import { collection, doc, getDoc, getDocs, orderBy, query,  where } from 'firebase/firestore';
 import { db } from '../firebase-config';
+import { deleteBlogFirestore } from '../services/delete.service';
+
 
 function useBlogs() {
   const [blogs, setBlogs] = useState<Blog[]>([]);
@@ -84,6 +86,8 @@ function useBlogs() {
       orderBy('timestamp', 'desc')
     );
 
+
+    
     getDocs(niveauQuery)
       .then((data) => {
         const blogsData = data.docs.map((doc) => convertDocToBlog(doc));
@@ -139,12 +143,13 @@ function useBlogs() {
 
   const deleteBlog = async (uid: string) => {
     try {
-      await deleteDoc(doc(db, 'blogs', uid));
+      await deleteBlogFirestore(uid); // Verwenden Sie die umbenannte Funktion aus der Service-Datei
       setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.uid !== uid));
     } catch (e) {
       setError((e as Error).message);
     }
   };
+  
 
   return {
     blogs,

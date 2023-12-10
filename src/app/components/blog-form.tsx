@@ -6,20 +6,7 @@ import User from '../models/User';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import {
-  Autocomplete,
-  FormControl,
-  FormControlLabel,
-  Grid,
-  IconButton,
-  List,
-  ListItemSecondaryAction,
-  ListItemText,
-  Radio,
-  RadioGroup,
-  SelectChangeEvent,
-  Stack,
-} from '@mui/material';
+import { Autocomplete, FormControl, FormControlLabel, Grid, IconButton, ListItemSecondaryAction, ListItemText, Radio, RadioGroup, SelectChangeEvent, Stack, } from '@mui/material';
 import { AddButton, AddList, AddListItem, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
 
@@ -168,7 +155,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
           />
           <FormControl sx={{m: '0px 0px 20px 0px'}}>
             <RadioGroup
-              row
+            row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
               value={category}
@@ -176,13 +163,13 @@ const BlogForm: React.FC<BlogFormProps> = ({
             >
               <FormControlLabel
                 value="Kochen"
-                control={<Radio />}
-                label={<Typography sx={{ m: '0px' }}>Kochen</Typography>}
+                control={<Radio required={true} />}
+                label="Kochen"
                 />
               <FormControlLabel
                 value="Backen"
-                control={<Radio />}
-                label={<Typography sx={{ m: '0px' }}>Backen</Typography>}
+                control={<Radio required={true} />}
+                label="Backen"
               />
             </RadioGroup>
           </FormControl>
@@ -226,18 +213,18 @@ const BlogForm: React.FC<BlogFormProps> = ({
             >
               <FormControlLabel
                 value="Einfach"
-                control={<Radio />}
-                label={<Typography sx={{ m: '0px' }}>Einfach</Typography>}
+                control={<Radio required={true} />}
+                label="Einfach"
               />
               <FormControlLabel
                 value="Mittel"
-                control={<Radio />}
-                label={<Typography sx={{ m: '0px' }}>Mittel</Typography>}
+                control={<Radio required={true} />}
+                label="Mittel"
               />
               <FormControlLabel
                 value="Schwierig"
-                control={<Radio />}
-                label={<Typography sx={{ m: '0px' }}>Schwierig</Typography>}
+                control={<Radio required={true} />}
+                label="Schwierig"
               />
             </RadioGroup>
           </FormControl>
@@ -314,7 +301,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
                   variant="outlined"
                   disabled={isSubmitDisabled}
                 >
-                  Erstellen
+                  Erfassen
                 </Button>
               ) : (
                 <Button
@@ -350,14 +337,13 @@ const tags = [
   { tagtitle: 'Sommer' },
   { tagtitle: 'Herbst' },
   { tagtitle: 'Winter' },
+  { tagtitle: 'Hauptgang' },
+  { tagtitle: 'Apéro' },
+  { tagtitle: 'Dessert' },
   { tagtitle: 'Gebäck' },
   { tagtitle: 'Weihnachten' },
   { tagtitle: 'Vegetarisch' },
   { tagtitle: 'Vegan' },
-  { tagtitle: 'Frühstück' },
-  { tagtitle: 'Hauptgang' },
-  { tagtitle: 'Apéro' },
-  { tagtitle: 'Dessert' },
 ];
 
 export default BlogForm;

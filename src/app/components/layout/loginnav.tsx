@@ -10,7 +10,7 @@ import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import User from '../../models/User';
 import PersonIcon from '@mui/icons-material/Person';
-import { Grid, Typography } from '@mui/material';
+import { Grid } from '@mui/material';
 import { myTheme } from '../../theme/my-theme';
 
 interface LoginNavProps {
@@ -57,7 +57,7 @@ const LoginNav: React.FC<LoginNavProps> = ({
       <Grid item>
         {userId ? (
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip title="Open">
+            <Tooltip arrow title="Open">
               <IconButton
                 disableRipple
                 onClick={handleOpenUserMenu}
@@ -115,10 +115,9 @@ const LoginNav: React.FC<LoginNavProps> = ({
             sx={{
               display: 'block',
               p: '0px',
-              color: '#000000',
               '&:hover': {
                 background: 'transparent',
-                color: myTheme.palette.primary.main,
+                color: myTheme.palette.secondary.main,
               },
             }}
             to={'/login'}

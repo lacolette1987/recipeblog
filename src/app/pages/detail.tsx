@@ -6,7 +6,7 @@ import { Box, Button, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typo
 import AddCommentForm, { CommentForm } from '../components/add-comment-form';
 import { Comments } from '../models/Comments';
 import useBlogs from '../hooks/useBlogs';
-import { DeleteButton, MainContainer, TagButton, ZutatenCard, myTheme } from '../theme/my-theme';
+import { DeleteButton, MainContainer, StyledTagButton, ZutatenCard, myTheme } from '../theme/my-theme';
 import Sharing from '../components/sharing';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -102,7 +102,7 @@ const Detail = () => {
         </Grid>
         {currentUser ? (
         <Grid item xs={12} sm={5} md={4}>
-        <Grid container alignItems={'center'} justifyContent={'flex-end'}>
+        <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
               <Grid item>
                 <Link to={`/edit/${blogId}`}>
                   <EditIcon sx={{ 
@@ -115,17 +115,16 @@ const Detail = () => {
                 </Link>
               </Grid>
               <Grid item>
-              <DeleteButton onClick={handleDelete} size='small'>
-                <DeleteOutlinedIcon
-                  sx={{ 
-                    color: myTheme.palette.secondary.main,
-                    transition: '.3s ease-out',
-                    '&:hover': {
-                      color: myTheme.palette.primary.main,
-                    },
-                   }}
-                ></DeleteOutlinedIcon>
-                </DeleteButton>
+                  <DeleteOutlinedIcon
+                    sx={{ 
+                      color: myTheme.palette.secondary.main,
+                      transition: '.3s ease-out',
+                      '&:hover': {
+                        color: myTheme.palette.primary.main,
+                      },
+                            }}
+                    onClick={handleDelete}
+                  ></DeleteOutlinedIcon>
               </Grid>
             </Grid>
           </Grid>
@@ -141,7 +140,7 @@ const Detail = () => {
               <Typography>{blogs[0]?.description}</Typography>
             </CardContent>
           </Card>
-          <Typography variant='h2' sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
+          <Typography variant='h3' sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
           {currentUser ? (
             <AddCommentForm submitForm={createComment} />
           ) : ''}
@@ -150,7 +149,7 @@ const Detail = () => {
               <CardContent>
                 <Grid container justifyContent={'space-between'}>
                   <Grid item>
-                    <Typography variant='h5'>{comment.nickname}</Typography>
+                    <Typography variant='h4'>{comment.nickname}</Typography>
                   </Grid>
                   <Grid item>
                     <Rating size='small' readOnly value={comment.rating} />
@@ -174,7 +173,7 @@ const Detail = () => {
                 justifyContent={'space-between'}
               >
                 <Grid item>
-                  <Typography variant='h3'>Zutaten</Typography>
+                  <Typography variant='h2'>Zutaten</Typography>
                 </Grid>
               </Grid>
               {blogs[0]?.ingredients &&
@@ -216,7 +215,7 @@ const Detail = () => {
           <Grid sx={{ m: '20px 0px 20px 0px' }}>
             {blogs[0]?.tags &&
               blogs[0].tags.map((tags, index) => (
-                <TagButton key={index}>{tags.trim()}</TagButton>
+                <StyledTagButton key={index}>{tags.trim()}</StyledTagButton>
               ))}
           </Grid>
           <Typography><Box fontWeight='700' display='inline'>Rezept von:</Box> {blogs[0]?.author}</Typography>
