@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Button } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { toggleDarkMode } from '../store/darkModeReducer';

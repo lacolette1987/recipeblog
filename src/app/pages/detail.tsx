@@ -161,6 +161,7 @@ const Detail = () => {
                     : ''}
                 </Typography>
                 <Typography>{comment.comment}</Typography>
+                <DeleteOutlinedIcon />
               </CardContent>
             </Card>
           ))}

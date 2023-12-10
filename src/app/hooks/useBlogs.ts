@@ -143,7 +143,7 @@ function useBlogs() {
 
   const deleteBlog = async (uid: string) => {
     try {
-      await deleteBlogFirestore(uid); // Verwenden Sie die umbenannte Funktion aus der Service-Datei
+      await deleteBlogFirestore(uid);
       setBlogs((prevBlogs) => prevBlogs.filter((blog) => blog.uid !== uid));
     } catch (e) {
       setError((e as Error).message);

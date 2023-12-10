@@ -6,7 +6,6 @@ import styled from "@emotion/styled";
 const darkTheme = createTheme({
     ...myTheme,
     palette: {
-        mode: "dark",
         primary: {
             light: '#0099d0',
             main: '#251820',
@@ -20,7 +19,7 @@ const darkTheme = createTheme({
           contrastText: '#ffffff',
         },
         background: {
-          default: '#121212',
+          default: '#000000',
         },
     },
     typography: {
@@ -64,7 +63,7 @@ const darkTheme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    background: '#251820'
+                    background: '#190210'
                 }
             }
         },
