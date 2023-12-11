@@ -5,7 +5,6 @@ import {  useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import useBlogs from '../hooks/useBlogs';
-import SearchBar from '../components/search/search';
 import { MainContainer, ReadmoreButton, myTheme } from '../theme/my-theme';
 import Blog from '../models/Blog';
 import { Stack } from '@mui/system';
@@ -21,15 +20,9 @@ const Home = () => {
   const latestBlog = useMemo(() => (blogs.length > 0 ? blogs[0] : null), [blogs]);
   const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Weihnachten')), [blogs]);
 
-  const [searchQuery, setSearchQuery] = useState('');
-
   useEffect(() => {
     queryBlogs();
   }, []);
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
-  };
 
   const handleDelete = async (uid: string) => {
     console.log('deleting id:', uid);
@@ -81,7 +74,7 @@ const Home = () => {
                           </ReadmoreButton>
                         </Link>
                       </Grid>
-                      {user?.uid ? (
+                      {user?.uid === latestBlog.userId ? (
                         <Grid item xs={2}>
                           <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
                             <Grid item>
@@ -90,7 +83,7 @@ const Home = () => {
                                 </Link>
                               </Grid>
                               <Grid item>
-                                <DeleteOutlinedIcon sx={{color: myTheme.palette.secondary.main}} />
+                                <DeleteOutlinedIcon sx={{color: myTheme.palette.secondary.main}} onClick={() => handleDelete(latestBlog.uid)} />
                               </Grid>
                             </Grid>
                         </Grid>
@@ -112,7 +105,6 @@ const Home = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
-          <SearchBar onSearch={handleSearch} />
           <Typography variant='h2'>Weihnachten</Typography>
           {filteredBlogs.map((blog: Blog) => (
             <div key={blog.uid}>

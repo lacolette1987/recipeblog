@@ -1,19 +1,14 @@
 import React, { useState } from 'react';
-import { Button, Rating, TextField, Typography } from '@mui/material';
 import { ReadmoreButton } from '../theme/my-theme';
+import { Comment } from '../models/Comments';
+import { Rating, TextField } from '@mui/material';
 
 
 interface AddCommentFormProps {
-  submitForm: (form: CommentForm) => void;
+  submitForm: (form: Comment) => void;
 }
 
-export interface CommentForm {
-  nickname: string,
-  comment: string,
-  rating: number,
-};
-
-const initialState = {
+const initialState: Comment = {
   nickname: '',
   comment: '',
   rating: 0,
@@ -36,7 +31,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
 
   const handleRatingChange = async (event: React.SyntheticEvent, newValue: number | null) => {
     // move logic to hook
-    if (newValue !== null) {
+    if (newValue !== null && newValue !== 0) {
       setForm({...form, rating: newValue});
     }
   };
@@ -44,7 +39,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (nickname && comment) {
+    if (nickname && comment && rating) {
       submitForm(form);
       setForm(initialState);
     }
@@ -59,6 +54,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           size='small'
           name='simple-controlled'
           value={rating}
+          max={5}
           onChange={handleRatingChange}
         />
         <TextField
