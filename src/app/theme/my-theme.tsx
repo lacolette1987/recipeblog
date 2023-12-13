@@ -240,6 +240,15 @@ const myTheme = createTheme({
             textTransform: "uppercase",
             letterSpacing: 1,
         },
+        h5: {
+            fontFamily: 'Josefin Sans, sans-serif',
+            fontWeight: 600,
+            fontSize: 18,
+            marginBottom: 10,
+            marginTop: 4,
+            textTransform: "uppercase",
+            letterSpacing: 1,
+        },
         },
 });
 

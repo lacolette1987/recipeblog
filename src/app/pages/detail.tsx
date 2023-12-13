@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography } from '@mui/material';
+import { Alert, Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography } from '@mui/material';
 import AddCommentForm from '../components/add-comment-form';
 import useBlogs from '../hooks/useBlogs';
 import { MainContainer, myTheme, StyledTagButton, ZutatenCard } from '../theme/my-theme';
@@ -98,9 +98,10 @@ const Detail = () => {
           ) : ''}
           {comments.length === 0 ? (
             <>
-            <Typography variant='h4' sx={{ mt: '40px' }}>Dieses Rezept wurde noch nicht bewertet</Typography>
+            <Typography variant='h5' sx={{ mt: '40px' }}>Dieses Rezept wurde noch nicht bewertet</Typography>
             <Typography variant='body1'>Hast du es bereits ausprobiert? Dann freuen wir uns über deine Meinung!</Typography>
-            </>
+            <Alert severity="info"><strong>Dieses Rezept wurde noch nicht bewertet</strong> - Hast du es bereits ausprobiert? Dann freuen wir uns über deine Meinung!</Alert>
+          </>
           ) : (
             comments.map((comment) => (
             <Card key={comment.uid} elevation={0} sx={{ marginTop: '30px' }}>
