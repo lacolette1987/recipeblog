@@ -122,7 +122,10 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     padding: '8px 0px 6px 0px',
-                    borderBottom: '1px solid rgba(0, 0, 0, 0.12)',
+                    borderWidth: 0,
+                    borderBottomWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: Colors.borderColors,
                     '&:last-child': {
                         padding: '8px 0px 0px 0px',
                         borderBottom: 0,
