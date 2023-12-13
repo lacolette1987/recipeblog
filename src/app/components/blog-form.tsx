@@ -7,8 +7,10 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Autocomplete, FormControl, FormControlLabel, Grid, IconButton, ListItemSecondaryAction, ListItemText, Radio, RadioGroup, SelectChangeEvent, Stack, } from '@mui/material';
-import { AddButton, AddList, AddListItem, Colors, MainContainer } from '../theme/my-theme';
+import { AddButton, AddList, AddListItem, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
+
+
 
 
 
@@ -26,6 +28,7 @@ export interface BlogFormState {
   category: string;
   level: string;
   lead: string;
+  amount: string;
   description: string;
   tags: string[];
   ingredients: string[];
@@ -34,10 +37,18 @@ export interface BlogFormState {
   isEditMode: boolean;
 }
 
+
+export interface IngredientItem {
+  amount: string;
+  ingredients: string;
+}
+
+
 const initialState: BlogFormState = {
   title: '',
   lead: '',
   category: '',
+  amount: '',
   level: '',
   description: '',
   tags: [],
@@ -46,6 +57,7 @@ const initialState: BlogFormState = {
 
   isEditMode: false,
 };
+
 
 const BlogForm: React.FC<BlogFormProps> = ({
   uploadProcess,
@@ -60,10 +72,14 @@ const BlogForm: React.FC<BlogFormProps> = ({
     level,
     lead,
     duration,
+    amount,
+    ingredients,
     description,
     ingredients,
     isEditMode,
   } = form;
+
+  const [ingredientAmount, setIngredientAmount] = useState('');
 
   const [listItemText, setListItemText] = useState<string>('');
   const isSubmitDisabled = useMemo<boolean>(
@@ -72,11 +88,17 @@ const BlogForm: React.FC<BlogFormProps> = ({
   );
 
   const handleAddListItem = () => {
-    if (listItemText.trim() !== '') {
-      setForm({ ...form, ingredients: [...form.ingredients, listItemText] });
+    if (ingredientAmount.trim() !== '' && listItemText.trim() !== '') {
+      const newIngredient = { amount: ingredientAmount, description: listItemText };
+      setForm({ ...form, ingredients: [...form.ingredients, newIngredient] });
       setListItemText('');
+      setIngredientAmount('');
     }
   };
+
+
+ 
+  
 
   const handleDeleteListItem = (index: number) => {
     const updatedList = [...form.ingredients];
@@ -231,7 +253,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
           <AddList>
             {form.ingredients.map((item, index) => (
               <AddListItem disablePadding key={index}>
-                <ListItemText primary={item} />
+              <ListItemText primary={`${item.amount} - ${item.zutat}`} />
                 <ListItemSecondaryAction>
                   <IconButton
                     edge="end"
@@ -244,8 +266,17 @@ const BlogForm: React.FC<BlogFormProps> = ({
               </AddListItem>
             ))}
           </AddList>
-          <Grid container justifyContent={'space-between'}>
-            <Grid item xs={11}>
+          <Grid container justifyContent={'space-between'} spacing={2}>
+            <Grid item xs={2}>
+              <TextField
+                fullWidth
+                variant="outlined"
+                label="Menge"
+                value={ingredientAmount}
+                onChange={(e) => setIngredientAmount(e.target.value)}
+              />
+            </Grid>
+            <Grid item xs={9}>
               <TextField
                 fullWidth
                 variant="outlined"
@@ -256,6 +287,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
             </Grid>
             <Grid item xs={1} textAlign={'right'}>
               <AddButton
+                sx={{ minWidth: 0 }}
                 variant="outlined"
                 endIcon={<AddCircleIcon style={{ fontSize: '35px' }} />}
                 onClick={handleAddListItem}
