@@ -4,7 +4,7 @@ import { RootState } from '../store/store';
 import { toggleDarkMode } from '../store/darkModeReducer';
 import LightModeIcon from '@mui/icons-material/LightMode';
 import Brightness3Icon from '@mui/icons-material/Brightness3';
-import { StyledDarkButton, myTheme } from '../theme/my-theme';
+import { Colors, StyledDarkButton } from '../theme/my-theme';
 
 
 
@@ -19,7 +19,7 @@ function Darkmode() {
 
   return (
     <StyledDarkButton disableRipple onClick={handleDarkModeToggle}>
-      {darkMode ? <LightModeIcon sx={{color: myTheme.palette.primary.light}} /> : <Brightness3Icon sx={{color: myTheme.palette.primary.light}} /> }
+      {darkMode ? <LightModeIcon sx={{color: Colors.white}} /> : <Brightness3Icon sx={{color: Colors.white}} /> }
     </StyledDarkButton>
 );
 }

@@ -1,11 +1,11 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import BlogSection from '../components/blogsection';
 import { Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import {  useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { Link } from 'react-router-dom';
 import useBlogs from '../hooks/useBlogs';
-import { MainContainer, ReadmoreButton, myTheme } from '../theme/my-theme';
+import { Colors, MainContainer, ReadmoreButton } from '../theme/my-theme';
 import Blog from '../models/Blog';
 import { Stack } from '@mui/system';
 import Tags from '../components/layout/tags';
@@ -81,11 +81,11 @@ const Home = () => {
                           <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
                             <Grid item>
                                 <Link to={`/edit/${latestBlog.uid}`}>
-                                  <EditIcon sx={{color: myTheme.palette.secondary.main}} />
+                                  <EditIcon sx={{color: Colors.secondary.main}} />
                                 </Link>
                               </Grid>
                               <Grid item>
-                                <DeleteOutlinedIcon sx={{color: myTheme.palette.secondary.main}} onClick={() => handleDelete(latestBlog.uid)} />
+                                <DeleteOutlinedIcon sx={{color: Colors.secondary.main}} onClick={() => handleDelete(latestBlog.uid)} />
                               </Grid>
                             </Grid>
                         </Grid>

@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Alert, Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography } from '@mui/material';
 import AddCommentForm from '../components/add-comment-form';
 import useBlogs from '../hooks/useBlogs';
-import { MainContainer, myTheme, StyledTagButton, ZutatenCard } from '../theme/my-theme';
+import { Colors, MainContainer, StyledTagButton, ZutatenCard } from '../theme/my-theme';
 import Sharing from '../components/sharing';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -58,10 +58,10 @@ const Detail = () => {
               <Grid item>
                 <Link to={`/edit/${blogId}`}>
                   <EditIcon sx={{
-                    color: myTheme.palette.secondary.main,
+                    color: Colors.secondary.main,
                     transition: '.3s ease-out',
                     '&:hover': {
-                      color: myTheme.palette.primary.main
+                      color: Colors.primary.main
                     }
                   }} />
                 </Link>
@@ -69,10 +69,10 @@ const Detail = () => {
               <Grid item>
                 <DeleteOutlinedIcon
                   sx={{
-                    color: myTheme.palette.secondary.main,
+                    color: Colors.primary.main,
                     transition: '.3s ease-out',
                     '&:hover': {
-                      color: myTheme.palette.primary.main
+                      color: Colors.primary.main
                     }
                   }}
                   onClick={handleDelete}
@@ -147,7 +147,7 @@ const Detail = () => {
           </ZutatenCard>
           <Grid container>
             <Grid container alignItems={'center'} justifyContent={'space-between'}
-                  sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)' }}>
+                  sx={{ borderWidth: 0, borderBottomWidth: '1px', borderStyle: 'solid', borderColor: Colors.borderColors }}>
               <Grid item>
                 <Typography sx={{ fontWeight: '700' }}>Arbeitszeit:</Typography>
               </Grid>
@@ -156,7 +156,7 @@ const Detail = () => {
               </Grid>
             </Grid>
             <Grid container alignItems={'center'} justifyContent={'space-between'}
-                  sx={{ borderBottom: '1px solid rgba(0, 0, 0, 0.12)', p: '10px 0px 0px 0px' }}>
+                  sx={{ borderWidth: 0, borderBottomWidth: '1px', borderStyle: 'solid', borderColor: Colors.borderColors, p: '10px 0px 0px 0px' }}>
               <Grid item>
                 <Typography sx={{ fontWeight: '700' }}>Kategorie:</Typography>
               </Grid>

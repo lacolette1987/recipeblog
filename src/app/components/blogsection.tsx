@@ -5,7 +5,7 @@ import User from '../models/User';
 import DialogDelete from './dialog-delete';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
-import { myTheme, ReadmoreButton } from '../theme/my-theme';
+import { Colors, ReadmoreButton } from '../theme/my-theme';
 import Blog from '../models/Blog';
 
 
@@ -71,10 +71,10 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                         <Link to={`/edit/${blog.uid}`}>
                           <EditIcon 
                             sx={{ 
-                              color: myTheme.palette.secondary.main,
+                              color: Colors.secondary.main,
                               transition: '.3s ease-out',
                               '&:hover': {
-                                color: myTheme.palette.primary.main,
+                                color: Colors.primary.main,
                               },
                                       }} />
                         </Link>
@@ -82,10 +82,10 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                       <Grid item xs={6}>
                         <DeleteOutlinedIcon
                           sx={{ 
-                            color: myTheme.palette.secondary.main,
+                            color: Colors.secondary.main,
                             transition: '.3s ease-out',
                             '&:hover': {
-                              color: myTheme.palette.primary.main,
+                              color: Colors.primary.main,
                             },
                                   }}
                           onClick={() => handleClickOpen(blog.uid)}

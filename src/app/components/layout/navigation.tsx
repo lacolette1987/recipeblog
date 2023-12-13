@@ -9,7 +9,7 @@ import { Link, NavLink, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import User from '../../models/User';
-import { myTheme } from '../../theme/my-theme';
+import { Colors } from '../../theme/my-theme';
 
 interface NavigationProps {
   user: User | undefined;
@@ -116,8 +116,8 @@ const Navigation: React.FC<NavigationProps> = ({
               onClick={handleCloseNavMenu}
               sx={{
                 '&.active': {
-                  background: myTheme.palette.secondary.main,
-                  color: '#ffffff'
+                  background: Colors.secondary.main,
+                  color: Colors.white
                 }
     
               }}
@@ -149,11 +149,11 @@ const Navigation: React.FC<NavigationProps> = ({
               m: '0px 35px 0px 0px',
               p: '17px 0px 15px 0px',
               '&.active': {
-                color: myTheme.palette.secondary.main,
+                color: Colors.secondary.main,
               },
               '&:hover': {
                 background: 'transparent',
-                color: myTheme.palette.secondary.main,
+                color: Colors.secondary.main,
               }
               }}
           >
@@ -168,11 +168,11 @@ const Navigation: React.FC<NavigationProps> = ({
               m: 0,
               p: '17px 0px 15px 0px',
             '&.active': {
-              color: myTheme.palette.secondary.main,
+              color: Colors.secondary.main,
             },
             '&:hover': {
               background: 'transparent',
-              color: myTheme.palette.secondary.main,
+              color: Colors.secondary.main,
             }
           }}
             to={'/create'}

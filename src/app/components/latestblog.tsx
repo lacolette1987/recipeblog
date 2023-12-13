@@ -2,10 +2,11 @@
 // import { user } from 'firebase-functions/v1/auth'
 // import React, { useMemo } from 'react'
 // import { Link } from 'react-router-dom'
-// import { ReadmoreButton, myTheme } from '../theme/my-theme'
+// import { ReadmoreButton } from '../theme/my-theme'
 // import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 // import EditIcon from '@mui/icons-material/Edit';
 // import Blog from '../models/Blog'
+// import { Colors } from '../theme/colors'
 
 
 
@@ -54,11 +55,11 @@
 //             <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
 //               <Grid item>
 //                   <Link to={`/edit/${latestBlog.uid}`}>
-//                     <EditIcon sx={{color: myTheme.palette.secondary.main}} />
+//                     <EditIcon sx={{color: Colors.secondary.main}} />
 //                   </Link>
 //                 </Grid>
 //                 <Grid item>
-//                   <DeleteOutlinedIcon sx={{color: myTheme.palette.secondary.main}} onClick={() => handleDelete(latestBlog.uid)} />
+//                   <DeleteOutlinedIcon sx={{color: Colors.secondary.main}} onClick={() => handleDelete(latestBlog.uid)} />
 //                 </Grid>
 //               </Grid>
 //           </Grid>

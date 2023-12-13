@@ -3,21 +3,30 @@ import { Button, Card, CardMedia, Container, List, ListItem, createTheme } from 
 
 
 
+const Colors = {
+    black: '#000000',
+    white: '#ffffff',
+    borderColors: '#e0e0e0',
+    lightgrey: '#dddddd',
+    primary: {
+        light: '#aea5ad',
+        main: '#5e4b5b',
+        dark: '#231920',
+        contrastText: '#ffffff',
+    },
+    secondary: {
+        light: '#e0d0bb',
+        main: '#c1a178',
+        dark: '#835635',
+        contrastText: '#ffffff',
+}
+  }
+
+
+
   
 const myTheme = createTheme({
     palette: {
-        primary: {
-            light: '#dddddd',
-            main: '#624a5c',
-            dark: '#000000',
-            contrastText: '#ffffff',
-        },
-        secondary: {
-          light: '#d5d4d4',
-          main: '#c7a072',
-          dark: '#8b542e',
-          contrastText: '#ffffff',
-        },
         background: {
           default: '#f5f5f5',
         },
@@ -45,7 +54,7 @@ const myTheme = createTheme({
                 root: {
                     textDecoration: 'none',
                     '&:hover': {
-                        color: '#000000',
+                        color: Colors.black,
                         background: 'transparent',
                       },
                 }
@@ -54,7 +63,7 @@ const myTheme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    background: '#ffffff',
+                    background: Colors.white,
                     padding: '30px 30px',
                 }
             }
@@ -66,10 +75,10 @@ const myTheme = createTheme({
                     right: '30px',
                     zIndex: 9999,
                     bottom: '30px',
-                    color: '#ffffff',
-                    background: '#624a5c',
+                    color: Colors.white,
+                    background: Colors.primary.main,
                     '&:hover': {
-                        background: '#251820',
+                        background: Colors.primary.dark,
                       },
                 }
             }
@@ -77,7 +86,7 @@ const myTheme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    background: '#624a5c'
+                    background: Colors.primary.main,
                 }
             }
         },
@@ -145,13 +154,13 @@ const myTheme = createTheme({
                     letterSpacing: 1.3,
                     padding: '10px 25px 6px 25px',
                     fontFamily: 'Josefin Sans, sans-serif',
-                    borderColor: '#000000',
+                    borderColor: Colors.black,
                     borderWidth: '1px',
-                    color: '#000000',
+                    color: Colors.black,
                     '&:hover': {
-                        backgroundColor: '#000000',
-                        borderColor: '#000000',
-                        color: '#ffffff',
+                        backgroundColor: Colors.black,
+                        borderColor: Colors.black,
+                        color: Colors.white,
                       },
                 },
             },
@@ -169,7 +178,7 @@ const myTheme = createTheme({
                     margin: 0,
                     '&:hover': {
                         backgroundColor: '#c3b0a5',
-                        color: '#ffffff'
+                        color: Colors.white
                       },
                 },
             },
@@ -182,7 +191,7 @@ const myTheme = createTheme({
             lineHeight: 1.5,
             marginBottom: 10,
             fontWeight: 300,
-            color: '#000000',
+            color: Colors.black,
         },
         caption: {
             fontSize: 18,
@@ -206,7 +215,7 @@ const myTheme = createTheme({
             fontWeight: 400,
             textTransform: "uppercase",
             letterSpacing: 1.5,
-            color: '#000000'
+            color: Colors.black
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -216,9 +225,9 @@ const myTheme = createTheme({
             marginTop: 4,
             textTransform: "uppercase",
             letterSpacing: 1,
-            color: '#000000',
+            color: Colors.black,
             a: {
-                color: '#000000',
+                color: Colors.black,
                 textDecoration: 'none',
             },
         },
@@ -229,7 +238,7 @@ const myTheme = createTheme({
             marginBottom: 10,
             textTransform: "uppercase",
             letterSpacing: 1.7,
-            color: '#000000'
+            color: Colors.black
         },
         h4: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -255,26 +264,28 @@ const myTheme = createTheme({
 
 
 const StyledTagButton = styled(Button)(() => ({
-    backgroundColor: myTheme.palette.secondary.main,
+    backgroundColor: Colors.secondary.main,
     borderRadius: '20px',
     fontSize: '12px',
     margin: '0px 8px 8px 0px',
     fontWeight: '700',
     letterSpacing: 0.7,
     padding: '7px 15px 4px 15px',
-    color: '#ffffff',
+    color: Colors.white,
     ":hover": {
-        backgroundColor: myTheme.palette.primary.main,
-        color: '#ffffff',
+        backgroundColor: Colors.primary.main,
+        color: Colors.white,
     }
   }));
 
   
 
   const AddListItem = styled(ListItem)(() => ({
-    color: '#d32c26 !important',
     padding: '10px 20px 0px 20px',
 }));
+
+
+
 
 
   const IconStyle = {
@@ -287,10 +298,10 @@ const StyledTagButton = styled(Button)(() => ({
     padding: '10px 0px 0px 0',
     margin: 0,
     border: 0,
-    color: myTheme.palette.secondary.main,
+    color: Colors.secondary.main,
     ":hover": {
         border: 0,
-        color: myTheme.palette.secondary.dark,
+        color: Colors.secondary.dark,
         background: 'transparent',
     }
   }));
@@ -300,7 +311,7 @@ const StyledTagButton = styled(Button)(() => ({
     margin: 0,
     padding: 0,
     ":hover": {
-        color: myTheme.palette.secondary.dark,
+        color: Colors.secondary.dark,
         background: 'transparent',
     }
   }));
@@ -315,7 +326,7 @@ const StyledTagButton = styled(Button)(() => ({
 
   const ZutatenCard = styled(Card)(() => ({
     margin: '0px 0px 30px 0px',
-    background: '#ffffff',
+    background: Colors.white,
   }));
 
 
@@ -334,7 +345,7 @@ const StyledTagButton = styled(Button)(() => ({
 
   const AddList = styled(List)(() => ({
     margin: '20px 0px',
-    background: '#ffffff',
+    background: Colors.white,
   }));
 
 
@@ -350,12 +361,12 @@ const StyledTagButton = styled(Button)(() => ({
 
 const ReadmoreButton = styled(Button)(() => ({
     margin: '0px',
-    borderColor: myTheme.palette.secondary.main,
-    color: myTheme.palette.secondary.main,
+    borderColor: Colors.secondary.main,
+    color: Colors.secondary.main,
     '&:hover': {
-        backgroundColor: myTheme.palette.secondary.main,
-        borderColor: myTheme.palette.secondary.main,
-        color: '#ffffff',
+        backgroundColor: Colors.secondary.main,
+        borderColor: Colors.secondary.main,
+        color: Colors.white,
       },
 }));
 
@@ -363,4 +374,4 @@ const ReadmoreButton = styled(Button)(() => ({
 
 
 
-export { IconStyle, AddList, DeleteButton, MainContainer, AddListItem, StyledTagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme, StyledDarkButton };
+export { Colors, IconStyle, AddList, DeleteButton, MainContainer, AddListItem, StyledTagButton, ReadmoreButton, ZutatenCard, AddButton, FooterContainer, MainImage, myTheme, StyledDarkButton };

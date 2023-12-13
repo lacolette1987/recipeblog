@@ -2,22 +2,32 @@ import { Button, Card, List, ListItem, createTheme } from "@mui/material";
 import { myTheme } from "./my-theme";
 import styled from "@emotion/styled";
 
+const Colors = {
+    black: '#000000',
+    lightgrey: '#dddddd',
+    borderColors: '#2a2a2a',
+    white: '#ffffff',
+    darkgrey: '#dddddd',
+    primary: {
+        light: '#aea5ad',
+        main: '#111111',
+        dark: '#000000',
+        contrastText: '#ffffff',
+    },
+    secondary: {
+        light: '#e0d0bb',
+        main: '#000000',
+        dark: '#835635',
+        contrastText: '#ffffff',
+    }
+  }
+
+
+
 
 const darkTheme = createTheme({
     ...myTheme,
     palette: {
-        primary: {
-            light: '#0099d0',
-            main: '#251820',
-            dark: '#0c00ff',
-            contrastText: '#ffffff',
-        },
-        secondary: {
-          light: '#ffffff',
-          main: '#ff6800',
-          dark: '#8b542e',
-          contrastText: '#ffffff',
-        },
         background: {
           default: '#000000',
         },
@@ -26,7 +36,7 @@ const darkTheme = createTheme({
         ...myTheme.typography,
         body1: {
             ...myTheme.typography.body1,
-            color: '#ffffff',
+            color: Colors.white,
         },
         subtitle1: {
             ...myTheme.typography.subtitle1,
@@ -38,17 +48,18 @@ const darkTheme = createTheme({
         },
         h2: {
             ...myTheme.typography.h2,
-            color: '#ffffff',
+            color: Colors.white,
             a: {
-                color: '#ffffff',
+                color: Colors.white,
             },
         },
         h3: {
             ...myTheme.typography.h3,
-            color: '#ffffff'
+            color: Colors.white
         },
     },
     components: {
+        ...myTheme,
         MuiLink: {
             styleOverrides: {
                 root: {
@@ -63,14 +74,14 @@ const darkTheme = createTheme({
         MuiAppBar: {
             styleOverrides: {
                 root: {
-                    background: '#190210'
+                    background: Colors.primary.main
                 }
             }
         },
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    background: '#1e1e1e',
+                    background: Colors.primary.main,
                 }
             }
         },
@@ -78,7 +89,7 @@ const darkTheme = createTheme({
             styleOverrides: {
                 root: {
                     color: '#ffffff',
-                    background: '#000000',
+                    background: Colors.secondary.main,
                     '&:hover': {
                         background: '#9ca8c7',
                       },
@@ -86,9 +97,14 @@ const darkTheme = createTheme({
             }
         },
         MuiListItem: {
+            // ...myTheme.components.MuiListItem,
             styleOverrides: {
                 root: {
-                    borderBottom: '1px solid rgba(255, 255, 255)',
+                    color: Colors.white,
+                    borderWidth: 0,
+                    borderBottomWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: Colors.borderColors,
                 }
             }
         },
@@ -125,10 +141,10 @@ const darkTheme = createTheme({
 
 
 const StyledTagButton = styled(Button)(() => ({
-    backgroundColor: myTheme.palette.primary.main,
+    backgroundColor: Colors.secondary.main,
     color: '#ffffff',
     ":hover": {
-        backgroundColor: darkTheme.palette.secondary.main,
+        backgroundColor: Colors.secondary.main,
         color: '#ffffff',
     }
   }));
@@ -136,9 +152,11 @@ const StyledTagButton = styled(Button)(() => ({
   
 
   const AddListItem = styled(ListItem)(() => ({
-    color: '#d32c26 !important',
+    color: Colors.white,
     padding: '10px 20px 0px 20px',
 }));
+
+
 
 
   const IconStyle = {
@@ -150,7 +168,7 @@ const StyledTagButton = styled(Button)(() => ({
   const AddButton = styled(Button)(() => ({
     color: myTheme.palette.secondary.main,
     ":hover": {
-        color: myTheme.palette.secondary.dark,
+        color: Colors.secondary.main,
         background: 'transparent',
     }
   }));
@@ -158,22 +176,20 @@ const StyledTagButton = styled(Button)(() => ({
   const DeleteButton = styled(Button)(() => ({
     background: 'transparent',
     ":hover": {
-        color: myTheme.palette.secondary.dark,
+        color: Colors.secondary.main,
         background: 'transparent',
     }
   }));
 
 
-
-
   const ZutatenCard = styled(Card)(() => ({
-    background: '#ffffff',
+    background: Colors.white,
   }));
 
 
 
   const AddList = styled(List)(() => ({
-    background: '#ffffff',
+    background: Colors.white,
   }));
 
 
@@ -182,6 +198,6 @@ const StyledTagButton = styled(Button)(() => ({
 
 
 
-export { darkTheme, IconStyle, AddList, DeleteButton, AddListItem, StyledTagButton, ZutatenCard, AddButton };
+export { Colors, darkTheme, IconStyle, AddList, DeleteButton, AddListItem, StyledTagButton, AddButton, ZutatenCard };
 
 
