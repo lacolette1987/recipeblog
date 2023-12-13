@@ -79,45 +79,22 @@ function useBlogs() {
         setLoading(false);
       });
   };
-  const queryBlogs = ({ uid, category, searchQuery }: {
+  const queryBlogs = ({ uid, category }: {
     uid?: string;
     category?: string;
-    searchQuery?: string
   } = {}) => {
     setLoading(true);
-    if (!uid && !category && !searchQuery) {
+    if (!uid && !category) {
       queryAllBlogs();
     } else if (uid && !category) {
       querySingleBlog(uid);
     } else if (category) {
       queryCategoryBlog(category);
-    } else if (searchQuery) {
-      querySearchBlogs(searchQuery);
     }
     setLoading(false);
   };
 
 
-  const querySearchBlogs = (query: string) => {
-    console.log('Suchbegriff:', query);
-    const blogsRef = collection(db, 'blogs');
-    const searchQuery = query.toLowerCase();
-
-    getDocs(blogsRef)
-      .then((data) => {
-        const blogsData = data.docs
-          .map((doc) => convertDocToBlog(doc))
-          .filter((blog) =>
-            blog.title.toLowerCase().includes(searchQuery) ||
-            blog.lead.toLowerCase().includes(searchQuery) ||
-            blog.description.toLowerCase().includes(searchQuery)
-          );
-        console.log('Meine Suchresultate!!!!!', blogsData);
-        setBlogs(blogsData);
-      }).catch((e) => {
-      setError(e.message);
-    });
-  };
 
 
   const deleteBlog = async (uid: string) => {
