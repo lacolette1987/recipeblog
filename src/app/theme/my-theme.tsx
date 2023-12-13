@@ -19,7 +19,7 @@ const Colors = {
         main: '#c1a178',
         dark: '#835635',
         contrastText: '#ffffff',
-}
+    }
   }
 
 
@@ -27,6 +27,12 @@ const Colors = {
   
 const myTheme = createTheme({
     palette: {
+        primary: {
+            main: '#5e4b5b',
+        },
+        secondary: {
+            main: '#5e4b5b',
+        },
         background: {
           default: '#f5f5f5',
         },
@@ -48,13 +54,12 @@ const myTheme = createTheme({
                 }
             `,
         },
-        
         MuiLink: {
             styleOverrides: {
                 root: {
                     textDecoration: 'none',
                     '&:hover': {
-                        color: Colors.black,
+                        color: '#000000',
                         background: 'transparent',
                       },
                 }
@@ -63,11 +68,12 @@ const myTheme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    background: Colors.white,
+                    background: '#ffffff',
                     padding: '30px 30px',
                 }
             }
         },
+        
         MuiFab: {
             styleOverrides: {
                 root: {
@@ -141,6 +147,14 @@ const myTheme = createTheme({
                 }
             }
         },
+        MuiFormControl: {
+            styleOverrides: {
+                root: {
+                    margin: '0px 0px 10px 0px',
+                    borderRadius: '0 !important',
+                }
+            }
+        },
         MuiInputBase: {
             styleOverrides: {
                 root: {
@@ -180,7 +194,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: '#c3b0a5',
+                        backgroundColor: Colors.secondary.main,
                         color: Colors.white
                       },
                 },

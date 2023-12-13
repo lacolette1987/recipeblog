@@ -199,5 +199,3 @@ const StyledTagButton = styled(Button)(() => ({
 
 
 export { Colors, darkTheme, IconStyle, AddList, DeleteButton, AddListItem, StyledTagButton, AddButton, ZutatenCard };
-
-

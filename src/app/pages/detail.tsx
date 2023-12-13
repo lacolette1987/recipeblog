@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
-import { Alert, Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography } from '@mui/material';
+import { Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography } from '@mui/material';
 import AddCommentForm from '../components/add-comment-form';
 import useBlogs from '../hooks/useBlogs';
 import { Colors, MainContainer, StyledTagButton, ZutatenCard } from '../theme/my-theme';
@@ -100,7 +100,6 @@ const Detail = () => {
             <>
             <Typography variant='h5' sx={{ mt: '40px' }}>Dieses Rezept wurde noch nicht bewertet</Typography>
             <Typography variant='body1'>Hast du es bereits ausprobiert? Dann freuen wir uns über deine Meinung!</Typography>
-            <Alert severity="info"><strong>Dieses Rezept wurde noch nicht bewertet</strong> - Hast du es bereits ausprobiert? Dann freuen wir uns über deine Meinung!</Alert>
           </>
           ) : (
             comments.map((comment) => (
