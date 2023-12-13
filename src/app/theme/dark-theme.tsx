@@ -125,7 +125,7 @@ const darkTheme = createTheme({
 
 
 const StyledTagButton = styled(Button)(() => ({
-    backgroundColor: darkTheme.palette.primary.main,
+    backgroundColor: myTheme.palette.primary.main,
     color: '#ffffff',
     ":hover": {
         backgroundColor: darkTheme.palette.secondary.main,

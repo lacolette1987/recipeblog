@@ -8,6 +8,7 @@ import { MainContainer, MainImage } from '../theme/my-theme';
 import { Container } from '@mui/system';
 import Blog from '../models/Blog';
 import Tags from '../components/layout/tags';
+import BlankSlate from '../components/blankslate';
 
 const Cooking = () => {
   const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
@@ -34,18 +35,26 @@ const Cooking = () => {
         <Grid container spacing={{ sm: 4, md: 6 }}>
           <Grid item xs={12} sm={7} md={8}>
             <Grid container spacing={4}>
-              <Grid item>
+            <Grid item>
+              {blogs.length > 0 ? (
                 <BlogSection
                   blogs={blogs}
                   user={user}
                   handleDelete={deleteBlog}
                 />
-              </Grid>
+                ) : (
+                  <BlankSlate />
+                )}
+                </Grid>
             </Grid>
           </Grid>
           <Grid item xs={12} sm={5} md={4}>
           <Grid item>
+            {blogs.length > 0 ? (
               <Typography variant='h2'>Fingerfood & Snacks</Typography>
+              ) : (
+                ''
+              )}
               {filteredBlogs.map((blog: Blog) => (
                 <div key={blog.uid}>
                   <Tags blog={blog} ratingValue={0} />

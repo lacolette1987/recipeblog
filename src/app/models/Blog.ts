@@ -9,7 +9,7 @@ export default interface Blog {
   author: string;
   lead: string;
   category: string;
-  niveau: string;
+  level: string;
   tags: string[];
   duration: string;
   description: string;

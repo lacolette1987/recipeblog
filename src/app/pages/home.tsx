@@ -11,6 +11,7 @@ import { Stack } from '@mui/system';
 import Tags from '../components/layout/tags';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
+import BlankSlate from '../components/blankslate';
 
 
 const Home = () => {
@@ -47,8 +48,9 @@ const Home = () => {
         <Grid item xs={12} sm={7} md={8} sx={{paddingBottom: '30px'}}>
           <Grid container spacing={4}>
             <Grid item>
-              {latestBlog && (
-                <Card elevation={0}>
+            {latestBlog ? (
+              // <LatestBlog blogs={blogs} handleDelete={handleDelete} />
+              <Card elevation={0}>
                   <Link to={`/detail/${latestBlog.uid}`}>
                     <CardMedia
                       component='img'
@@ -93,6 +95,8 @@ const Home = () => {
                     </Grid>
                   </CardContent>
                 </Card>
+              ) : (
+                <BlankSlate />
               )}
             </Grid>
             <Grid item>
@@ -101,11 +105,15 @@ const Home = () => {
                 user={user}
                 handleDelete={handleDelete}
               />
-            </Grid>
+              </Grid>
           </Grid>
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
-          <Typography variant='h2'>Weihnachten</Typography>
+          {latestBlog ? (
+            <Typography variant='h2'>Weihnachten</Typography>
+          ) : (
+            ''
+          )}
           {filteredBlogs.map((blog: Blog) => (
             <div key={blog.uid}>
               <Tags blog={blog} ratingValue={0} />

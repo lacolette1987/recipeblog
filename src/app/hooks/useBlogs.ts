@@ -18,7 +18,7 @@ function useBlogs() {
         uid: doc.id,
         title: documentData.title,
         category: documentData.category,
-        niveau: documentData.niveau,
+        level: documentData.level,
         ingredients: documentData.ingredients,
         lead: documentData.lead,
         description: documentData.description,

@@ -24,7 +24,7 @@ interface BlogFormProps {
 export interface BlogFormState {
   title: string;
   category: string;
-  niveau: string;
+  level: string;
   lead: string;
   description: string;
   tags: string[];
@@ -38,7 +38,7 @@ const initialState: BlogFormState = {
   title: '',
   lead: '',
   category: '',
-  niveau: '',
+  level: '',
   description: '',
   tags: [],
   ingredients: [],
@@ -57,7 +57,7 @@ const BlogForm: React.FC<BlogFormProps> = ({
   const {
     title,
     category,
-    niveau,
+    level,
     lead,
     duration,
     description,
@@ -103,8 +103,8 @@ const BlogForm: React.FC<BlogFormProps> = ({
     setForm({ ...form, category: e.target.value });
   };
 
-  const onNiveauChange = (e: SelectChangeEvent<string>) => {
-    setForm({ ...form, niveau: e.target.value });
+  const onlevelChange = (e: SelectChangeEvent<string>) => {
+    setForm({ ...form, level: e.target.value });
   };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -208,8 +208,8 @@ const BlogForm: React.FC<BlogFormProps> = ({
               row
               aria-labelledby="demo-row-radio-buttons-group-label"
               name="row-radio-buttons-group"
-              value={niveau}
-              onChange={onNiveauChange}
+              value={level}
+              onChange={onlevelChange}
             >
               <FormControlLabel
                 value="Einfach"

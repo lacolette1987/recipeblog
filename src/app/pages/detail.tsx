@@ -96,7 +96,13 @@ const Detail = () => {
           {currentUser ? (
             <AddCommentForm submitForm={(comment) => createComment(blogId!, {...comment, authorId: currentUser.uid})} />
           ) : ''}
-          {comments.map((comment) => (
+          {comments.length === 0 ? (
+            <>
+            <Typography variant='h4' sx={{ mt: '40px' }}>Dieses Rezept wurde noch nicht bewertet</Typography>
+            <Typography variant='body1'>Hast du es bereits ausprobiert? Dann freuen wir uns über deine Meinung!</Typography>
+            </>
+          ) : (
+            comments.map((comment) => (
             <Card key={comment.uid} elevation={0} sx={{ marginTop: '30px' }}>
               <CardContent>
                 <Grid container justifyContent={'space-between'}>
@@ -116,7 +122,8 @@ const Detail = () => {
                 {currentUser?.uid === comment.authorId ? <DeleteOutlinedIcon onClick={() => deleteComment(blogId!, comment.uid!)} />: ''}
               </CardContent>
             </Card>
-          ))}
+          ))
+          )}
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
           <ZutatenCard elevation={0}>
@@ -158,10 +165,10 @@ const Detail = () => {
             </Grid>
             <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{ p: '10px 0px 0px 0px' }}>
               <Grid item>
-                <Typography sx={{ fontWeight: '700' }}>Niveau:</Typography>
+                <Typography sx={{ fontWeight: '700' }}>Level:</Typography>
               </Grid>
               <Grid item>
-                <Typography>{blogs[0]?.niveau}</Typography>
+                <Typography>{blogs[0]?.level}</Typography>
               </Grid>
             </Grid>
           </Grid>
@@ -172,7 +179,6 @@ const Detail = () => {
               ))}
           </Grid>
           <Typography><Box fontWeight='700' display='inline'>Rezept von:</Box> {blogs[0]?.author}</Typography>
-          {/* <Typography><Box fontWeight='700' display='inline'>Erfasst am:</Box> {blogs[0]?.timestamp.toDate().toDateString()}</Typography> */}
           <Sharing blogId={blogId!} title={blogs[0]?.title} />
         </Grid>
       </Grid>
