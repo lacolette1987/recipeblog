@@ -150,7 +150,7 @@ const myTheme = createTheme({
         MuiFormControl: {
             styleOverrides: {
                 root: {
-                    margin: '0px 0px 10px 0px',
+                    margin: '0px 0px 20px 0px',
                     borderRadius: '0 !important',
                 }
             }
@@ -361,7 +361,6 @@ const StyledTagButton = styled(Button)(() => ({
 
 
   const AddList = styled(List)(() => ({
-    margin: '20px 0px',
     background: Colors.white,
   }));
 
