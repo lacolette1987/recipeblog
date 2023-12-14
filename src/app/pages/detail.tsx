@@ -69,7 +69,7 @@ const Detail = () => {
               <Grid item>
                 <DeleteOutlinedIcon
                   sx={{
-                    color: Colors.primary.main,
+                    color: Colors.secondary.main,
                     transition: '.3s ease-out',
                     '&:hover': {
                       color: Colors.primary.main
@@ -139,7 +139,7 @@ const Detail = () => {
               {blogs[0]?.ingredients &&
                 blogs[0].ingredients.map((ingredient, index) => (
                   <ListItem key={index}>
-                    {ingredient.trim()}
+                    {/* {`${ingredient.name.trim()} - ${ingredient.amount}`} */}
                   </ListItem>
                 ))}
             </CardContent>
@@ -175,7 +175,7 @@ const Detail = () => {
           <Grid sx={{ m: '20px 0px 20px 0px' }}>
             {blogs[0]?.tags &&
               blogs[0].tags.map((tags, index) => (
-                <StyledTagButton key={index}>{tags.trim()}</StyledTagButton>
+                <StyledTagButton disabled key={index}>{tags.trim()}</StyledTagButton>
               ))}
           </Grid>
           <Typography><Box fontWeight='700' display='inline'>Rezept von:</Box> {blogs[0]?.author}</Typography>

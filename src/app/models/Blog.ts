@@ -1,4 +1,5 @@
 import { FieldValue, Timestamp } from '@firebase/firestore';
+import { Ingredient } from '../components/blog-form';
 
 export default interface Blog {
   readonly uid: string;
@@ -13,6 +14,6 @@ export default interface Blog {
   tags: string[];
   duration: string;
   description: string;
-  ingredients: string[];
+  ingredients: Ingredient[];
   avgRating?: number;
 }

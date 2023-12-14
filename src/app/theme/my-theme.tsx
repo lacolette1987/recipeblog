@@ -288,7 +288,9 @@ const StyledTagButton = styled(Button)(() => ({
     fontWeight: '700',
     letterSpacing: 0.7,
     padding: '7px 15px 4px 15px',
-    color: Colors.white,
+    '&.Mui-disabled': {
+        color: Colors.white
+      },
     ":hover": {
         backgroundColor: Colors.primary.main,
         color: Colors.white,

@@ -7,11 +7,14 @@ import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
 import { Autocomplete, FormControl, FormControlLabel, Grid, IconButton, ListItemSecondaryAction, ListItemText, Radio, RadioGroup, SelectChangeEvent, Stack, } from '@mui/material';
-import { AddButton, AddList, AddListItem, Colors, MainContainer } from '../theme/my-theme';
+import { AddButton, AddList, AddListItem, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
 
 
-
+export interface Ingredient {
+  name: string;
+  amount: string;
+}
 
 interface BlogFormProps {
   user?: User;
@@ -28,7 +31,7 @@ export interface BlogFormState {
   lead: string;
   description: string;
   tags: string[];
-  ingredients: string[];
+  ingredients: Ingredient[];
   duration: string;
 
   isEditMode: boolean;
@@ -47,23 +50,9 @@ const initialState: BlogFormState = {
   isEditMode: false,
 };
 
-const BlogForm: React.FC<BlogFormProps> = ({
-  uploadProcess,
-  setFile,
-  submitForm,
-  initialFormState = initialState,
-}) => {
+const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm, initialFormState = initialState, }) => {
   const [form, setForm] = useState(initialFormState);
-  const {
-    title,
-    category,
-    level,
-    lead,
-    duration,
-    description,
-    ingredients,
-    isEditMode,
-  } = form;
+  const { title, category, level, lead, duration, description, ingredients, isEditMode, } = form;
 
   const [listItemText, setListItemText] = useState<string>('');
   const isSubmitDisabled = useMemo<boolean>(
@@ -71,12 +60,21 @@ const BlogForm: React.FC<BlogFormProps> = ({
     [isEditMode, uploadProcess]
   );
 
-  const handleAddListItem = () => {
-    if (listItemText.trim() !== '') {
-      setForm({ ...form, ingredients: [...form.ingredients, listItemText] });
-      setListItemText('');
+
+  const [ingredient, setIngredient] = useState<string>('');
+  const [quantity, setQuantity] = useState<string>('');
+
+
+  const handleAddIngredient = () => {
+    if (ingredient.trim() !== '' && quantity.trim() !== '') {
+      const newIngredient: Ingredient = { name: ingredient, amount: quantity };
+      setForm({ ...form, ingredients: [...form.ingredients, newIngredient] });
+      setIngredient('');
+      setQuantity('');
     }
   };
+
+
 
   const handleDeleteListItem = (index: number) => {
     const updatedList = [...form.ingredients];
@@ -234,8 +232,8 @@ const BlogForm: React.FC<BlogFormProps> = ({
                   fullWidth
                   variant="outlined"
                   label="Menge"
-                  // value={amount}
-                  // onChange={(e) => setAmount(e.target.value)}
+                  value={quantity}
+                  onChange={(e) => setQuantity(e.target.value)}
                 />
             </Grid>
             <Grid item xs={9}>
@@ -243,23 +241,23 @@ const BlogForm: React.FC<BlogFormProps> = ({
                 fullWidth
                 variant="outlined"
                 label="Zutat"
-                value={listItemText}
-                onChange={(e) => setListItemText(e.target.value)}
-              />
+                value={ingredient}
+                onChange={(e) => setIngredient(e.target.value)}
+                  />
             </Grid>
             <Grid item textAlign={'right'} xs={1}>
               <AddButton
               sx={{minWidth:0}}
                 variant="outlined"
                 endIcon={<AddCircleIcon style={{ fontSize: '35px' }} />}
-                onClick={handleAddListItem}
+                onClick={handleAddIngredient}
               ></AddButton>
             </Grid>
           </Grid>
           <AddList>
             {form.ingredients.map((item, index) => (
               <AddListItem disablePadding key={index}>
-                <ListItemText primary={item} />
+                <ListItemText primary={<><strong>{item.name}</strong> {item.amount}</>} />
                 <ListItemSecondaryAction>
                   <IconButton
                     edge="end"
