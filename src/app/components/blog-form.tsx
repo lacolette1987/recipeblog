@@ -257,7 +257,17 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
           <AddList>
             {form.ingredients.map((item, index) => (
               <AddListItem disablePadding key={index}>
-                <ListItemText primary={<><strong>{item.name}</strong> {item.amount}</>} />
+                <ListItemText primary={
+                  <Grid container spacing={2}>
+                    <Grid item xs={2}>
+                      <strong>{item.amount}</strong>
+                    </Grid>
+                    <Grid item xs={9}>
+                      {item.name}
+                    </Grid>
+                  </Grid>
+                  }
+                />
                 <ListItemSecondaryAction>
                   <IconButton
                     edge="end"
@@ -282,7 +292,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
             name="description"
             onChange={handleChange}
           />
-          <Grid container spacing={2}>
+          <Grid container justifyContent={'space-between'}>
             {!isEditMode ? (
               <Grid item>
                 <Button

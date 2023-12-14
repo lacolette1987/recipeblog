@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import useComments from '../hooks/useComments';
 import { FieldValue, Timestamp } from '@firebase/firestore';
+import BlankSlateComment from '../components/blankslate/blankslate-comment';
 
 
 const Detail = () => {
@@ -97,12 +98,10 @@ const Detail = () => {
             <AddCommentForm submitForm={(comment) => createComment(blogId!, {...comment, authorId: currentUser.uid})} />
           ) : ''}
           {comments.length === 0 ? (
-            <>
-            <Typography variant='h5' sx={{ mt: '40px' }}>Dieses Rezept wurde noch nicht bewertet</Typography>
-            <Typography variant='body1'>Hast du es bereits ausprobiert? Dann freuen wir uns über deine Meinung!</Typography>
-          </>
+            <BlankSlateComment />
           ) : (
             comments.map((comment) => (
+              // <CommentSection blogId={blogId} comments={comments} deleteComment={deleteComment} formatTimestamp={formatTimestamp} />
             <Card key={comment.uid} elevation={0} sx={{ marginTop: '30px' }}>
               <CardContent>
                 <Grid container justifyContent={'space-between'}>
@@ -113,13 +112,19 @@ const Detail = () => {
                     <Rating size='small' readOnly value={comment.rating} />
                   </Grid>
                 </Grid>
-                <Typography variant='subtitle1'>
-                  {blogs[0]?.timestamp
-                    ? formatTimestamp(blogs[0]?.timestamp)
-                    : ''}
-                </Typography>
+                <Grid container spacing={2} alignItems={'center'} sx={{mb: '8px'}}>
+                  <Grid item>
+                  <Typography variant='subtitle1'>
+                      {blogs[0]?.timestamp
+                        ? formatTimestamp(blogs[0]?.timestamp)
+                        : ''}
+                    </Typography>
+                  </Grid>
+                  <Grid item>
+                    {currentUser?.uid === comment.authorId ? <DeleteOutlinedIcon color="disabled" fontSize='small' onClick={() => deleteComment(blogId!, comment.uid!)} />: ''}
+                  </Grid>
+                </Grid>
                 <Typography>{comment.comment}</Typography>
-                {currentUser?.uid === comment.authorId ? <DeleteOutlinedIcon onClick={() => deleteComment(blogId!, comment.uid!)} />: ''}
               </CardContent>
             </Card>
           ))
@@ -139,7 +144,14 @@ const Detail = () => {
               {blogs[0]?.ingredients &&
                 blogs[0].ingredients.map((ingredient, index) => (
                   <ListItem key={index}>
-                    {/* {`${ingredient.name.trim()} - ${ingredient.amount}`} */}
+                    <Grid container>
+                      <Grid item xs={3} sx={{ fontWeight: 700 }}>
+                        {ingredient.amount}
+                      </Grid>
+                      <Grid item xs={9}>
+                        {ingredient.name.trim()}
+                      </Grid>
+                    </Grid>
                   </ListItem>
                 ))}
             </CardContent>

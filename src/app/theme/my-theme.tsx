@@ -69,7 +69,7 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     background: '#ffffff',
-                    padding: '30px 30px',
+                    padding: '30px',
                 }
             }
         },
@@ -100,6 +100,7 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 0,
+                    marginBottom: '30px'
                 }
             }
         },
@@ -121,6 +122,7 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     padding: 0,
+                    margin: '0px 0px 30px 0px'
                 }
             }
         },
@@ -219,7 +221,7 @@ const myTheme = createTheme({
         subtitle1: {
             fontSize: 15,
             lineHeight: 1.3,
-            marginBottom: 15,
+            marginBottom: 6,
             fontWeight: 600,
             color: "#79708f",
             letterSpacing: 0,

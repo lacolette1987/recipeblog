@@ -11,7 +11,7 @@ import { Stack } from '@mui/system';
 import Tags from '../components/layout/tags';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
-import BlankSlate from '../components/blankslate';
+import BlankSlate from '../components/blankslate/blankslate-blog';
 
 
 const Home = () => {

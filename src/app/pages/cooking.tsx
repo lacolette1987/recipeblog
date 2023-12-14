@@ -8,7 +8,7 @@ import { MainContainer, MainImage } from '../theme/my-theme';
 import { Container } from '@mui/system';
 import Blog from '../models/Blog';
 import Tags from '../components/layout/tags';
-import BlankSlate from '../components/blankslate';
+import BlankSlate from '../components/blankslate/blankslate-blog';
 
 const Cooking = () => {
   const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
