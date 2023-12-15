@@ -23,15 +23,14 @@ const Colors = {
   }
 
 
-
   
 const myTheme = createTheme({
     palette: {
         primary: {
-            main: '#5e4b5b',
+            main: Colors.primary.main,
         },
         secondary: {
-            main: '#5e4b5b',
+            main: Colors.secondary.main,
         },
         background: {
           default: '#f5f5f5',
