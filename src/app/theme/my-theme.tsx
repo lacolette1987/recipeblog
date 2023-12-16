@@ -8,6 +8,7 @@ const Colors = {
     white: '#ffffff',
     borderColors: '#e0e0e0',
     lightgrey: '#dddddd',
+    grey: '#a4a2a1',
     primary: {
         light: '#aea5ad',
         main: '#5e4b5b',
@@ -58,7 +59,7 @@ const myTheme = createTheme({
                 root: {
                     textDecoration: 'none',
                     '&:hover': {
-                        color: '#000000',
+                        color: Colors.black,
                         background: 'transparent',
                       },
                 }
@@ -67,7 +68,7 @@ const myTheme = createTheme({
         MuiCardContent: {
             styleOverrides: {
                 root: {
-                    background: '#ffffff',
+                    background: Colors.white,
                     padding: '30px',
                 }
             }
@@ -222,7 +223,7 @@ const myTheme = createTheme({
             lineHeight: 1.3,
             marginBottom: 6,
             fontWeight: 600,
-            color: "#79708f",
+            color: Colors.secondary.main,
             letterSpacing: 0,
         },
         h1: {
@@ -309,7 +310,7 @@ const StyledTagButton = styled(Button)(() => ({
 
 
   const IconStyle = {
-    color: '#a4a2a1',
+    color: Colors.grey,
   };
 
 

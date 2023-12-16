@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography } from '@mui/material';
-import AddCommentForm from '../components/add-comment-form';
 import useBlogs from '../hooks/useBlogs';
 import { Colors, MainContainer, StyledTagButton, ZutatenCard } from '../theme/my-theme';
 import Sharing from '../components/sharing';
@@ -9,9 +8,7 @@ import EditIcon from '@mui/icons-material/Edit';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import useComments from '../hooks/useComments';
-import { FieldValue, Timestamp } from '@firebase/firestore';
-import BlankSlateComment from '../components/blankslate/blankslate-comment';
+import CommentSection from '../components/commentsection';
 
 
 const Detail = () => {
@@ -21,13 +18,11 @@ const Detail = () => {
 
   const { blogs, querySingleBlog, deleteBlog } = useBlogs();
 
-  const { comments, queryComments, createComment, deleteComment } = useComments();
 
 
   useEffect(() => {
     if (blogId) {
       querySingleBlog(blogId);
-      queryComments(blogId);
     }
   }, [blogId]);
 
@@ -36,12 +31,6 @@ const Detail = () => {
     navigate('/');
   };
 
-  const formatTimestamp = (timestamp: FieldValue | Timestamp) => {
-    if (timestamp && timestamp instanceof Timestamp) {
-      return timestamp.toDate().toLocaleString();
-    }
-    return '';
-  };
 
   return (
     <MainContainer maxWidth='lg'>
@@ -93,7 +82,9 @@ const Detail = () => {
               <Typography>{blogs[0]?.description}</Typography>
             </CardContent>
           </Card>
-          <Typography variant='h3' sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
+
+          <CommentSection />
+          {/* <Typography variant='h3' sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
           {currentUser ? (
             <AddCommentForm submitForm={(comment) => createComment(blogId!, {...comment, authorId: currentUser.uid})} />
           ) : ''}
@@ -101,7 +92,6 @@ const Detail = () => {
             <BlankSlateComment />
           ) : (
             comments.map((comment) => (
-              // <CommentSection blogId={blogId} comments={comments} deleteComment={deleteComment} formatTimestamp={formatTimestamp} />
             <Card key={comment.uid} elevation={0} sx={{ marginTop: '30px' }}>
               <CardContent>
                 <Grid container justifyContent={'space-between'}>
@@ -126,9 +116,9 @@ const Detail = () => {
                 </Grid>
                 <Typography>{comment.comment}</Typography>
               </CardContent>
-            </Card>
+            </Card> 
           ))
-          )}
+          )} */}
         </Grid>
         <Grid item xs={12} sm={5} md={4}>
           <ZutatenCard elevation={0}>
