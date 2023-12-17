@@ -79,6 +79,7 @@ const Detail = () => {
           <Card elevation={0}>
             <CardMedia component='img' image={blogs[0]?.imgUrl} title={blogs[0]?.title} />
             <CardContent>
+              <Typography variant='h2'>Und so wirds gemacht:</Typography>
               <Typography>{blogs[0]?.description}</Typography>
             </CardContent>
           </Card>
@@ -128,7 +129,7 @@ const Detail = () => {
                 justifyContent={'space-between'}
               >
                 <Grid item>
-                  <Typography variant='h2'>Zutaten</Typography>
+                  <Typography variant='h3'>Zutaten</Typography>
                 </Grid>
               </Grid>
               {blogs[0]?.ingredients &&

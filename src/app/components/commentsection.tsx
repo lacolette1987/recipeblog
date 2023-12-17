@@ -5,7 +5,7 @@ import BlankSlateComment from './blankslate/blankslate-comment';
 import useComments from '../hooks/useComments';
 import { FieldValue, Timestamp } from '@firebase/firestore';
 import { useSelector } from 'react-redux';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { RootState } from '../store/store';
 import useBlogs from '../hooks/useBlogs';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
@@ -16,10 +16,9 @@ import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 const CommentSection = () => {
 
     const { blogId } = useParams();
-    const navigate = useNavigate();
     const currentUser = useSelector((state: RootState) => state.auth.currentUser);
     const { comments, queryComments, createComment, deleteComment } = useComments();
-    const { blogs, querySingleBlog, deleteBlog } = useBlogs();
+    const { blogs } = useBlogs();
 
     
     const formatTimestamp = (timestamp: FieldValue | Timestamp) => {
@@ -38,10 +37,6 @@ const CommentSection = () => {
     
 
 
-      const handleDelete = async () => {
-        await deleteBlog(blogId!);
-        navigate('/');
-      };
       
     return (
     <>

@@ -5,7 +5,7 @@ import styled from "@emotion/styled";
 
 
 const Colors = {
-    black: '#ffffff',
+    black: '#000000',
     lightgrey: '#dddddd',
     borderColors: '#2a2a2a',
     white: '#ffffff',
@@ -39,7 +39,7 @@ const darkTheme = createTheme({
             contrastText: '#ffffff',
         },
         background: {
-          default: Colors.primary.light,
+          default: Colors.black,
         },
     },
     typography: {

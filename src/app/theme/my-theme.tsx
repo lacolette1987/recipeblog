@@ -10,9 +10,9 @@ const Colors = {
     lightgrey: '#dddddd',
     grey: '#a4a2a1',
     primary: {
-        light: '#aea5ad',
-        main: '#5e4b5b',
-        dark: '#231920',
+        light: '#8185a6',
+        main: '#4e5277',
+        dark: '#393d68',
         contrastText: '#ffffff',
     },
     secondary: {
@@ -206,7 +206,7 @@ const myTheme = createTheme({
         typography: {
         fontFamily: 'Quattrocento, serif',
         body1: {
-            fontSize: 18,
+            fontSize: 17,
             lineHeight: 1.5,
             marginBottom: 10,
             fontWeight: 300,
@@ -233,18 +233,16 @@ const myTheme = createTheme({
             lineHeight: 1.4,
             fontWeight: 400,
             textTransform: "uppercase",
-            letterSpacing: 1.5,
-            color: Colors.black
+            letterSpacing: 1,
         },
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontWeight: 400,
+            fontWeight: 500,
             fontSize: 24,
-            marginBottom: 10,
+            marginBottom: 15,
             marginTop: 4,
             textTransform: "uppercase",
             letterSpacing: 1,
-            color: Colors.black,
             a: {
                 color: Colors.black,
                 textDecoration: 'none',
@@ -252,12 +250,11 @@ const myTheme = createTheme({
         },
         h3: {
             fontFamily: 'Josefin Sans, sans-serif',
-            fontWeight: 600,
-            fontSize: 26,
+            fontWeight: 500,
+            fontSize: 20,
             marginBottom: 10,
             textTransform: "uppercase",
-            letterSpacing: 1.7,
-            color: Colors.black
+            letterSpacing: 1,
         },
         h4: {
             fontFamily: 'Josefin Sans, sans-serif',
@@ -381,11 +378,11 @@ const StyledTagButton = styled(Button)(() => ({
 
 const ReadmoreButton = styled(Button)(() => ({
     margin: '0px',
-    borderColor: Colors.secondary.main,
-    color: Colors.secondary.main,
+    borderColor: Colors.primary.main,
+    color: Colors.primary.main,
     '&:hover': {
-        backgroundColor: Colors.secondary.main,
-        borderColor: Colors.secondary.main,
+        backgroundColor: Colors.primary.main,
+        borderColor: Colors.primary.main,
         color: Colors.white,
       },
 }));
