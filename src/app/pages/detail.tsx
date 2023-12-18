@@ -36,7 +36,7 @@ const Detail = () => {
     <MainContainer maxWidth='lg'>
       <Grid container spacing={{ sm: 4, md: 6 }}>
         <Grid item xs={12} md={7} lg={8}>
-          <Typography variant='h1' sx={{ mb: '0px' }}>{blogs[0]?.title}</Typography>
+          <Typography variant='h1' sx={{ mb: '10px' }}>{blogs[0]?.title}</Typography>
           <Grid item sx={{ m: '0 0 10px 0' }}>
             {blogs[0]?.avgRating ? <Rating size='small' readOnly value={blogs[0]?.avgRating} /> : ''}
           </Grid>
@@ -73,13 +73,13 @@ const Detail = () => {
           ''
         )}
       </Grid>
-      <Grid container spacing={{ sm: 4, md: 6 }}>
+      <Grid container spacing={{ md: 6 }}>
         <Grid item xs={12} md={7} lg={8}>
           <Card elevation={0}>
             <CardMedia component='img' image={blogs[0]?.imgUrl} title={blogs[0]?.title} />
           </Card>
         </Grid>
-        <Grid item xs={12} md={5} lg={4}>
+        <Grid item xs={12} md={5} lg={4} sx={{mb: '20px'}}>
           <Typography variant='body1' sx={{ mb: '30px' }}>{blogs[0]?.lead}</Typography>
           <Grid container>
             <Grid container alignItems={'center'} justifyContent={'space-between'} sx={{ borderWidth: 0, borderBottomWidth: '1px', borderStyle: 'solid', borderColor: Colors.borderColors }}>
@@ -118,19 +118,14 @@ const Detail = () => {
           <Sharing blogId={blogId!} title={blogs[0]?.title} />
         </Grid>
       </Grid>
-
-
-
       <Grid container flexDirection={'row-reverse'} spacing={{ sm: 4, md: 6 }} >
         <Grid item xs={12} md={5} lg={4}>
           <ZutatenCard elevation={0}>
             <CardContent component='div' sx={{ p: '20px' }}>
-              <Grid
-                container
-                justifyContent={'space-between'}
-              >
+              <Grid container justifyContent={'space-between'}>
                 <Grid item>
-                  <Typography variant='h3'>Zutaten</Typography>
+                  <Typography variant='h2'>Zutaten</Typography>
+                  <Typography variant='subtitle1'>{blogs[0]?.quantity}</Typography>
                 </Grid>
               </Grid>
               {blogs[0]?.ingredients &&
@@ -152,7 +147,7 @@ const Detail = () => {
         <Grid item xs={12} md={7} lg={8}>
           <Card elevation={0}>
             <CardContent>
-              <Typography variant='h2'>Und so wirds gemacht:</Typography>
+              <Typography variant='h2'>Zubereitung</Typography>
               <Typography>{blogs[0]?.description}</Typography>
             </CardContent>
           </Card>

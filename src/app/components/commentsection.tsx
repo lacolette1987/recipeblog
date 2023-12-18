@@ -40,7 +40,7 @@ const CommentSection = () => {
       
     return (
     <>
-      <Typography variant="h3" sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
+      <Typography variant="h2" sx={{ m: '50px 0px 0px 0px' }}>Kommentare</Typography>
       {currentUser ? (
         <AddCommentForm
           submitForm={(comment) =>

@@ -219,9 +219,9 @@ const myTheme = createTheme({
             fontWeight: 400,
         },
         subtitle1: {
-            fontSize: 15,
+            fontSize: 17,
             lineHeight: 1.3,
-            marginBottom: 6,
+            marginBottom: 10,
             fontWeight: 600,
             color: Colors.secondary.main,
             letterSpacing: 0,

@@ -297,7 +297,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
               ></AddButton>
             </Grid>
           </Grid>
-          <AddList>
+          <AddList sx={{mb: '30px'}}>
             {form.ingredients.map((item, index) => (
               <AddListItem disablePadding key={index}>
                 <ListItemText primary={
