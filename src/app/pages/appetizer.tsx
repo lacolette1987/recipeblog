@@ -5,31 +5,25 @@ import { Grid, Stack, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import { MainContainer, MainImage } from '../theme/my-theme';
-import { Container } from '@mui/system';
 import Blog from '../models/Blog';
 import Tags from '../components/layout/tags';
 import BlankSlate from '../components/blankslate/blankslate-blog';
 
-const Cooking = () => {
+const Appetizer = () => {
   const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
-  const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Apéro')), [blogs]);
+  const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Vorspeise')), [blogs]);
 
   useEffect(() => {
-    queryBlogs({ category: 'Kochen' });
+    queryBlogs({ category: 'Vorspeise' });
   }, []);
 
   return (
     <MainContainer maxWidth='lg'>
         <Stack sx={{ m: '0 0 40px 0' }}>
-          <Typography variant="h1"> Kochen</Typography>
+          <Typography variant="h1">Vorspeise</Typography>
           <Typography>
-            In der Küche treffen Kulturen und Traditionen aufeinander. Jede
-            Region der Welt hat ihre eigenen einzigartigen Gerichte und
-            Zubereitungstechniken, die von Generation zu Generation
-            weitergegeben werden. Das Kochen ermöglicht uns, die Welt zu
-            erkunden, indem wir verschiedene Küchen und kulinarische Traditionen
-            kennenlernen und ausprobieren.
+            Coming soon...
           </Typography>
         </Stack>
         <Grid container spacing={{ sm: 4, md: 6 }}>
@@ -67,4 +61,4 @@ const Cooking = () => {
   );
 };
 
-export default Cooking;
+export default Appetizer;

@@ -10,6 +10,21 @@ const Footer = () => {
           <Grid item>
             <Grid container spacing={3}>
               <Grid item>
+                <Link href="/">
+                  <Typography
+                    variant="body1"
+                    sx={{ 
+                      color: Colors.primary.contrastText,
+                      transition: '.3s ease-out',
+                      '&:hover': {
+                        color: Colors.primary.dark,
+                      },                    }}
+                  >
+                    Startseite
+                  </Typography>
+                </Link>
+              </Grid>
+              <Grid item>
                 <Link href="/imprint">
                   <Typography
                     variant="body1"
@@ -21,36 +36,6 @@ const Footer = () => {
                       },                    }}
                   >
                     Impressum
-                  </Typography>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/baking">
-                  <Typography
-                    variant="body1"
-                    sx={{ 
-                      color: Colors.primary.contrastText,
-                      transition: '.3s ease-out',
-                      '&:hover': {
-                        color: Colors.primary.dark,
-                      },                    }}
-                  >
-                    Backen
-                  </Typography>
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="/cooking">
-                  <Typography
-                    variant="body1"
-                    sx={{ 
-                      color: Colors.primary.contrastText,
-                      transition: '.3s ease-out',
-                      '&:hover': {
-                        color: Colors.primary.dark,
-                      },                    }}
-                  >
-                    Kochen
                   </Typography>
                 </Link>
               </Grid>

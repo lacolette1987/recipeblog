@@ -6,7 +6,7 @@ import User from '../models/User';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { Autocomplete, FormControl, FormControlLabel, Grid, IconButton, ListItemSecondaryAction, ListItemText, Radio, RadioGroup, SelectChangeEvent, Stack, } from '@mui/material';
+import { Autocomplete, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, IconButton, InputLabel, ListItemSecondaryAction, ListItemText, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, Stack, } from '@mui/material';
 import { AddButton, AddList, AddListItem, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
 
@@ -30,6 +30,7 @@ export interface BlogFormState {
   level: string;
   lead: string;
   description: string;
+  quantity: string;
   tags: string[];
   ingredients: Ingredient[];
   duration: string;
@@ -43,6 +44,7 @@ const initialState: BlogFormState = {
   category: '',
   level: '',
   description: '',
+  quantity: '',
   tags: [],
   ingredients: [],
   duration: '',
@@ -52,7 +54,7 @@ const initialState: BlogFormState = {
 
 const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm, initialFormState = initialState, }) => {
   const [form, setForm] = useState(initialFormState);
-  const { title, category, level, lead, duration, description, ingredients, isEditMode, } = form;
+  const { title, category, level, lead, duration, description, quantity, ingredients, isEditMode, } = form;
 
   const [listItemText, setListItemText] = useState<string>('');
   const isSubmitDisabled = useMemo<boolean>(
@@ -62,15 +64,15 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
 
 
   const [ingredient, setIngredient] = useState<string>('');
-  const [quantity, setQuantity] = useState<string>('');
+  const [amount, setAmount] = useState<string>('');
 
 
   const handleAddIngredient = () => {
-    if (ingredient.trim() !== '' && quantity.trim() !== '') {
-      const newIngredient: Ingredient = { name: ingredient, amount: quantity };
+    if (ingredient.trim() !== '' && amount.trim() !== '') {
+      const newIngredient: Ingredient = { name: ingredient, amount: amount };
       setForm({ ...form, ingredients: [...form.ingredients, newIngredient] });
       setIngredient('');
-      setQuantity('');
+      setAmount('');
     }
   };
 
@@ -113,7 +115,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (title && lead && description && duration && ingredients && category) {
+    if (title && lead && description && quantity && duration && ingredients && category) {
       submitForm(form);
     }
   };
@@ -151,6 +153,15 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
             name="lead"
             onChange={handleChange}
           />
+          {/* <FormGroup>
+            <FormControlLabel required control={<Checkbox />} label="Apéro" />
+            <FormControlLabel required control={<Checkbox />} label="Vorspeise" />
+            <FormControlLabel required control={<Checkbox />} label="Hauptgang" />
+            <FormControlLabel required control={<Checkbox />} label="Dessert" />
+            <FormControlLabel required control={<Checkbox />} label="Backen" />
+            <FormControlLabel required control={<Checkbox />} label="Sonstiges" />
+          </FormGroup>
+ */}
           <FormControl sx={{m: '0px 0px 20px 0px'}}>
             <RadioGroup
             row
@@ -160,14 +171,34 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
               onChange={onCategoryChange}
             >
               <FormControlLabel
-                value="Kochen"
+                value="Apéro"
                 control={<Radio required={true} />}
-                label="Kochen"
+                label="Apéro"
                 />
+              <FormControlLabel
+                value="Vorspeise"
+                control={<Radio required={true} />}
+                label="Vorspeise"
+                />
+              <FormControlLabel
+                value="Hauptgang"
+                control={<Radio required={true} />}
+                label="Hauptgang"
+              />
+              <FormControlLabel
+                value="Dessert"
+                control={<Radio required={true} />}
+                label="Dessert"
+              />
               <FormControlLabel
                 value="Backen"
                 control={<Radio required={true} />}
                 label="Backen"
+              />
+              <FormControlLabel
+                value="Sonstiges"
+                control={<Radio required={true} />}
+                label="Sonstiges"
               />
             </RadioGroup>
           </FormControl>
@@ -176,7 +207,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
             required
             fullWidth
             id="duration"
-            label="Zeit"
+            label="Zubereitungszeit (Minuten)"
             type="number"
             name="duration"
             autoComplete="duration"
@@ -184,6 +215,18 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
             value={duration}
             onChange={handleChange}
           />
+            <TextField
+              margin="normal"
+              required
+              fullWidth
+              id="outlined-multiline-flexible"
+              label="Für wie viele Personen / Stückanzahl"
+              multiline
+              maxRows={4}
+              value={quantity}
+              name="quantity"
+              onChange={handleChange}
+            />
           <Stack>
             <Autocomplete
               fullWidth
@@ -232,8 +275,8 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
                   fullWidth
                   variant="outlined"
                   label="Menge"
-                  value={quantity}
-                  onChange={(e) => setQuantity(e.target.value)}
+                  value={amount}
+                  onChange={(e) => setAmount(e.target.value)}
                 />
             </Grid>
             <Grid item xs={9}>
@@ -355,13 +398,10 @@ const tags = [
   { tagtitle: 'Sommer' },
   { tagtitle: 'Herbst' },
   { tagtitle: 'Winter' },
-  { tagtitle: 'Hauptgang' },
-  { tagtitle: 'Apéro' },
-  { tagtitle: 'Dessert' },
   { tagtitle: 'Gebäck' },
-  { tagtitle: 'Weihnachten' },
+  { tagtitle: 'Torten & Kuchen' },
+  { tagtitle: 'Guezli' },
   { tagtitle: 'Vegetarisch' },
-  { tagtitle: 'Vegan' },
 ];
 
 export default BlogForm;

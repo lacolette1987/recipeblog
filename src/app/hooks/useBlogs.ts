@@ -22,6 +22,7 @@ function useBlogs() {
         ingredients: documentData.ingredients,
         lead: documentData.lead,
         description: documentData.description,
+        quantity: documentData.quantity,
         tags: documentData.tags,
         duration: documentData.duration,
         author: documentData.author,
