@@ -10,7 +10,7 @@ const Colors = {
     lightgrey: '#dddddd',
     grey: '#a4a2a1',
     primary: {
-        light: '#8185a6',
+        light: '#e0d0bb',
         main: '#4e5277',
         dark: '#393d68',
         contrastText: '#ffffff',
@@ -69,7 +69,7 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     background: Colors.white,
-                    padding: '30px',
+                    padding: '25px',
                 }
             }
         },
@@ -100,7 +100,7 @@ const myTheme = createTheme({
             styleOverrides: {
                 root: {
                     borderRadius: 0,
-                    marginBottom: '30px'
+                    marginBottom: '0px'
                 }
             }
         },
@@ -249,12 +249,11 @@ const myTheme = createTheme({
             },
         },
         h3: {
-            fontFamily: 'Josefin Sans, sans-serif',
+            fontFamily: 'Caveat, cursive',
             fontWeight: 500,
-            fontSize: 20,
-            marginBottom: 10,
-            textTransform: "uppercase",
-            letterSpacing: 1,
+            fontSize: 40,
+            marginBottom: 15,
+            color: Colors.secondary.main
         },
         h4: {
             fontFamily: 'Josefin Sans, sans-serif',

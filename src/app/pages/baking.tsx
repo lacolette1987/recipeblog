@@ -31,8 +31,8 @@ const Baking = () => {
             kennenlernen und ausprobieren.
           </Typography>
         </Stack>
-        <Grid container spacing={{ sm: 4, md: 6 }}>
-          <Grid item xs={12} sm={7} md={8}>
+        <Grid container spacing={{ md: 4, lg: 6 }}>
+          <Grid item xs={12} md={7} lg={8}>
             <Grid container spacing={4}>
             <Grid item>
               {blogs.length > 0 ? (
@@ -47,7 +47,7 @@ const Baking = () => {
                 </Grid>
             </Grid>
           </Grid>
-          <Grid item xs={12} sm={5} md={4}>
+          <Grid item xs={12} md={5} lg={4}>
           <Grid item>
             {blogs.length > 0 ? (
               <Typography variant='h2'>Guezli</Typography>

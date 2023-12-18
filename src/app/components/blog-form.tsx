@@ -26,15 +26,15 @@ interface BlogFormProps {
 
 export interface BlogFormState {
   title: string;
-  category: string;
-  level: string;
   lead: string;
-  description: string;
+  category: string;
+  duration: string;
   quantity: string;
   tags: string[];
+  level: string;
   ingredients: Ingredient[];
-  duration: string;
-
+  description: string;
+  additional: string;
   isEditMode: boolean;
 }
 
@@ -42,19 +42,19 @@ const initialState: BlogFormState = {
   title: '',
   lead: '',
   category: '',
-  level: '',
-  description: '',
+  duration: '',
   quantity: '',
   tags: [],
+  level: '',
   ingredients: [],
-  duration: '',
-
+  description: '',
+  additional: '',
   isEditMode: false,
 };
 
 const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm, initialFormState = initialState, }) => {
   const [form, setForm] = useState(initialFormState);
-  const { title, category, level, lead, duration, description, quantity, ingredients, isEditMode, } = form;
+  const { title, lead, category, duration, quantity, level, ingredients, description, additional, isEditMode, } = form;
 
   const [listItemText, setListItemText] = useState<string>('');
   const isSubmitDisabled = useMemo<boolean>(
@@ -68,7 +68,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
 
 
   const handleAddIngredient = () => {
-    if (ingredient.trim() !== '' && amount.trim() !== '') {
+    if (ingredient.trim() !== '') {
       const newIngredient: Ingredient = { name: ingredient, amount: amount };
       setForm({ ...form, ingredients: [...form.ingredients, newIngredient] });
       setIngredient('');
@@ -115,7 +115,7 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (title && lead && description && quantity && duration && ingredients && category) {
+    if (title && lead && description && quantity && duration && additional && ingredients && category) {
       submitForm(form);
     }
   };
@@ -333,6 +333,17 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
             maxRows={4}
             value={description}
             name="description"
+            onChange={handleChange}
+          />
+          <TextField
+            margin="normal"
+            fullWidth
+            id="outlined-multiline-flexible"
+            label="Tipps & Tricks"
+            multiline
+            maxRows={4}
+            value={additional}
+            name="additional"
             onChange={handleChange}
           />
           <Grid container justifyContent={'space-between'}>

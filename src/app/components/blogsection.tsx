@@ -37,9 +37,9 @@ const BlogSection: React.FC<BlogSectionProps> = ({
 
 
   return (
-    <Grid container spacing={4}>
+    <Grid container spacing={4} sx={{mb: '30px'}}>
       {blogs?.map((blog) => (
-        <Grid item xs={12} sm={12} md={6} key={blog.uid}>
+        <Grid item xs={12} sm={12} lg={6} key={blog.uid}>
           <Card elevation={0}>
             <Link to={`/detail/${blog.uid}`}>
               <CardMedia
