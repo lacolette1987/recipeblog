@@ -15,11 +15,7 @@ interface BlogSectionProps {
   handleDelete?: (uid: string) => void;
 }
 
-const BlogSection: React.FC<BlogSectionProps> = ({
-                                                   blogs,
-                                                   user,
-                                                   handleDelete
-                                                 }) => {
+const BlogSection: React.FC<BlogSectionProps> = ({ blogs, user, handleDelete }) => {
   const userId = user?.uid;
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deletingUid, setDeletingUid] = useState<string>('');

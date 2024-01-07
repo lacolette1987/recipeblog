@@ -1,14 +1,20 @@
-import {  collection, getDoc, getDocs } from 'firebase/firestore';
+import { collection, getDoc, getDocs } from 'firebase/firestore';
 import { useState } from 'react';
 import { db } from '../firebase-config';
 import { Comment, Comments } from '../models/Comments';
 import { QueryDocumentSnapshot, DocumentSnapshot } from '@firebase/firestore';
 import commentService from '../services/comments.service';
 
+
+// Custom hook to manage comment data in a blog using Firebase Firestore.
+
 function useComments() {
 
   const [comments, setComments] = useState<Comments>([]);
   const [error, setError] = useState<string | null>(null);
+
+
+  // Function to map Firestore document to Comment model
 
   const mapToComment = (doc: QueryDocumentSnapshot | DocumentSnapshot) => {
     const documentData = doc?.data();
@@ -24,6 +30,10 @@ function useComments() {
       rating: documentData.rating
     } as Comment;
   };
+
+
+  // Function to retrieve all comments for a specific blog post
+
   const queryAllComments = (blogId: string) => {
     const commentsRef = collection(db, 'blogs', blogId, 'comments');
     getDocs(commentsRef)
@@ -36,6 +46,10 @@ function useComments() {
         setError(e.message);
       });
   };
+
+
+  // Function to create a new comment for a blog post
+
   const createComment = async (blogId: string, comment: Comment) => {
     if (!blogId) return;
     try {
@@ -48,6 +62,9 @@ function useComments() {
     }
   };
 
+
+  // Function to delete a comment from a blog post
+
   const deleteComment = async (blogId: string, uid: string) => {
     try {
       await commentService.delete(blogId, uid);
@@ -57,6 +74,9 @@ function useComments() {
     }
   };
 
+
+  // Function to trigger retrieval of comments for a specific blog post
+
   const queryComments = (blogId: string) => {
     if (!blogId) {
       return;
@@ -64,6 +84,9 @@ function useComments() {
 
     queryAllComments(blogId);
   };
+
+
+  // Expose the state and functions for use in component code
 
   return {
     comments,
