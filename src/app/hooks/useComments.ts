@@ -8,7 +8,6 @@ import commentService from '../services/comments.service';
 function useComments() {
 
   const [comments, setComments] = useState<Comments>([]);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   const mapToComment = (doc: QueryDocumentSnapshot | DocumentSnapshot) => {
@@ -71,7 +70,6 @@ function useComments() {
     queryComments,
     createComment,
     deleteComment,
-    loading,
     error
   };
 }

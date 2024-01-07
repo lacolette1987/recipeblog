@@ -1,5 +1,5 @@
 import { Box, Container } from '@mui/material';
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import BlogForm, { BlogFormState } from '../components/blog-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -23,7 +23,6 @@ const EditBlog = () => {
   );
 
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
-  const [uploadProcess, setUploadProcess] = useState<number>(0);
 
   useEffect(() => {
     if (blogId) {
@@ -33,7 +32,7 @@ const EditBlog = () => {
 
   const submit = async (form: BlogFormState) => {
     try {
-      const hasUpdated = await blogsService.updateBlog(blogId!, { ...form });
+      await blogsService.updateBlog(blogId!, { ...form });
       console.log('Update success!');
       navigate(`/detail/${blogId}`);
     } catch (e) {
@@ -47,9 +46,9 @@ const EditBlog = () => {
       {blogForm ? (
         <BlogForm
           user={currentUser}
-          uploadProcess={uploadProcess}
-          setFile={(file: File) => {
-            //
+          uploadProcess={0}
+          setFile={() => {
+            // no img upload in edit mode
           }}
           submitForm={submit}
           initialFormState={blogForm}

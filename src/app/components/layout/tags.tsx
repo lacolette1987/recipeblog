@@ -6,10 +6,9 @@ import { Colors } from '../../theme/my-theme';
 
 interface TagsProps {
     blog: Blog;
-    ratingValue: number | null;
   }
 
-const Tags: React.FC<TagsProps> = ({ blog, ratingValue }) => {
+const Tags: React.FC<TagsProps> = ({ blog }) => {
 
     const linkStyles = {
         textDecoration: 'none',
@@ -27,12 +26,13 @@ const Tags: React.FC<TagsProps> = ({ blog, ratingValue }) => {
               component='img'
               image={blog.imgUrl}
               title={blog.title}
-            />
+              alt={blog.title}
+          />
           </Link>
         </Grid>
         <Grid item xs={8.3} alignItems={'center'}>
             <Link to={`/detail/${blog.uid}`} style={linkStyles}>
-                <Typography sx={{marginBottom: '3px', fontWeight: 700}}>{blog.title}</Typography>
+                <Typography variant='h5'>{blog.title}</Typography>
                 {blog.avgRating ? <Rating readOnly sx={{p: 0}} size='small' name='simple-controlled' value={blog.avgRating} /> : ''}
             </Link>
         </Grid>

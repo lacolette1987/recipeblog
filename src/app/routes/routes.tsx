@@ -11,8 +11,10 @@ import ForgotPassword from '../pages/forgot';
 import Dessert from '../pages/dessert';
 import MainCourse from '../pages/maincourse';
 import Apero from '../pages/apero';
+import TagsPage from '../pages/tags-page';
 import Appetizer from '../pages/appetizer';
 import Baking from '../pages/baking';
+import React from 'react';
 
 const AppRoutes = () => {
 
@@ -26,6 +28,7 @@ const AppRoutes = () => {
         <Route path='/edit/:blogId' element={<Edit />} />
       </Route>
       <Route path='/apero' element={<Apero />} />
+      <Route path='/tags/:tag' element={<TagsPage />} />
       <Route path='/vorspeise' element={<Appetizer />} />
       <Route path='/hauptgang' element={<MainCourse />} />
       <Route path='/dessert' element={<Dessert />} />

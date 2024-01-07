@@ -3,15 +3,14 @@ import FacebookSharpIcon from '@mui/icons-material/FacebookSharp';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
 import { Grid } from '@mui/material';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { IconStyle } from '../theme/my-theme';
 
 interface SharingProps {
-  blogId: string,
   title: string;
 }
 
-const Sharing:React.FC<SharingProps> = ({blogId, title}) => {
+const Sharing:React.FC<SharingProps> = ({title}) => {
 
 
 

@@ -1,13 +1,11 @@
-import React, { useState } from 'react';
-import { sendPasswordResetEmail } from 'firebase/auth';
-import { auth } from '../../firebase-config';
+import React from 'react';
 import { Button, TextField, Typography } from '@mui/material';
 import { MainContainer } from '../../theme/my-theme';
 import { Controller, useForm } from 'react-hook-form';
 
 
 interface ForgotFormProps {
-  handleResetPassword: (email: string) => {},
+  handleResetPassword: (email: string) => void,
   message: string,
 }
 

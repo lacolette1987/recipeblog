@@ -1,18 +1,18 @@
 import { Card, CardContent, CardMedia, Grid, Rating, Typography } from '@mui/material';
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import User from '../models/User';
 import DialogDelete from './dialog-delete';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
 import EditIcon from '@mui/icons-material/Edit';
 import { Colors, ReadmoreButton } from '../theme/my-theme';
 import Blog from '../models/Blog';
+import { Link } from 'react-router-dom';
 
 
 interface BlogSectionProps {
   blogs: Blog[];
   user?: User;
-  handleDelete: (uid: string) => void;
+  handleDelete?: (uid: string) => void;
 }
 
 const BlogSection: React.FC<BlogSectionProps> = ({
@@ -25,7 +25,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({
   const [deletingUid, setDeletingUid] = useState<string>('');
 
   const handleDeleteBlog = () => {
-    handleDelete(deletingUid);
+    handleDelete!(deletingUid);
     setDeleteDialogOpen(false);
     setDeletingUid('');
   };
@@ -37,7 +37,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({
 
 
   return (
-    <Grid container spacing={4} sx={{mb: '30px'}}>
+    <Grid container spacing={4} sx={{ mb: '30px' }}>
       {blogs?.map((blog) => (
         <Grid item xs={12} sm={12} lg={6} key={blog.uid}>
           <Card elevation={0}>
@@ -46,6 +46,7 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                 component='img'
                 image={blog.imgUrl}
                 title={blog.title}
+                alt={'Bild von ' + blog.title}
               />
             </Link>
             <CardContent>
@@ -68,29 +69,33 @@ const BlogSection: React.FC<BlogSectionProps> = ({
                   <Grid item xs={2}>
                     <Grid container alignItems={'center'} justifyContent={'flex-end'} spacing={1}>
                       <Grid item xs={6}>
-                        <Link to={`/edit/${blog.uid}`}>
-                          <EditIcon 
-                            sx={{ 
+                        <Link aria-label='Rezept bearbeiten' to={`/edit/${blog.uid}`}>
+                          <EditIcon
+                            role='button'
+                            sx={{
                               color: Colors.secondary.main,
                               transition: '.3s ease-out',
                               '&:hover': {
-                                color: Colors.primary.main,
-                              },
-                                      }} />
+                                color: Colors.primary.main
+                              }
+                            }} />
                         </Link>
                       </Grid>
-                      <Grid item xs={6}>
-                        <DeleteOutlinedIcon
-                          sx={{ 
-                            color: Colors.secondary.main,
-                            transition: '.3s ease-out',
-                            '&:hover': {
-                              color: Colors.primary.main,
-                            },
-                                  }}
-                          onClick={() => handleClickOpen(blog.uid)}
-                        ></DeleteOutlinedIcon>
-                      </Grid>
+                      {handleDelete ?
+                        <Grid item xs={6}>
+                          <DeleteOutlinedIcon
+                            aria-label='Rezept löschen'
+                            sx={{
+                              color: Colors.secondary.main,
+                              transition: '.3s ease-out',
+                              '&:hover': {
+                                color: Colors.primary.main
+                              }
+                            }}
+                            onClick={() => handleClickOpen(blog.uid)}
+                          ></DeleteOutlinedIcon>
+                        </Grid>
+                        : ''}
                     </Grid>
                   </Grid>
                 ) : (

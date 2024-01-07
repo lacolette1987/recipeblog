@@ -10,7 +10,7 @@ import Blog from '../models/Blog';
 import BlankSlate from '../components/blankslate/blankslate-blog';
 
 const MainCourse = () => {
-  const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
+  const { blogs, queryBlogs, deleteBlog } = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
 
 
@@ -31,11 +31,11 @@ const MainCourse = () => {
     <MainContainer maxWidth='lg'>
         <Stack sx={{ m: '0 0 40px 0' }}>
           <Typography variant="h1">Hauptgang</Typography>
-          <Typography>Das Backen ist nicht nur eine kulinarische Kunst, sondern auch eine herzliche Umarmung für die Sinne. Es ist eine Zeitreise in die Wärme und Geborgenheit unserer Kindheit, als der verlockende Duft von frisch gebackenem Brot oder köstlichen Kuchen die Küche erfüllte und uns ein Lächeln ins Gesicht zauberte.</Typography>
+          <Typography>Der Hauptgang ist das Herzstück einer Mahlzeit und oft das, was den kulinarischen Höhepunkt eines Essens ausmacht. Es ist der Teil des Menüs, auf den die meisten Menschen am meisten gespannt sind, und er bietet die Möglichkeit, mit einer breiten Palette von Zutaten, Zubereitungsarten und Geschmacksrichtungen zu experimentieren.</Typography>
         </Stack>
-        <Grid container spacing={{ md: 4, lg: 6 }}>
+        <Grid container columnSpacing={{ md: 4, lg: 6 }}>
           <Grid item xs={12} md={7} lg={8}>
-            <Grid container spacing={4}>
+            <Grid container columnSpacing={4}>
               <Grid item>
               {blogs.length > 0 ? (
                 <BlogSection
@@ -58,7 +58,7 @@ const MainCourse = () => {
               )}
               {filteredBlogs.map((blog: Blog) => (
                 <div key={blog.uid}>
-                  <Tags blog={blog} ratingValue={0} />
+                  <Tags blog={blog} />
                 </div>
               ))}
             </Grid>

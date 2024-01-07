@@ -4,7 +4,7 @@ import { RootState } from '../store/store';
 import { MainContainer } from '../theme/my-theme';
 import BlogSection from '../components/blogsection';
 import useBlogs from '../hooks/useBlogs';
-import { useEffect, useMemo } from 'react';
+import React, { useEffect, useMemo } from 'react';
 
 
 const Profile = () => {

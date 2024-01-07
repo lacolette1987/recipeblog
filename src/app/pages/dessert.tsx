@@ -4,13 +4,13 @@ import BlogSection from '../components/blogsection';
 import { Grid, Stack, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
-import { MainContainer, MainImage } from '../theme/my-theme';
+import { MainContainer } from '../theme/my-theme';
 import Blog from '../models/Blog';
 import Tags from '../components/layout/tags';
 import BlankSlate from '../components/blankslate/blankslate-blog';
 
 const Dessert = () => {
-  const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
+  const { blogs, queryBlogs, deleteBlog } = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
   const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Torten & Kuchen')), [blogs]);
 
@@ -22,18 +22,11 @@ const Dessert = () => {
     <MainContainer maxWidth='lg'>
         <Stack sx={{ m: '0 0 40px 0' }}>
           <Typography variant="h1">Dessert</Typography>
-          <Typography>
-            In der Küche treffen Kulturen und Traditionen aufeinander. Jede
-            Region der Welt hat ihre eigenen einzigartigen Gerichte und
-            Zubereitungstechniken, die von Generation zu Generation
-            weitergegeben werden. Das Kochen ermöglicht uns, die Welt zu
-            erkunden, indem wir verschiedene Küchen und kulinarische Traditionen
-            kennenlernen und ausprobieren.
-          </Typography>
+          <Typography>Desserts sind das süße Finale eines jeden Mahls und eine wahre Freude für die Sinne. Sie bieten eine verlockende Möglichkeit, den Geschmackssinn zu verwöhnen und den Genuss einer Mahlzeit zu krönen. Egal, ob Sie ein einfaches Eis genießen oder ein aufwendiges, kunstvoll dekoriertes Dessert probieren, die Welt der Desserts bietet eine Fülle von Möglichkeiten, die für jeden Gaumen etwas bereithalten.</Typography>
         </Stack>
-        <Grid container spacing={{ md: 4, lg: 6 }}>
+        <Grid container columnSpacing={{ md: 4, lg: 6 }}>
           <Grid item xs={12} md={7} lg={8}>
-            <Grid container spacing={4}>
+            <Grid container columnSpacing={4}>
             <Grid item>
               {blogs.length > 0 ? (
                 <BlogSection
@@ -56,7 +49,7 @@ const Dessert = () => {
               )}
               {filteredBlogs.map((blog: Blog) => (
                 <div key={blog.uid}>
-                  <Tags blog={blog} ratingValue={0} />
+                  <Tags blog={blog} />
                 </div>
               ))}
             </Grid>

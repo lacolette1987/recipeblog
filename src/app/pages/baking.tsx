@@ -10,7 +10,7 @@ import Tags from '../components/layout/tags';
 import BlankSlate from '../components/blankslate/blankslate-blog';
 
 const Baking = () => {
-  const { blogs, queryBlogs, deleteBlog, loading, error } = useBlogs();
+  const { blogs, queryBlogs, deleteBlog} = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
   const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Guezli')), [blogs]);
 
@@ -22,18 +22,11 @@ const Baking = () => {
     <MainContainer maxWidth='lg'>
         <Stack sx={{ m: '0 0 40px 0' }}>
           <Typography variant="h1">Backen</Typography>
-          <Typography>
-            In der Küche treffen Kulturen und Traditionen aufeinander. Jede
-            Region der Welt hat ihre eigenen einzigartigen Gerichte und
-            Zubereitungstechniken, die von Generation zu Generation
-            weitergegeben werden. Das Kochen ermöglicht uns, die Welt zu
-            erkunden, indem wir verschiedene Küchen und kulinarische Traditionen
-            kennenlernen und ausprobieren.
-          </Typography>
+          <Typography variant='body1'>Das Backen ist eine der ältesten kulinarischen Traditionen der Menschheit und ein wunderbarer Weg, um köstliche Leckereien zu kreieren und Menschen zusammenzubringen. Es gibt kaum etwas Besseres als den verlockenden Duft von frisch gebackenem Brot, Kuchen oder Keksen, der sich im ganzen Haus ausbreitet und die Vorfreude auf das Genießen steigert.</Typography>
         </Stack>
-        <Grid container spacing={{ md: 4, lg: 6 }}>
+        <Grid container columnSpacing={{ md: 4, lg: 6 }}>
           <Grid item xs={12} md={7} lg={8}>
-            <Grid container spacing={4}>
+            <Grid container columnSpacing={4}>
             <Grid item>
               {blogs.length > 0 ? (
                 <BlogSection
@@ -56,7 +49,7 @@ const Baking = () => {
               )}
               {filteredBlogs.map((blog: Blog) => (
                 <div key={blog.uid}>
-                  <Tags blog={blog} ratingValue={0} />
+                  <Tags blog={blog} />
                 </div>
               ))}
             </Grid>

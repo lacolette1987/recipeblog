@@ -6,15 +6,23 @@ import User from '../models/User';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
 import DeleteIcon from '@mui/icons-material/Delete';
 import AddCircleIcon from '@mui/icons-material/AddCircle';
-import { Autocomplete, Checkbox, FormControl, FormControlLabel, FormGroup, Grid, IconButton, InputLabel, ListItemSecondaryAction, ListItemText, MenuItem, Radio, RadioGroup, Select, SelectChangeEvent, Stack, } from '@mui/material';
+import {
+  Autocomplete,
+  FormControl,
+  FormControlLabel,
+  Grid,
+  IconButton,
+  ListItemSecondaryAction,
+  ListItemText,
+  Radio,
+  RadioGroup,
+  SelectChangeEvent,
+  Stack
+} from '@mui/material';
 import { AddButton, AddList, AddListItem, MainContainer } from '../theme/my-theme';
 import { Link } from 'react-router-dom';
+import Ingredient from '../models/Ingredients';
 
-
-export interface Ingredient {
-  name: string;
-  amount: string;
-}
 
 interface BlogFormProps {
   user?: User;
@@ -49,14 +57,18 @@ const initialState: BlogFormState = {
   ingredients: [],
   description: '',
   additional: '',
-  isEditMode: false,
+  isEditMode: false
 };
 
-const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm, initialFormState = initialState, }) => {
+const BlogForm: React.FC<BlogFormProps> = ({
+                                             uploadProcess,
+                                             setFile,
+                                             submitForm,
+                                             initialFormState = initialState
+                                           }) => {
   const [form, setForm] = useState(initialFormState);
-  const { title, lead, category, duration, quantity, level, ingredients, description, additional, isEditMode, } = form;
+  const { title, lead, category, duration, quantity, level, ingredients, description, additional, isEditMode } = form;
 
-  const [listItemText, setListItemText] = useState<string>('');
   const isSubmitDisabled = useMemo<boolean>(
     () => (isEditMode ? false : uploadProcess !== null && uploadProcess < 100),
     [isEditMode, uploadProcess]
@@ -77,7 +89,6 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
   };
 
 
-
   const handleDeleteListItem = (index: number) => {
     const updatedList = [...form.ingredients];
     updatedList.splice(index, 1);
@@ -88,14 +99,14 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
     const { name, value } = event.target;
     setForm((prevForm) => ({
       ...prevForm,
-      [name]: value,
+      [name]: value
     }));
   };
 
   const handleTagsChange = (event: React.SyntheticEvent, newValue: { tagtitle: string }[]) => {
     setForm((prevForm) => ({
       ...prevForm,
-      tags: newValue.map((tag) => tag.tagtitle),
+      tags: newValue.map((tag) => tag.tagtitle)
     }));
   };
 
@@ -115,304 +126,295 @@ const BlogForm: React.FC<BlogFormProps> = ({ uploadProcess, setFile, submitForm,
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (title && lead && description && quantity && duration && additional && ingredients && category) {
+    if (title && lead && description && quantity && duration && ingredients && category) {
       submitForm(form);
     }
   };
 
   return (
-      <MainContainer maxWidth="md">
-        {!isEditMode ? (
-          <Typography variant="h1">Erfasse ein Rezept</Typography>
-        ) : (
-          <Typography variant="h1">Bearbeite dein Rezept</Typography>
-        )}
+    <MainContainer maxWidth='md'>
+      {!isEditMode ? (
+        <Typography variant='h1'>Erfasse ein Rezept</Typography>
+      ) : (
+        <Typography variant='h1'>Bearbeite dein Rezept</Typography>
+      )}
 
-        <form onSubmit={handleSubmit}>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="title"
-            label="Rezepttitel"
-            name="title"
-            autoComplete="title"
-            autoFocus
-            value={title}
-            onChange={handleChange}
-          />
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="outlined-multiline-flexible"
-            label="Einleitung"
-            multiline
-            maxRows={4}
-            value={lead}
-            name="lead"
-            onChange={handleChange}
-          />
-          {/* <FormGroup>
-            <FormControlLabel required control={<Checkbox />} label="Apéro" />
-            <FormControlLabel required control={<Checkbox />} label="Vorspeise" />
-            <FormControlLabel required control={<Checkbox />} label="Hauptgang" />
-            <FormControlLabel required control={<Checkbox />} label="Dessert" />
-            <FormControlLabel required control={<Checkbox />} label="Backen" />
-            <FormControlLabel required control={<Checkbox />} label="Sonstiges" />
-          </FormGroup>
- */}
-          <FormControl sx={{m: '0px 0px 20px 0px'}}>
-            <RadioGroup
+      <form onSubmit={handleSubmit}>
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          id='title'
+          label='Rezepttitel'
+          name='title'
+          autoComplete='title'
+          autoFocus
+          value={title}
+          onChange={handleChange}
+        />
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          id='outlined-multiline-flexible'
+          label='Einleitung'
+          multiline
+          maxRows={4}
+          value={lead}
+          name='lead'
+          onChange={handleChange}
+        />
+        <FormControl sx={{ m: '0px 0px 20px 0px' }}>
+          <RadioGroup
             row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              value={category}
-              onChange={onCategoryChange}
-            >
-              <FormControlLabel
-                value="Apéro"
-                control={<Radio required={true} />}
-                label="Apéro"
-                />
-              <FormControlLabel
-                value="Vorspeise"
-                control={<Radio required={true} />}
-                label="Vorspeise"
-                />
-              <FormControlLabel
-                value="Hauptgang"
-                control={<Radio required={true} />}
-                label="Hauptgang"
-              />
-              <FormControlLabel
-                value="Dessert"
-                control={<Radio required={true} />}
-                label="Dessert"
-              />
-              <FormControlLabel
-                value="Backen"
-                control={<Radio required={true} />}
-                label="Backen"
-              />
-              <FormControlLabel
-                value="Sonstiges"
-                control={<Radio required={true} />}
-                label="Sonstiges"
-              />
-            </RadioGroup>
-          </FormControl>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="duration"
-            label="Zubereitungszeit (Minuten)"
-            type="number"
-            name="duration"
-            autoComplete="duration"
-            autoFocus
-            value={duration}
-            onChange={handleChange}
-          />
+            aria-labelledby='demo-row-radio-buttons-group-label'
+            name='row-radio-buttons-group'
+            value={category}
+            onChange={onCategoryChange}
+          >
+            <FormControlLabel
+              value='Apéro'
+              control={<Radio required={true} />}
+              label='Apéro'
+            />
+            <FormControlLabel
+              value='Vorspeise'
+              control={<Radio required={true} />}
+              label='Vorspeise'
+            />
+            <FormControlLabel
+              value='Hauptgang'
+              control={<Radio required={true} />}
+              label='Hauptgang'
+            />
+            <FormControlLabel
+              value='Dessert'
+              control={<Radio required={true} />}
+              label='Dessert'
+            />
+            <FormControlLabel
+              value='Backen'
+              control={<Radio required={true} />}
+              label='Backen'
+            />
+          </RadioGroup>
+        </FormControl>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
             <TextField
-              margin="normal"
+              margin='normal'
               required
               fullWidth
-              id="outlined-multiline-flexible"
-              label="Für wie viele Personen / Stückanzahl"
+              id='duration'
+              label='Zubereitungszeit (Minuten)'
+              type='number'
+              name='duration'
+              autoComplete='duration'
+              autoFocus
+              value={duration}
+              onChange={handleChange}
+            />
+          </Grid>
+          <Grid item xs={6}>
+            <TextField
+              margin='normal'
+              required
+              fullWidth
+              id='outlined-multiline-flexible'
+              label='Portionen / Stückanzahl'
               multiline
               maxRows={4}
               value={quantity}
-              name="quantity"
+              name='quantity'
               onChange={handleChange}
             />
-          <Stack>
-            <Autocomplete
-              fullWidth
-              multiple
-              id="tags-standard"
-              options={tags}
-              getOptionLabel={(option) => option.tagtitle}
-              isOptionEqualToValue={(option, value) =>
-                option.tagtitle === value.tagtitle
-              }
-              onChange={handleTagsChange}
-              value={form.tags.map((tag) => ({ tagtitle: tag }))}
-              renderInput={(params) => (
-                <TextField {...params} variant="standard" label="Tags" />
-              )}
+          </Grid>
+        </Grid>
+        <Stack>
+          <Autocomplete
+            fullWidth
+            multiple
+            id='tags-standard'
+            options={tags}
+            getOptionLabel={(option) => option.tagtitle}
+            isOptionEqualToValue={(option, value) =>
+              option.tagtitle === value.tagtitle
+            }
+            onChange={handleTagsChange}
+            value={form.tags.map((tag) => ({ tagtitle: tag }))}
+            renderInput={(params) => (
+              <TextField {...params} variant='standard' label='Tags' />
+            )}
+          />
+        </Stack>
+        <FormControl>
+          <RadioGroup
+            row
+            aria-labelledby='demo-row-radio-buttons-group-label'
+            name='row-radio-buttons-group'
+            value={level}
+            onChange={onlevelChange}
+          >
+            <FormControlLabel
+              value='Einfach'
+              control={<Radio disableRipple required={true} />}
+              label='Einfach'
             />
-          </Stack>
-          <FormControl>
-            <RadioGroup
-              row
-              aria-labelledby="demo-row-radio-buttons-group-label"
-              name="row-radio-buttons-group"
-              value={level}
-              onChange={onlevelChange}
-            >
-              <FormControlLabel
-                value="Einfach"
-                control={<Radio required={true} />}
-                label="Einfach"
-              />
-              <FormControlLabel
-                value="Mittel"
-                control={<Radio required={true} />}
-                label="Mittel"
-              />
-              <FormControlLabel
-                value="Schwierig"
-                control={<Radio required={true} />}
-                label="Schwierig"
-              />
-            </RadioGroup>
-          </FormControl>
-          <Grid container justifyContent={'space-between'} spacing={2}>
-            <Grid item xs={2}>
-                <TextField
-                  fullWidth
-                  variant="outlined"
-                  label="Menge"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                />
-            </Grid>
-            <Grid item xs={9}>
-              <TextField
-                fullWidth
-                variant="outlined"
-                label="Zutat"
-                value={ingredient}
-                onChange={(e) => setIngredient(e.target.value)}
-                  />
-            </Grid>
-            <Grid item textAlign={'right'} xs={1}>
-              <AddButton
-              sx={{minWidth:0}}
-                variant="outlined"
-                endIcon={<AddCircleIcon style={{ fontSize: '35px' }} />}
-                onClick={handleAddIngredient}
-              ></AddButton>
-            </Grid>
+            <FormControlLabel
+              value='Mittel'
+              control={<Radio disableRipple required={true} />}
+              label='Mittel'
+            />
+            <FormControlLabel
+              value='Schwierig'
+              control={<Radio disableRipple required={true} />}
+              label='Schwierig'
+            />
+          </RadioGroup>
+        </FormControl>
+        <Grid container justifyContent={'space-between'} spacing={2}>
+          <Grid item xs={2}>
+            <TextField
+              fullWidth
+              variant='outlined'
+              label='Menge'
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+            />
           </Grid>
-          <AddList sx={{mb: '30px'}}>
-            {form.ingredients.map((item, index) => (
-              <AddListItem disablePadding key={index}>
-                <ListItemText primary={
-                  <Grid container spacing={2}>
-                    <Grid item xs={2}>
-                      <strong>{item.amount}</strong>
-                    </Grid>
-                    <Grid item xs={9}>
-                      {item.name}
-                    </Grid>
+          <Grid item xs={9}>
+            <TextField
+              fullWidth
+              variant='outlined'
+              label='Zutat'
+              value={ingredient}
+              onChange={(e) => setIngredient(e.target.value)}
+            />
+          </Grid>
+          <Grid item textAlign={'right'} xs={1}>
+            <AddButton
+              sx={{ minWidth: 0 }}
+              variant='outlined'
+              endIcon={<AddCircleIcon style={{ fontSize: '35px' }} />}
+              onClick={handleAddIngredient}
+            ></AddButton>
+          </Grid>
+        </Grid>
+        <AddList sx={{ mb: '30px' }}>
+          {form.ingredients.map((item, index) => (
+            <AddListItem disablePadding key={index}>
+              <ListItemText primary={
+                <Grid container spacing={2}>
+                  <Grid item xs={2}>
+                    <strong>{item.amount}</strong>
                   </Grid>
-                  }
-                />
-                <ListItemSecondaryAction>
-                  <IconButton
-                    edge="end"
-                    aria-label="delete"
-                    onClick={() => handleDeleteListItem(index)}
-                  >
-                    <DeleteIcon />
-                  </IconButton>
-                </ListItemSecondaryAction>
-              </AddListItem>
-            ))}
-          </AddList>
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            id="outlined-multiline-flexible"
-            label="Beschreibung"
-            multiline
-            maxRows={4}
-            value={description}
-            name="description"
-            onChange={handleChange}
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            id="outlined-multiline-flexible"
-            label="Tipps & Tricks"
-            multiline
-            maxRows={4}
-            value={additional}
-            name="additional"
-            onChange={handleChange}
-          />
-          <Grid container justifyContent={'space-between'}>
-            {!isEditMode ? (
-              <Grid item>
-                <Button
-                  component="label"
-                  variant="outlined"
-                  startIcon={<UploadFileIcon />}
+                  <Grid item xs={9}>
+                    {item.name}
+                  </Grid>
+                </Grid>
+              }
+              />
+              <ListItemSecondaryAction>
+                <IconButton
+                  edge='end'
+                  aria-label='delete'
+                  onClick={() => handleDeleteListItem(index)}
                 >
-                  Bild hochladen
-                  <input
-                    type="file"
-                    accept=".jpg"
-                    hidden
-                    onChange={handleFileChange}
-                  />
-                </Button>
-              </Grid>
-            ) : (
-              ''
-            )}
+                  <DeleteIcon />
+                </IconButton>
+              </ListItemSecondaryAction>
+            </AddListItem>
+          ))}
+        </AddList>
+        <TextField
+          margin='normal'
+          required
+          fullWidth
+          id='outlined-multiline-flexible'
+          label='Beschreibung'
+          multiline
+          maxRows={4}
+          value={description}
+          name='description'
+          onChange={handleChange}
+        />
+        <TextField
+          margin='normal'
+          fullWidth
+          id='outlined-multiline-flexible'
+          label='Tipps & Tricks'
+          multiline
+          maxRows={4}
+          value={additional}
+          name='additional'
+          onChange={handleChange}
+        />
+        <Grid container justifyContent={'space-between'}>
+          {!isEditMode ? (
             <Grid item>
-              {!isEditMode ? (
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  disabled={isSubmitDisabled}
-                >
-                  Erfassen
-                </Button>
-              ) : (
-                <Button
-                  type="submit"
-                  variant="outlined"
-                  disabled={isSubmitDisabled}
-                >
-                  Update
-                </Button>
-              )}
+              <Button
+                component='label'
+                variant='outlined'
+                startIcon={<UploadFileIcon />}
+              >
+                Bild hochladen
+                <input
+                  type='file'
+                  accept='.jpg'
+                  hidden
+                  onChange={handleFileChange}
+                />
+              </Button>
             </Grid>
-            {isEditMode ? (
-              <Grid item>
-                <Link to={`/`}>
-                  <Button variant="outlined" color="primary">
-                    Abbrechen
-                  </Button>
-                </Link>
-              </Grid>
+          ) : (
+            ''
+          )}
+          <Grid item>
+            {!isEditMode ? (
+              <Button
+                type='submit'
+                variant='outlined'
+                disabled={isSubmitDisabled}
+              >
+                Erfassen
+              </Button>
             ) : (
-              ''
+              <Button
+                type='submit'
+                variant='outlined'
+                disabled={isSubmitDisabled}
+              >
+                Update
+              </Button>
             )}
           </Grid>
-        </form>
-      </MainContainer>
+          {isEditMode ? (
+            <Grid item>
+              <Link to={`/`}>
+                <Button variant='outlined' color='primary'>
+                  Abbrechen
+                </Button>
+              </Link>
+            </Grid>
+          ) : (
+            ''
+          )}
+        </Grid>
+      </form>
+    </MainContainer>
   );
 };
 
 const tags = [
-  { tagtitle: 'Süss' },
-  { tagtitle: 'Salzig' },
   { tagtitle: 'Frühling' },
   { tagtitle: 'Sommer' },
-  { tagtitle: 'Herbst' },
-  { tagtitle: 'Winter' },
+  { tagtitle: 'herbstlich' },
+  { tagtitle: 'winterlich' },
+  { tagtitle: 'Frühstück' },
   { tagtitle: 'Gebäck' },
   { tagtitle: 'Torten & Kuchen' },
   { tagtitle: 'Guezli' },
-  { tagtitle: 'Vegetarisch' },
+  { tagtitle: 'vegetarisch' }
 ];
 
 export default BlogForm;

@@ -6,8 +6,6 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { signOut } from 'firebase/auth';
-import { auth } from '../../firebase-config';
 import User from '../../models/User';
 import { Colors } from '../../theme/my-theme';
 
@@ -27,54 +25,18 @@ const pages = [
 
 const Navigation: React.FC<NavigationProps> = ({
   user,
-  handleLogout,
-  setActive,
 }) => {
   const userId = user?.uid;
-  console.log('userID', userId);
-  console.log('name', user?.displayName);
-
-  const onLogoutClick = async () => {
-    console.log('on logout click');
-    try {
-      await signOut(auth);
-      if (handleLogout) {
-        handleLogout();
-      }
-    } catch (error) {
-      console.error('Fehler beim Ausloggen:', error);
-    }
-  };
-
-  const handleSetActive = () => {
-    if (setActive) {
-      setActive('home');
-    }
-  };
-
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null
-  );
-  const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(
     null
   );
 
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
-
-  const handleOpenUserMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
-
   const location = useLocation();
 
   return (
@@ -82,7 +44,6 @@ const Navigation: React.FC<NavigationProps> = ({
       <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
         <IconButton
           size="large"
-          disableRipple
           aria-label="account of current user"
           aria-controls="menu-appbar"
           aria-haspopup="true"
@@ -144,13 +105,11 @@ const Navigation: React.FC<NavigationProps> = ({
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
         {pages.map((page, index) => (
           <Button
-            disableRipple
             key={index}
             component={NavLink}
             to={page.to}
             sx={{
-              m: '0px 30px 0px 0px',
-              p: '17px 0px 15px 0px',
+              p: '17px 15px 15px 15px',
               '&.active': {
                 color: Colors.secondary.main,
               },
@@ -165,11 +124,9 @@ const Navigation: React.FC<NavigationProps> = ({
         ))}
         {userId && location.pathname !== '/create' ? (
           <Button
-            disableRipple
             component={NavLink}
             sx={{
-              m: 0,
-              p: '17px 0px 15px 0px',
+              p: '17px 15px 15px 15px',
               color: Colors.secondary.main,
             '&.active': {
               color: Colors.secondary.main,

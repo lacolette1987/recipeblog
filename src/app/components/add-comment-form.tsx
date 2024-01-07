@@ -30,7 +30,6 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
   };
 
   const handleRatingChange = async (event: React.SyntheticEvent, newValue: number | null) => {
-    // move logic to hook
     if (newValue !== null && newValue !== 0) {
       setForm({...form, rating: newValue});
     }

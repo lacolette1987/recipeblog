@@ -16,20 +16,15 @@ import { Colors } from '../../theme/my-theme';
 interface LoginNavProps {
   user: User | undefined;
   handleLogout?: () => void;
-  setActive?: (active: string) => void;
 }
 
 const LoginNav: React.FC<LoginNavProps> = ({
   user,
   handleLogout,
-  setActive,
 }) => {
   const userId = user?.uid;
-  console.log('userID', userId);
-  console.log('name', user?.displayName);
 
   const onLogoutClick = async () => {
-    console.log('on logout click');
     try {
       await signOut(auth);
       if (handleLogout) {
@@ -59,9 +54,7 @@ const LoginNav: React.FC<LoginNavProps> = ({
           <Box sx={{ flexGrow: 0 }}>
             <Tooltip arrow title="Open">
               <IconButton
-                disableRipple
                 onClick={handleOpenUserMenu}
-                sx={{ p: 0 }}
               >
                 <PersonIcon 
                   sx={{ 

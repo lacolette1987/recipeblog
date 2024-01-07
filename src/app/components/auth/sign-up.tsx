@@ -1,6 +1,6 @@
 import { TextField } from '@mui/material';
 import React from 'react';
-import { Control, Controller, FieldErrors, FieldValues } from 'react-hook-form';
+import { Control, Controller, FieldErrors } from 'react-hook-form';
 import { AuthFormState } from './login-form';
 
 interface SignUpFormProps {

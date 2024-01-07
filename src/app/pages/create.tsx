@@ -1,5 +1,5 @@
 import BlogForm, { BlogFormState } from '../components/blog-form';
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
 import { db, storage } from '../firebase-config';
 import { addDoc, collection, serverTimestamp } from 'firebase/firestore';
@@ -30,7 +30,7 @@ const Create = () => {
       navigate('/');
 
     } catch (err) {
-      console.log(err);
+      console.error(err);
     }
   };
 
