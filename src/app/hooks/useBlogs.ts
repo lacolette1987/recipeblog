@@ -8,6 +8,7 @@ import { DocumentSnapshot } from '@firebase/firestore';
 
 // Custom hook to manage blog data using Firebase Firestore.
 
+
 function useBlogs() {
   // State for blogs, loading status, and errors
   const [blogs, setBlogs] = useState<Blog[]>([]);
