@@ -11,7 +11,7 @@ const Colors = {
     grey: '#a4a2a1',
     primary: {
         light: '#e0d0bb',
-        main: '#6c7da8',
+        main: '#000000',
         dark: '#393d68',
         contrastText: '#ffffff',
     },
