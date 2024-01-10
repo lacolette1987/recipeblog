@@ -32,17 +32,17 @@ jest.mock('../theme/my-theme', () => ({
     grey: '#a4a2a1',
     primary: {
       light: '#e0d0bb',
-      main: '#4e5277',
-      dark: '#393d68',
+      main: '#101413',
+      dark: '#000000',
       contrastText: '#ffffff',
-    },
-    secondary: {
+  },
+  secondary: {
       light: '#e0d0bb',
-      main: '#c1a178',
+      main: '#DBA360',
       dark: '#835635',
       contrastText: '#ffffff',
-    }
   }
+}
 }));
 
 describe('LatestBlog', () => {

@@ -11,14 +11,14 @@ const Colors = {
     grey: '#a4a2a1',
     primary: {
         light: '#e0d0bb',
-        main: '#000000',
-        dark: '#393d68',
+        main: '#101413',
+        dark: '#000000',
         contrastText: '#ffffff',
     },
     secondary: {
-        light: '#e0d0bb',
-        main: '#c1a178',
-        dark: '#835635',
+        light: '#879DB8',
+        main: '#DBA360',
+        dark: '#000000',
         contrastText: '#ffffff',
     }
   }
@@ -84,7 +84,7 @@ const myTheme = createTheme({
                     color: Colors.white,
                     background: Colors.primary.main,
                     '&:hover': {
-                        background: Colors.primary.dark,
+                        background: Colors.secondary.light,
                       },
                 }
             }
@@ -196,7 +196,7 @@ const myTheme = createTheme({
                     fontFamily: 'Josefin Sans, sans-serif',
                     margin: 0,
                     '&:hover': {
-                        backgroundColor: Colors.secondary.main,
+                        backgroundColor: Colors.secondary.light,
                         color: Colors.white
                       },
                 },
@@ -280,13 +280,13 @@ const myTheme = createTheme({
 
 
 const StyledTagButton = styled(Button)(() => ({
-    backgroundColor: Colors.secondary.main,
+    backgroundColor: Colors.secondary.light,
     borderRadius: '20px',
     fontSize: '12px',
     margin: '0px 8px 8px 0px',
     fontWeight: '700',
     letterSpacing: 0.7,
-    padding: '5px 12px 2px 12px',
+    padding: '5px 15px 3px 15px',
     color: Colors.white,
     '&.Mui-disabled': {
         color: Colors.white

@@ -69,7 +69,7 @@ const Detail = () => {
                 <Link to={`/edit/${blogId}`}>
                   <EditIcon aria-label="Rezept bearbeiten"
                     sx={{
-                      color: Colors.secondary.main,
+                      color: Colors.secondary.light,
                       transition: '.3s ease-out',
                       '&:hover': {
                         color: Colors.primary.main,
@@ -81,7 +81,7 @@ const Detail = () => {
               <Grid item>
                 <DeleteOutlinedIcon aria-label="Rezept löschen"
                   sx={{
-                    color: Colors.secondary.main,
+                    color: Colors.secondary.light,
                     transition: '.3s ease-out',
                     '&:hover': {
                       color: Colors.primary.main,

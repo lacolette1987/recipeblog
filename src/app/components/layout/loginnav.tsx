@@ -58,7 +58,7 @@ const LoginNav: React.FC<LoginNavProps> = ({
               >
                 <PersonIcon 
                   sx={{ 
-                    color: Colors.secondary.main,
+                    color: Colors.secondary.light,
                     transition: '.3s ease-out',
                     '&:hover': {
                       color: Colors.primary.main,

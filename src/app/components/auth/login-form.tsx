@@ -52,6 +52,7 @@ export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm, load
   return (
     <MainContainer maxWidth='md'>
       <Typography variant='h1'>{!isSignUpMode ? 'Anmelden' : 'Registrieren'}</Typography>
+      <Typography variant='body1' sx={{mb: '40px'}}>Melden dich an, um deine eigenen kulinarischen Kreationen zu teilen. Mit deinem persönlichen Konto kannst du deine eigenen Rezepte erfassen und die Gerichte anderer Nutzer bewerten.</Typography>
       <form onSubmit={handleFormSubmit(onSubmit)}>
         {isSignUpMode && (
           <SignUpForm control={control} errors={errors} />
