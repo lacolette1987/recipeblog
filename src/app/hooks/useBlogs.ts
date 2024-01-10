@@ -58,7 +58,7 @@ function useBlogs() {
   // Retrieves blogs of a specific category from Firestore
   const queryCategoryBlog = (category: string) => {
     setLoading(true);
-    const blogsRef = collection(db, 'blogs');
+    const blogsRef = collection(db, 'blogs'); 
     const categoryQuery = query(
       blogsRef,
       where('category', '==', category),
