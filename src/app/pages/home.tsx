@@ -14,7 +14,7 @@ const Home = () => {
   const user = useSelector((state: RootState) => state.auth.currentUser);
 
   const { blogs, queryBlogs, deleteBlog } = useBlogs();
-  const filteredBlogs = useMemo(() => blogs.filter((blog) => blog.tags.includes('Guezli')), [blogs] );
+  const filteredBlogs = useMemo(() => blogs.filter((blog) => blog.tags.includes('Frühling')), [blogs] );
   const latestBlog = useMemo(() => (blogs.length > 0 ? blogs[0] : null), [blogs]);
 
   
@@ -61,7 +61,7 @@ const Home = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={5} lg={4}>
-          {latestBlog ? <Typography variant="h2">Weihnachtsguezli</Typography> : ''}
+          {latestBlog ? <Typography variant="h2">Der Frühling kommt</Typography> : ''}
           {filteredBlogs.map((blog: Blog) => (
             <div key={blog.uid}>
               <Tags blog={blog} />
