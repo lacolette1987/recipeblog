@@ -406,15 +406,18 @@ const BlogForm: React.FC<BlogFormProps> = ({
 };
 
 const tags = [
+  { tagtitle: 'Salzig' },
+  { tagtitle: 'Süss' },
+  { tagtitle: 'Frühstück' },
   { tagtitle: 'Frühling' },
   { tagtitle: 'Sommer' },
-  { tagtitle: 'herbstlich' },
-  { tagtitle: 'winterlich' },
-  { tagtitle: 'Frühstück' },
+  { tagtitle: 'Herbst' },
+  { tagtitle: 'Winter' },
+  { tagtitle: 'Weihnachten' },
   { tagtitle: 'Gebäck' },
   { tagtitle: 'Torten & Kuchen' },
-  { tagtitle: 'Guezli' },
-  { tagtitle: 'vegetarisch' }
+  { tagtitle: 'Guetzli' },
+  { tagtitle: 'Vegetarisch' }
 ];
 
 export default BlogForm;

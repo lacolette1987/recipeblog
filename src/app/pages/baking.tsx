@@ -12,7 +12,7 @@ import BlankSlate from '../components/blankslate/blankslate-blog';
 const Baking = () => {
   const { blogs, queryBlogs, deleteBlog} = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
-  const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Guezli')), [blogs]);
+  const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Guetzli')), [blogs]);
 
   useEffect(() => {
     queryBlogs({ category: 'Backen' });
