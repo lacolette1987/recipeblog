@@ -43,7 +43,7 @@ const Baking = () => {
           <Grid item xs={12} md={5} lg={4}>
           <Grid item>
             {blogs.length > 0 ? (
-              <Typography variant='h2'>Guezli</Typography>
+              <Typography variant='h2'>Guetzli</Typography>
               ) : (
                 ''
               )}
