@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Card, CardContent, Grid, Rating, Typography } from '@mui/material';
 import AddCommentForm from './add-comment-form';
 import BlankSlateComment from './blankslate/blankslate-comment';
@@ -6,6 +6,7 @@ import useComments from '../hooks/useComments';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import DeleteOutlinedIcon from '@mui/icons-material/DeleteOutlined';
+import DialogDelete from './dialog-delete';
 
 interface CommentSectionProps {
   blogId: string;
@@ -16,6 +17,25 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
 
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
   const { comments, queryComments, createComment, deleteComment } = useComments();
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [deletingCommentId, setDeletingCommentId] = useState<string>('');
+
+  const openDeleteDialog = (commentId: string) => {
+    setDeletingCommentId(commentId);
+    setDeleteDialogOpen(true);
+  };
+
+  const closeDeleteDialog = () => {
+    setDeleteDialogOpen(false);
+  };
+
+  const handleDeleteComment = async () => {
+    if (deletingCommentId) {
+      await deleteComment(blogId, deletingCommentId);
+    }
+    setDeleteDialogOpen(false);
+    setDeletingCommentId('');
+  };
 
   useEffect(() => {
     if (blogId) {
@@ -51,7 +71,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
                     <DeleteOutlinedIcon
                       color='disabled'
                       fontSize='small'
-                      onClick={() => deleteComment(blogId!, comment.uid!)}
+                      onClick={() => openDeleteDialog(comment.uid!)}
                     />
                   ) : (
                     ''
@@ -63,6 +83,11 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
               </Grid>
               <Typography>{comment.comment}</Typography>
             </CardContent>
+            <DialogDelete
+              isOpen={deleteDialogOpen}
+              handleClose={closeDeleteDialog}
+              handleDelete={handleDeleteComment}
+            />
           </Card>
         ))
       )}

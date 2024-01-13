@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography, } from '@mui/material';
 import useBlogs from '../hooks/useBlogs';
@@ -10,12 +10,28 @@ import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
 import CommentSection from '../components/commentsection';
 import { FieldValue, Timestamp } from 'firebase/firestore';
+import DialogDelete from '../components/dialog-delete';
 
 
 const Detail = () => {
   const { blogId } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+
+  const handleDelete = async () => {
+    await deleteBlog(blogId!);
+    navigate('/');
+  };
+
+  const openDeleteDialog = () => {
+    setDeleteDialogOpen(true);
+  };
+
+  const closeDeleteDialog = () => {
+    setDeleteDialogOpen(false);
+  };
 
   const { blogs, querySingleBlog, deleteBlog } = useBlogs();
 
@@ -25,10 +41,7 @@ const Detail = () => {
     }
   }, [blogId]);
 
-  const handleDelete = async () => {
-    await deleteBlog(blogId!);
-    navigate('/');
-  };
+
 
 
   const dateFormatOptions: Intl.DateTimeFormatOptions = {
@@ -87,7 +100,7 @@ const Detail = () => {
                       color: Colors.primary.main,
                     },
                   }}
-                  onClick={handleDelete}
+                  onClick={openDeleteDialog}
                 ></DeleteOutlinedIcon>
               </Grid>
             </Grid>
@@ -234,6 +247,11 @@ const Detail = () => {
           <CommentSection blogId={blogId!} />
         </Grid>
       </Grid>
+      <DialogDelete
+        isOpen={deleteDialogOpen}
+        handleClose={closeDeleteDialog}
+        handleDelete={handleDelete}
+      />
     </MainContainer>
   );
 };
