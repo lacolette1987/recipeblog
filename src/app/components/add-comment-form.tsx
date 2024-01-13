@@ -11,6 +11,7 @@ interface AddCommentFormProps {
 const initialState: Comment = {
   nickname: '',
   comment: '',
+  authorName: '',
   rating: 0,
 };
 
@@ -63,7 +64,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           max={5}
           onChange={handleRatingChange}
         />
-        {ratingError && <Typography variant='body1' sx={{mb: '30px', color: 'red' }}>{ratingError}</Typography>}
+        {ratingError && <Typography variant='body1' sx={{mb: '30px', color: 'red'}}>{ratingError}</Typography>}
         <TextField
           margin='normal'
           required
