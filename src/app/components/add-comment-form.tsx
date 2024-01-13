@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ReadmoreButton } from '../theme/my-theme';
 import { Comment } from '../models/Comments';
-import { Rating, TextField } from '@mui/material';
+import { Rating, TextField, Typography } from '@mui/material';
 
 
 interface AddCommentFormProps {
@@ -18,6 +18,7 @@ const initialState: Comment = {
 const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
 
   const [form, setForm] = useState(initialState);
+  const [ratingError, setRatingError] = useState<string>('');
   const { nickname, comment, rating } = form;
 
 
@@ -38,9 +39,15 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!rating) {
+      setRatingError('Bitte gib eine Bewertung ab.');
+      return;
+    }
+
     if (nickname && comment && rating) {
       submitForm(form);
       setForm(initialState);
+      setRatingError(''); // Fehlermeldung zurücksetzen
     }
   };
 
@@ -56,6 +63,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           max={5}
           onChange={handleRatingChange}
         />
+        {ratingError && <Typography variant='body1' sx={{mb: '30px', color: 'red' }}>{ratingError}</Typography>}
         <TextField
           margin='normal'
           required
