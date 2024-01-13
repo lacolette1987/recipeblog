@@ -44,19 +44,9 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
             <CardContent>
               <Grid container justifyContent={'space-between'}>
                 <Grid item>
-                  <Typography variant='h4'>{comment.nickname}</Typography>
+                  <Typography sx={{mr: '15px'}} variant='h4'>{comment.nickname}</Typography>
                 </Grid>
-                <Grid item>
-                  <Rating size='small' readOnly value={comment.rating} />
-                </Grid>
-              </Grid>
-              <Grid
-                container
-                spacing={2}
-                alignItems={'center'}
-                sx={{ mb: '8px' }}
-              >
-                <Grid item>
+                <Grid item sx={{pt: '2px'}}>
                   {currentUser?.uid === comment.authorId ? (
                     <DeleteOutlinedIcon
                       color='disabled'
@@ -66,6 +56,9 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
                   ) : (
                     ''
                   )}
+                </Grid>
+                <Grid item sx={{ml: 'auto'}}>
+                  <Rating size='small' readOnly value={comment.rating} />
                 </Grid>
               </Grid>
               <Typography>{comment.comment}</Typography>

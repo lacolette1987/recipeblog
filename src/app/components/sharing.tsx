@@ -33,17 +33,17 @@ const Sharing:React.FC<SharingProps> = ({title}) => {
           )}`}
           target="_blank" rel="noreferrer"
         >
-          <FacebookSharpIcon style={IconStyle} sx={{ fontSize: 30 }} />
+          <FacebookSharpIcon style={IconStyle} sx={{ fontSize: 30 }} aria-label="Auf Facebook teilen" />
         </a>
       </Grid>
       <Grid item marginRight={'10px'}>
         <Link to={whatsappLink}>
-          <WhatsAppIcon style={IconStyle} sx={{ fontSize: 30 }} />
+          <WhatsAppIcon style={IconStyle} sx={{ fontSize: 30 }} aria-label="Auf Whatsapp teilen" />
         </Link>
       </Grid>
       <Grid item>
         <Link to={emailLink}>
-          <AlternateEmailIcon style={IconStyle} sx={{ fontSize: 30 }} />
+          <AlternateEmailIcon style={IconStyle} sx={{ fontSize: 30 }} aria-label="Per E-Mail teilen" />
         </Link>
       </Grid>
     </Grid>

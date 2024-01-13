@@ -67,6 +67,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           value={nickname}
           onChange={handleChange}
           autoFocus
+          aria-label='Gib einen Nickname ein.'
         />
         <TextField
           margin='normal'
@@ -80,6 +81,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           value={comment}
           onChange={handleChange}
           autoFocus
+          aria-label='Gib einen Kommentar ein.'
         />
         <ReadmoreButton type='submit' variant="outlined" disableElevation>Kommentieren</ReadmoreButton>
       </form>
