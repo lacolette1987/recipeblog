@@ -78,6 +78,10 @@ const Navigation: React.FC<NavigationProps> = ({
               key={index}
               onClick={handleCloseNavMenu}
               sx={{
+                '&:hover': {
+                  background: Colors.secondary.main,
+                  color: Colors.white
+                },
                 '&.active': {
                   background: Colors.secondary.main,
                   color: Colors.white
@@ -93,7 +97,7 @@ const Navigation: React.FC<NavigationProps> = ({
               component={Link}
               to={'/create'}
               onClick={handleCloseNavMenu}
-              sx={{ color: Colors.secondary.main }}
+              sx={{ color: Colors.white, background: Colors.secondary.light }}
             >
               Erfassen
             </MenuItem>
@@ -109,13 +113,13 @@ const Navigation: React.FC<NavigationProps> = ({
             component={NavLink}
             to={page.to}
             sx={{
-              p: '17px 15px 15px 15px',
+              p: '19px 15px 15px 15px',
               '&.active': {
                 color: Colors.secondary.main,
               },
               '&:hover': {
-                background: 'transparent',
-                color: Colors.secondary.main,
+                background: Colors.secondary.main,
+                color: Colors.white,
               }
               }}
           >
@@ -126,14 +130,15 @@ const Navigation: React.FC<NavigationProps> = ({
           <Button
             component={NavLink}
             sx={{
-              p: '17px 15px 15px 15px',
-              color: Colors.secondary.main,
+              p: '19px 15px 15px 15px',
+              color: Colors.white,
+              background: Colors.secondary.light,
             '&.active': {
               color: Colors.secondary.main,
             },
             '&:hover': {
-              background: 'transparent',
-              color: Colors.black,
+              background: Colors.secondary.main,
+              color: Colors.white,
             }
           }}
             to={'/create'}

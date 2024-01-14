@@ -13,6 +13,7 @@ const Baking = () => {
   const { blogs, queryBlogs, deleteBlog} = useBlogs();
   const user = useSelector((state: RootState) => state.auth.currentUser);
   const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Guetzli')), [blogs]);
+  const filteredTortenBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Torten & Kuchen')), [blogs]);
 
   useEffect(() => {
     queryBlogs({ category: 'Backen' });
@@ -41,9 +42,21 @@ const Baking = () => {
             </Grid>
           </Grid>
           <Grid item xs={12} md={5} lg={4}>
-          <Grid item>
+          <Grid item sx={{mb: '60px'}}>
             {blogs.length > 0 ? (
-              <Typography variant='h2'>Guetzli</Typography>
+              <Typography variant='h2'>Torten & Kuchen</Typography>
+              ) : (
+                ''
+              )}
+              {filteredTortenBlogs.map((blog: Blog) => (
+                <div key={blog.uid}>
+                  <Tags blog={blog} />
+                </div>
+              ))}
+            </Grid>
+            <Grid item>
+            {blogs.length > 0 ? (
+              <Typography variant='h2'>Weihnachtsguetzli</Typography>
               ) : (
                 ''
               )}
