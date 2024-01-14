@@ -11,6 +11,7 @@ import { RootState } from '../store/store';
 import CommentSection from '../components/commentsection';
 import { FieldValue, Timestamp } from 'firebase/firestore';
 import DialogDelete from '../components/dialog-delete';
+import { visuallyHidden } from '@mui/utils';
 
 
 const Detail = () => {
@@ -89,6 +90,7 @@ const Detail = () => {
                       },
                     }}
                   />
+                  <Box sx={visuallyHidden}>Rezept bearbeiten</Box>
                 </Link>
               </Grid>
               <Grid item>
@@ -116,6 +118,7 @@ const Detail = () => {
               component="img"
               image={blogs[0]?.imgUrl}
               title={blogs[0]?.title}
+              alt={blogs[0]?.title}
             />
           </Card>
         </Grid>

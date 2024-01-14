@@ -2,9 +2,10 @@ import React from 'react';
 import FacebookSharpIcon from '@mui/icons-material/FacebookSharp';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import AlternateEmailIcon from '@mui/icons-material/AlternateEmail';
-import { Grid } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 import { IconStyle } from '../theme/my-theme';
+import { visuallyHidden } from '@mui/utils';
 
 interface SharingProps {
   title: string;
@@ -34,16 +35,19 @@ const Sharing:React.FC<SharingProps> = ({title}) => {
           target="_blank" rel="noreferrer"
         >
           <FacebookSharpIcon style={IconStyle} sx={{ fontSize: 30 }} aria-label="Auf Facebook teilen" />
+          <Box sx={visuallyHidden}>Auf Facebook teilen</Box>
         </a>
       </Grid>
       <Grid item marginRight={'10px'}>
         <Link to={whatsappLink}>
           <WhatsAppIcon style={IconStyle} sx={{ fontSize: 30 }} aria-label="Auf Whatsapp teilen" />
+          <Box sx={visuallyHidden}>Auf Whatsapp teilen</Box>
         </Link>
       </Grid>
       <Grid item>
         <Link to={emailLink}>
           <AlternateEmailIcon style={IconStyle} sx={{ fontSize: 30 }} aria-label="Per E-Mail teilen" />
+          <Box sx={visuallyHidden}>Per E-Mail teilen</Box>
         </Link>
       </Grid>
     </Grid>
