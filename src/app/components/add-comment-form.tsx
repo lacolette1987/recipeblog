@@ -48,7 +48,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
     if (nickname && comment && rating) {
       submitForm(form);
       setForm(initialState);
-      setRatingError(''); // Fehlermeldung zurücksetzen
+      setRatingError('');
     }
   };
 
