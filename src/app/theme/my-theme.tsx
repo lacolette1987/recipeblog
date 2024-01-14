@@ -16,7 +16,7 @@ const Colors = {
         contrastText: '#ffffff',
     },
     secondary: {
-        light: '#879DB8',
+        light: '#8ba6ca',
         main: '#DBA360',
         dark: '#000000',
         contrastText: '#ffffff',

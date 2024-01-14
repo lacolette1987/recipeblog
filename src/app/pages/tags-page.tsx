@@ -3,6 +3,7 @@ import BlogSection from '../components/blogsection';
 import useBlogs from '../hooks/useBlogs';
 import React, { useEffect, useMemo } from 'react';
 import { MainContainer } from '../theme/my-theme';
+import { Typography } from '@mui/material';
 
 const TagsPage: React.FC = () => {
   const { tag } = useParams();
@@ -23,11 +24,10 @@ const TagsPage: React.FC = () => {
 
   return (
     <MainContainer maxWidth="lg">
-        {/* <Typography variant="h1">Tags</Typography> */}
         {filteredBlogs.length > 0 ? (
           <BlogSection blogs={filteredBlogs}></BlogSection>
         ) : (
-          <span>Es wurden keine Blogs mit diesem Tag gefunden</span>
+          <Typography variant='body1'>Es wurden keine Blogs mit diesem Tag gefunden</Typography>
         )}{' '}
     </MainContainer>
   );
