@@ -64,7 +64,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
             <CardContent>
               <Grid container justifyContent={'space-between'}>
                 <Grid item>
-                  <Typography sx={{mr: '15px'}} variant='h4'>{comment.nickname}</Typography>
+                  <Typography sx={{mr: '15px'}} variant='h5'>{comment.nickname}</Typography>
                 </Grid>
                 <Grid item sx={{pt: '2px'}}>
                   {currentUser?.uid === comment.authorId ? (

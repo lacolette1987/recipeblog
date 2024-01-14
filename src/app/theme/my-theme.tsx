@@ -241,7 +241,7 @@ const myTheme = createTheme({
         h2: {
             fontFamily: 'Josefin Sans, sans-serif',
             fontWeight: 500,
-            fontSize: 24,
+            fontSize: 25,
             marginBottom: 15,
             marginTop: 4,
             textTransform: "uppercase",
@@ -252,20 +252,24 @@ const myTheme = createTheme({
             },
         },
         h3: {
+            fontFamily: 'Josefin Sans, sans-serif',
+            fontWeight: 500,
+            fontSize: 22,
+            marginBottom: 15,
+            marginTop: 4,
+            textTransform: "uppercase",
+            letterSpacing: 1,
+            a: {
+                color: Colors.black,
+                textDecoration: 'none',
+            },
+        },
+        h4: {
             fontFamily: 'Caveat, cursive',
             fontWeight: 500,
             fontSize: 40,
             marginBottom: 15,
             color: Colors.secondary.main
-        },
-        h4: {
-            fontFamily: 'Josefin Sans, sans-serif',
-            fontWeight: 600,
-            fontSize: 18,
-            marginBottom: 5,
-            marginTop: 4,
-            textTransform: "uppercase",
-            letterSpacing: 1,
         },
         h5: {
             fontFamily: 'Josefin Sans, sans-serif',

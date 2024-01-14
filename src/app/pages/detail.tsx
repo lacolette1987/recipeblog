@@ -235,7 +235,7 @@ const Detail = () => {
               <Typography>{blogs[0]?.description}</Typography>
               {blogs[0]?.additional && (
                 <>
-                  <Typography sx={{ mt: '50px' }} variant="h3">
+                  <Typography sx={{ mt: '50px' }} variant="h4">
                   Tipps & Tricks
                   </Typography>
                   <Typography>{blogs[0]?.additional}</Typography>

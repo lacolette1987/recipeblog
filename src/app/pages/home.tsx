@@ -61,7 +61,7 @@ const Home = () => {
           </Grid>
         </Grid>
         <Grid item xs={12} md={5} lg={4}>
-          {latestBlog ? <Typography variant="h2">Der Frühling kommt</Typography> : ''}
+          {latestBlog ? <Typography variant="h3">Der Frühling kommt</Typography> : ''}
           {filteredBlogs.map((blog: Blog) => (
             <div key={blog.uid}>
               <Tags blog={blog} />
