@@ -12,6 +12,8 @@ import CommentSection from '../components/commentsection';
 import { FieldValue, Timestamp } from 'firebase/firestore';
 import DialogDelete from '../components/dialog-delete';
 import { visuallyHidden } from '@mui/utils';
+import EmailIcon from '@mui/icons-material/Email';
+import { IconStyle } from '../theme/my-theme';
 
 
 const Detail = () => {
@@ -193,7 +195,10 @@ const Detail = () => {
             Rezept von:
             </Box>{' '}
             {blogs[0]?.author}
-            {blogs[0]?.userEmail}
+            <a href={`mailto:${blogs[0]?.userEmail}`}>
+              <EmailIcon style={IconStyle} sx={{ fontSize: 20, m: '0px 0px 0px 5px' }} aria-label="Autor kontaktieren" />
+              <Box sx={visuallyHidden}>Autor kontaktieren</Box>
+            </a>
           </Typography>
           <Typography variant="body1">
           <Box fontWeight="700" display="inline">
