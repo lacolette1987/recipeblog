@@ -17,7 +17,7 @@ const Baking = () => {
 
   useEffect(() => {
     queryBlogs({ category: 'Backen' });
-  }, []);
+  });
 
   return (
     <MainContainer maxWidth='lg'>

@@ -11,6 +11,7 @@ const SignIn: React.FC = () => {
   const dispatch = useDispatch<AppDispatch>();
   const currentUser = useSelector((state: RootState) => state.auth.currentUser)
   const loading = useSelector((state: RootState) => state.auth.loading);
+  const error = useSelector((state:RootState) => state.auth.error);
 
   const navigate = useNavigate();
 
@@ -18,14 +19,11 @@ const SignIn: React.FC = () => {
     if (currentUser) {
       navigate('/');
     }
-  }, [currentUser]);
+  }, [currentUser, navigate]);
 
 
   return (
-    <>
-    <LoginForm handleSubmit={(cred) => dispatch(login(cred))} loading={loading}></LoginForm>
-      {/* {`${loading}`} */}
-    </>
+      <LoginForm handleSubmit={(cred) => dispatch(login(cred))} loading={loading} authError={error}></LoginForm>
   );
 };
 

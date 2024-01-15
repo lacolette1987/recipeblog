@@ -25,7 +25,8 @@ const Create = () => {
         imgUrl,
         timestamp: serverTimestamp(),
         author: user?.displayName,
-        userId: user?.uid
+        userId: user?.uid,
+        userEmail: user?.email
       });
       navigate('/');
 

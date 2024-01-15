@@ -15,14 +15,14 @@ const MainCourse = () => {
 
 
   const filteredBlogs = useMemo(() => {
-    return blogs.filter(blog => blog.tags.includes('Vegetarisch') && blog.category === 'Hauptgang');
+    return blogs.filter(blog => blog.tags.includes('Vegetarisch'));
   }, [blogs]);
 
 
 
   useEffect(() => {
     queryBlogs({ category: 'Hauptgang' });
-  }, []);
+  });
 
 
 

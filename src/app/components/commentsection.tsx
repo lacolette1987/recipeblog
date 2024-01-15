@@ -41,7 +41,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
     if (blogId) {
       queryComments(blogId);
     }
-  }, [blogId]);
+  }, [blogId, queryComments]);
 
 
   return (

@@ -4,6 +4,7 @@ import Ingredient from './Ingredients';
 export default interface Blog {
   readonly uid: string;
   readonly userId: string;
+  userEmail: string;
   title: string;
   lead: string;
   category: string;

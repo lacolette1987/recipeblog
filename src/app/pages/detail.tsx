@@ -40,7 +40,7 @@ const Detail = () => {
     if (blogId) {
       querySingleBlog(blogId);
     }
-  }, [blogId]);
+  }, [blogId, querySingleBlog]);
 
 
 
@@ -72,7 +72,7 @@ const Detail = () => {
           )}
         </Grid>
         <Grid item xs={2}>
-          {currentUser ? (
+          {currentUser?.uid === blogs[0]?.userId ? (
             <Grid
               container
               alignItems={'center'}
@@ -193,6 +193,7 @@ const Detail = () => {
             Rezept von:
             </Box>{' '}
             {blogs[0]?.author}
+            {blogs[0]?.userEmail}
           </Typography>
           <Typography variant="body1">
           <Box fontWeight="700" display="inline">

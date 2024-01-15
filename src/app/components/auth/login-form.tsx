@@ -10,6 +10,7 @@ import { MainContainer, ReadmoreButton } from '../../theme/my-theme';
 interface LoginProps {
   handleSubmit: (cred: AuthFormState) => void;
   loading: boolean;
+  authError?: string;
 }
 
 export interface AuthFormState {
@@ -28,7 +29,7 @@ const initialState: AuthFormState = {
   isSignUpMode: false
 };
 
-export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm, loading }) => {
+export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm, loading, authError }) => {
   const {
     control,
     handleSubmit: handleFormSubmit,
@@ -58,6 +59,7 @@ export const LoginForm: React.FC<LoginProps> = ({ handleSubmit: submitForm, load
           <SignUpForm control={control} errors={errors} />
         )}
         <SignInForm control={control} errors={errors} />
+        {authError || ''}
         <ReadmoreButton disabled={loading} fullWidth type='submit' variant='outlined' sx={{ margin: '24px 0px 16px 0px !important' }}
                        disableElevation>
           {!isSignUpMode ? 'Anmelden' : 'Registrieren'}

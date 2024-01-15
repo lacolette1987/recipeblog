@@ -16,7 +16,6 @@ jest.mock('@mui/icons-material/DeleteOutlined', () => () => <span>DeleteIcon</sp
 // Mock custom hooks
 jest.mock('../hooks/useComments', () => () => ({
   comments: [],
-  queryComments: jest.fn(),
   createComment: jest.fn(),
   deleteComment: jest.fn()
 }));

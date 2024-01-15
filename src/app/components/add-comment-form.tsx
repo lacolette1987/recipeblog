@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { ReadmoreButton } from '../theme/my-theme';
 import { Comment } from '../models/Comments';
 import { Rating, TextField, Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
+import { RootState } from '../store/store';
 
 
 interface AddCommentFormProps {
@@ -11,16 +13,16 @@ interface AddCommentFormProps {
 const initialState: Comment = {
   nickname: '',
   comment: '',
-  authorName: '',
   rating: 0,
 };
 
 
 const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
 
-  const [form, setForm] = useState(initialState);
+  const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const [form, setForm] = useState({...initialState, nickname: currentUser!.displayName});
   const [ratingError, setRatingError] = useState<string>('');
-  const { nickname, comment, rating } = form;
+  const { comment, rating } = form;
 
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +47,7 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
       return;
     }
 
-    if (nickname && comment && rating) {
+    if (comment && rating) {
       submitForm(form);
       setForm(initialState);
       setRatingError('');
@@ -65,19 +67,6 @@ const AddCommentForm: React.FC<AddCommentFormProps> = ({ submitForm }) => {
           onChange={handleRatingChange}
         />
         {ratingError && <Typography variant='body1' sx={{mb: '30px', color: 'red'}}>{ratingError}</Typography>}
-        <TextField
-          margin='normal'
-          required
-          fullWidth
-          id='nickname'
-          label='Dein Name'
-          name='nickname'
-          autoComplete='nickname'
-          value={nickname}
-          onChange={handleChange}
-          autoFocus
-          aria-label='Gib einen Nickname ein.'
-        />
         <TextField
           margin='normal'
           required
