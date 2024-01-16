@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../firebase-config';
 import User from '../../models/User';
@@ -18,10 +18,7 @@ interface LoginNavProps {
   handleLogout?: () => void;
 }
 
-const LoginNav: React.FC<LoginNavProps> = ({
-  user,
-  handleLogout,
-}) => {
+const LoginNav: React.FC<LoginNavProps> = ({ user, handleLogout }) => {
   const userId = user?.uid;
 
   const onLogoutClick = async () => {
@@ -47,23 +44,45 @@ const LoginNav: React.FC<LoginNavProps> = ({
     setAnchorElUser(null);
   };
 
+  const location = useLocation();
+
   return (
     <Grid container>
       <Grid item>
         {userId ? (
           <Box sx={{ flexGrow: 0 }}>
-            <Tooltip arrow title="Open">
-              <IconButton
-                onClick={handleOpenUserMenu}
+            {userId && location.pathname !== '/create' ? (
+              <Button
+                component={NavLink}
+                sx={{
+                  p: '19px 15px 15px 15px',
+                  color: Colors.black,
+                  '&.active': {
+                    color: Colors.secondary.main,
+                  },
+                  '&:hover': {
+                    background: Colors.secondary.main,
+                    color: Colors.white,
+                  },
+                }}
+                to={'/create'}
               >
-                <PersonIcon 
-                  sx={{ 
+                Erfassen
+              </Button>
+            ) : (
+              ''
+            )}
+            <Tooltip arrow title="Open">
+              <IconButton onClick={handleOpenUserMenu}>
+                <PersonIcon
+                  sx={{
                     color: Colors.secondary.light,
                     transition: '.3s ease-out',
                     '&:hover': {
                       color: Colors.primary.main,
                     },
-                  }} />
+                  }}
+                />
               </IconButton>
             </Tooltip>
             <Menu
@@ -107,7 +126,7 @@ const LoginNav: React.FC<LoginNavProps> = ({
             component={Link}
             sx={{
               display: 'block',
-              p: '0px',
+              p: '3px 0px 0px 0px',
               '&:hover': {
                 background: 'transparent',
                 color: Colors.secondary.main,

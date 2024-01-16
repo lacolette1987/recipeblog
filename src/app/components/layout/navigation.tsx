@@ -5,7 +5,7 @@ import Menu from '@mui/material/Menu';
 import MenuIcon from '@mui/icons-material/Menu';
 import Button from '@mui/material/Button';
 import MenuItem from '@mui/material/MenuItem';
-import { Link, NavLink, useLocation } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import User from '../../models/User';
 import { Colors } from '../../theme/my-theme';
 
@@ -26,7 +26,6 @@ const pages = [
 const Navigation: React.FC<NavigationProps> = ({
   user,
 }) => {
-  const userId = user?.uid;
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -37,7 +36,6 @@ const Navigation: React.FC<NavigationProps> = ({
   const handleCloseNavMenu = () => {
     setAnchorElNav(null);
   };
-  const location = useLocation();
 
   return (
     <>
@@ -92,18 +90,6 @@ const Navigation: React.FC<NavigationProps> = ({
               {page.label}
             </MenuItem>
           ))}
-          {userId ? (
-            <MenuItem
-              component={Link}
-              to={'/create'}
-              onClick={handleCloseNavMenu}
-              sx={{ color: Colors.white, background: Colors.secondary.light }}
-            >
-              Erfassen
-            </MenuItem>
-          ) : (
-            ''
-          )}
         </Menu>
       </Box>
       <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
@@ -126,28 +112,6 @@ const Navigation: React.FC<NavigationProps> = ({
             {page.label}
           </Button>
         ))}
-        {userId && location.pathname !== '/create' ? (
-          <Button
-            component={NavLink}
-            sx={{
-              p: '19px 15px 15px 15px',
-              color: Colors.white,
-              background: Colors.secondary.light,
-            '&.active': {
-              color: Colors.secondary.main,
-            },
-            '&:hover': {
-              background: Colors.secondary.main,
-              color: Colors.white,
-            }
-          }}
-            to={'/create'}
-          >
-            Erfassen
-          </Button>
-        ) : (
-          ''
-        )}
       </Box>
     </>
   );
