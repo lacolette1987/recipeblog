@@ -118,6 +118,7 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
         imgUrl: documentData.imgUrl,
         timestamp: documentData.timestamp,
         userId: documentData.userId,
+        userEmail: documentData.userEmail,
         avgRating: documentData.avgRating || 0
       } as Blog;
     }

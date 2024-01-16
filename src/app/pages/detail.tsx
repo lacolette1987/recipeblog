@@ -166,7 +166,7 @@ const Detail = () => {
               sx={{ p: '10px 0px 0px 0px' }}
             >
               <Grid item>
-                <Typography sx={{ fontWeight: '700' }}>Level:</Typography>
+                <Typography sx={{ fontWeight: '700' }}>Schwierigkeitsgrad:</Typography>
               </Grid>
               <Grid item>
                 <Typography>{blogs[0]?.level}</Typography>
@@ -182,17 +182,17 @@ const Detail = () => {
               ))}
           </Grid>
           <Typography sx={{mb: '5px'}}>
-            <Box fontWeight="700" display="inline">
-            Rezept von:
+            <Box component="span" fontWeight="700" display="inline">
+              Rezept von:
             </Box>{' '}
             {blogs[0]?.author}
             <a href={`mailto:${blogs[0]?.userEmail}`}>
               <EmailIcon style={IconStyle} sx={{ fontSize: 20, m: '0px 0px 0px 5px' }} aria-label="Autor kontaktieren" />
-              <Box sx={visuallyHidden}>Autor kontaktieren</Box>
+              <Box component={"span"} sx={visuallyHidden}>Autor kontaktieren</Box>
             </a>
           </Typography>
           <Typography variant="body1">
-          <Box fontWeight="700" display="inline">
+          <Box component="span" fontWeight="700" display="inline">
             Erfasst am:
             </Box>{' '}
             {blogs[0]?.timestamp ? formatTimestamp(blogs[0].timestamp) : ''}
