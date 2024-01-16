@@ -25,7 +25,7 @@ const Home = () => {
   return (
     <MainContainer maxWidth="lg">
       <Stack sx={{ m: '0 0 40px 0' }}>
-        <Typography variant="h1">Welcome, foodlover!</Typography>
+        <Typography variant="h1">Willkommen im Chuchiblog!</Typography>
         <Typography variant='body1'>
           Begleite uns in unserer Küche, während wir die Aromen der Welt
           entdecken und lernen, wie man aus einfachen Zutaten magische Gerichte
