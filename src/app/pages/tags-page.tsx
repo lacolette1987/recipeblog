@@ -8,7 +8,7 @@ import { Typography } from '@mui/material';
 const TagsPage: React.FC = () => {
   const { tag } = useParams();
   const navigate = useNavigate();
-  const { blogs, queryBlogs } = useBlogs();
+  const { blogs } = useBlogs();
 
   const filteredBlogs = useMemo(() => {
     console.log({ blogs, tag });
@@ -19,8 +19,7 @@ const TagsPage: React.FC = () => {
     if (!tag) {
       navigate('/');
     }
-    queryBlogs();
-  }, []);
+  });
 
   return (
     <MainContainer maxWidth="lg">

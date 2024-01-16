@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Card, CardContent, Grid, Rating, Typography } from '@mui/material';
 import AddCommentForm from './add-comment-form';
 import BlankSlateComment from './blankslate/blankslate-comment';
@@ -16,7 +16,7 @@ interface CommentSectionProps {
 const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
 
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
-  const { comments, queryComments, createComment, deleteComment } = useComments();
+  const { comments, createComment, deleteComment } = useComments(blogId);
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [deletingCommentId, setDeletingCommentId] = useState<string>('');
 
@@ -36,12 +36,6 @@ const CommentSection: React.FC<CommentSectionProps> = ({ blogId }) => {
     setDeleteDialogOpen(false);
     setDeletingCommentId('');
   };
-
-  useEffect(() => {
-    if (blogId) {
-      queryComments(blogId);
-    }
-  }, [blogId, queryComments]);
 
 
   return (

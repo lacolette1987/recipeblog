@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import useBlogs from '../hooks/useBlogs';
 import BlogSection from '../components/blogsection';
 import { Grid, Stack, Typography } from '@mui/material';
@@ -10,14 +10,10 @@ import Tags from '../components/layout/tags';
 import BlankSlate from '../components/blankslate/blankslate-blog';
 
 const Baking = () => {
-  const { blogs, queryBlogs, deleteBlog} = useBlogs();
+  const { blogs, deleteBlog} = useBlogs({category: 'Backen'});
   const user = useSelector((state: RootState) => state.auth.currentUser);
   const filteredBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Guetzli')), [blogs]);
   const filteredTortenBlogs = useMemo(() => blogs.filter(blog => blog.tags.includes('Torten & Kuchen')), [blogs]);
-
-  useEffect(() => {
-    queryBlogs({ category: 'Backen' });
-  });
 
   return (
     <MainContainer maxWidth='lg'>

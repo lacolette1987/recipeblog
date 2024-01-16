@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo } from 'react';
+import React, { useMemo } from 'react';
 import BlogSection from '../components/blogsection';
 import { Grid, Typography } from '@mui/material';
 import { useSelector } from 'react-redux';
@@ -13,15 +13,11 @@ import LatestBlog from '../components/latestblog';
 const Home = () => {
   const user = useSelector((state: RootState) => state.auth.currentUser);
 
-  const { blogs, queryBlogs, deleteBlog } = useBlogs();
+  const { blogs, deleteBlog } = useBlogs();
   const filteredBlogs = useMemo(() => blogs.filter((blog) => blog.tags.includes('Frühling')), [blogs] );
   const latestBlog = useMemo(() => (blogs.length > 0 ? blogs[0] : null), [blogs]);
 
   
-  useEffect(() => {
-    queryBlogs();
-  }, []);
-
   const handleDelete = async (uid: string) => {
     await deleteBlog(uid);
   };

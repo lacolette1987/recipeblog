@@ -1,5 +1,5 @@
+import React, { useMemo } from 'react';
 import { Box, Container } from '@mui/material';
-import React, { useEffect, useMemo } from 'react';
 import BlogForm, { BlogFormState } from '../components/blog-form';
 import { useSelector } from 'react-redux';
 import { RootState } from '../store/store';
@@ -13,7 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 const EditBlog = () => {
   const navigate = useNavigate();
   const { blogId } = useParams();
-  const { blogs, querySingleBlog } = useBlogs();
+  const { blogs } = useBlogs({blogId});
   const blogForm = useMemo(
     () =>
       blogs[0]
@@ -23,12 +23,6 @@ const EditBlog = () => {
   );
 
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
-
-  useEffect(() => {
-    if (blogId) {
-      querySingleBlog(blogId);
-    }
-  }, []);
 
   const submit = async (form: BlogFormState) => {
     try {

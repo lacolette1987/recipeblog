@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { Box, Card, CardContent, CardMedia, Grid, ListItem, Rating, Typography, } from '@mui/material';
 import useBlogs from '../hooks/useBlogs';
@@ -20,6 +20,7 @@ const Detail = () => {
   const { blogId } = useParams();
   const navigate = useNavigate();
   const currentUser = useSelector((state: RootState) => state.auth.currentUser);
+  const { blogs, deleteBlog } = useBlogs({blogId});
 
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
 
@@ -35,16 +36,6 @@ const Detail = () => {
   const closeDeleteDialog = () => {
     setDeleteDialogOpen(false);
   };
-
-  const { blogs, querySingleBlog, deleteBlog } = useBlogs();
-
-  useEffect(() => {
-    if (blogId) {
-      querySingleBlog(blogId);
-    }
-  }, [blogId, querySingleBlog]);
-
-
 
 
   const dateFormatOptions: Intl.DateTimeFormatOptions = {

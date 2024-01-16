@@ -1,5 +1,5 @@
 import Blog from '../models/Blog';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { collection, doc, getDoc, getDocs, orderBy, query, where } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import blogsService from '../services/blogs.service';
@@ -7,26 +7,35 @@ import { DocumentSnapshot } from '@firebase/firestore';
 
 
 // Custom hook to manage blog data using Firebase Firestore.
+interface UseBlogsOptions {
+  blogId?: string;
+  category?: string;
+}
 
-
-function useBlogs() {
+function useBlogs({blogId, category}: UseBlogsOptions = {}) {
   // State for blogs, loading status, and errors
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
   // Converts a Firestore document into a Blog object
-  const convertDocToBlog = (doc: DocumentSnapshot): Blog => {
-    const documentData = doc.data();
-    if (documentData) {
-      // Extracts and returns blog data
-      return {
-        uid: doc.id,
-        ...documentData, // Spread operator to include all fields from documentData
-        avgRating: documentData.avgRating || 0
-      } as Blog;
+  useEffect(() => {
+    queryBlogs({ blogId, category });
+  }, [blogId, category]);
+
+  const queryBlogs = ({ blogId, category }: {
+    blogId?: string;
+    category?: string;
+  } = {}) => {
+    setLoading(true);
+    if (!blogId && !category) {
+      queryAllBlogs();
+    } else if (blogId && !category) {
+      querySingleBlog(blogId);
+    } else if (category) {
+      queryCategoryBlog(category);
     }
-    return {} as Blog;
+    setLoading(false);
   };
 
   // Retrieves all blogs from Firestore
@@ -78,21 +87,6 @@ function useBlogs() {
       });
   };
 
-  // Retrieves blogs based on UID or category
-  const queryBlogs = ({ uid, category }: {
-    uid?: string;
-    category?: string;
-  } = {}) => {
-    setLoading(true);
-    if (!uid && !category) {
-      queryAllBlogs();
-    } else if (uid && !category) {
-      querySingleBlog(uid);
-    } else if (category) {
-      queryCategoryBlog(category);
-    }
-    setLoading(false);
-  };
 
   // Deletes a blog from Firestore and updates the state
   const deleteBlog = async (uid: string) => {
@@ -102,6 +96,32 @@ function useBlogs() {
     } catch (e) {
       setError((e as Error).message);
     }
+  };
+
+
+  const convertDocToBlog = (doc: DocumentSnapshot): Blog => {
+    const documentData = doc.data();
+    if (documentData) {
+      return {
+        uid: doc.id,
+        title: documentData.title,
+        lead: documentData.lead,
+        category: documentData.category,
+        duration: documentData.duration,
+        quantity: documentData.quantity,
+        tags: documentData.tags,
+        level: documentData.level,
+        ingredients: documentData.ingredients,
+        description: documentData.description,
+        additional: documentData.additional,
+        author: documentData.author,
+        imgUrl: documentData.imgUrl,
+        timestamp: documentData.timestamp,
+        userId: documentData.userId,
+        avgRating: documentData.avgRating || 0
+      } as Blog;
+    }
+    return {} as Blog;
   };
 
   // Returns the functions and states to use in the component code

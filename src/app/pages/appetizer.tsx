@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import useBlogs from '../hooks/useBlogs';
 import BlogSection from '../components/blogsection';
 import { Stack, Typography } from '@mui/material';
@@ -8,12 +8,9 @@ import { MainContainer } from '../theme/my-theme';
 import BlankSlate from '../components/blankslate/blankslate-blog';
 
 const Appetizer = () => {
-  const { blogs, queryBlogs, deleteBlog } = useBlogs();
+  const { blogs, deleteBlog } = useBlogs({category: 'Vorspeise'});
   const user = useSelector((state: RootState) => state.auth.currentUser);
 
-  useEffect(() => {
-    queryBlogs({ category: 'Vorspeise' });
-  }, []);
 
   return (
     <MainContainer maxWidth='lg'>

@@ -12,7 +12,7 @@ const SignIn: React.FC = () => {
   const currentUser = useSelector((state: RootState) => state.auth.currentUser)
   const loading = useSelector((state: RootState) => state.auth.loading);
   const error = useSelector((state:RootState) => state.auth.error);
-
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -23,7 +23,7 @@ const SignIn: React.FC = () => {
 
 
   return (
-      <LoginForm handleSubmit={(cred) => dispatch(login(cred))} loading={loading} authError={error}></LoginForm>
+    <LoginForm handleSubmit={(cred) => dispatch(login(cred))} loading={loading} authError={error}></LoginForm>
   );
 };
 

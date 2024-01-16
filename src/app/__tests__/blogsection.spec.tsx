@@ -11,6 +11,7 @@ describe('BlogSection', () => {
   const mockBlogs: Blog[] = [
     {
       uid: '1',
+      userEmail: 'unit-test',
       title: 'Blog 1',
       lead: 'Lead 1',
       imgUrl: 'image1.jpg',
@@ -29,6 +30,7 @@ describe('BlogSection', () => {
     },
     {
       uid: '2',
+      userEmail: 'unit-test',
       title: 'Blog 2',
       lead: 'Lead 2',
       imgUrl: 'image2.jpg',

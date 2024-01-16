@@ -1,14 +1,14 @@
 import { collection, getDoc, getDocs } from 'firebase/firestore';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { db } from '../firebase-config';
 import { Comment, Comments } from '../models/Comments';
-import { QueryDocumentSnapshot, DocumentSnapshot } from '@firebase/firestore';
+import { DocumentSnapshot, QueryDocumentSnapshot } from '@firebase/firestore';
 import commentService from '../services/comments.service';
 
 
 // Custom hook to manage comment data in a blog using Firebase Firestore.
 
-function useComments() {
+function useComments(blogId: string) {
 
   const [comments, setComments] = useState<Comments>([]);
   const [error, setError] = useState<string | null>(null);
@@ -31,6 +31,16 @@ function useComments() {
     } as Comment;
   };
 
+
+  useEffect(() => {
+    if (!blogId) {
+      setError('Blog id not provided, cannot load comments');
+      return;
+    }
+    queryAllComments(blogId);
+  }
+  ,
+  [blogId]);
 
   // Function to retrieve all comments for a specific blog post
 
@@ -75,22 +85,11 @@ function useComments() {
   };
 
 
-  // Function to trigger retrieval of comments for a specific blog post
-
-  const queryComments = (blogId: string) => {
-    if (!blogId) {
-      return;
-    }
-
-    queryAllComments(blogId);
-  };
-
 
   // Expose the state and functions for use in component code
 
   return {
     comments,
-    queryComments,
     createComment,
     deleteComment,
     error

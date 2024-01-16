@@ -62,8 +62,8 @@ export const login = createAsyncThunk<
         await signInWithEmailAndPassword(auth, credentials.email, credentials.password);
         return {};
       } catch (e) {
-        console.error('Dieses Konto existiert nicht!');
-        return rejectWithValue('Dieses Konto existiert nicht!');
+        console.error('Benutzername oder Passwort falsch!');
+        return rejectWithValue('Benutzername oder Passwort falsch!');
       }
     } else {
       try {
@@ -79,6 +79,7 @@ export const login = createAsyncThunk<
         return { displayName };
       } catch (error) {
         console.error('Fehler beim Erstellen des Benutzers:', error);
+        // console.error('Fehler beim Erstellen des Benutzers:', error);
         return rejectWithValue('Fehler beim Erstellen des Benutzers!');
       }
     }
