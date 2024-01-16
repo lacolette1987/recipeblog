@@ -8,7 +8,7 @@ const Imprint = () => {
   return (
     <MainContainer maxWidth='lg'>
         <Typography variant='h1'>Impressum</Typography>
-        <Typography variant='body1'>Alle Rezepte stammen von Betty Bossi, einfachbacken.ch, Swissmilk oder sind eigene Rezepte. Bilder sind von Adobe Stock. Ein grosser Dank geht an Familie und Freunde, die durch die Kommentare den Blog zum leben erweckt haben.</Typography>
+        <Typography variant='body1'>Ein grosser Dank geht an Familie und Freunde, die durch die Kommentare den Blog zum leben erweckt haben.</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Für den Inhalt dieser Website verantwortlich:</Typography>
         <Typography variant='body1'>Colette Güntensperger, Chuchiblog</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Disclaimer</Typography>
@@ -20,7 +20,7 @@ const Imprint = () => {
         <Typography variant='h2' sx={{pt: '20px'}}>Gewährleistungsausschluss</Typography>
         <Typography variant='body1'>Chuchiblog verwendet all ihre Sorgfalt darauf, dass die Informationen auf der Website zum Zeitpunkt der Veröffentlichung korrekt und aktuell sind und keine Rechte Dritter (insbesondere Rechte des Persönlichkeitsschutzes) verletzen. Dennoch kann Chuchiblog keine Gewährleistung hinsichtlich der Genauigkeit, Zuverlässigkeit oder Vollständigkeit der Informationen sicherstellen.</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Urheberrecht</Typography>
-        <Typography variant='body1'>Der gesamte Inhalt (Texte, Grafiken, Bilder etc.) dieser Website ist urheberrechtlich geschützt und gehört, soweit nicht anders bestimmt, ausschliesslich und umfassend dem Chuchiblog. Es ist nicht erlaubt, ohne vorgängige schriftliche Erlaubnis, diese Website ganz oder teilweise zu reproduzieren, zu übertragen (sei dies auf elektronischem oder irgendeinem anderen Weg), zu verändern oder sie für öffentliche oder kommerzielle Zwecke zu nutzen. Teile des Inhalts wurden mithilfe von ChatGPT, einem KI-Modell entwickelt von OpenAI, erstellt.</Typography>
+        <Typography variant='body1'>Alle Rezepte stammen von Betty Bossi, einfachbacken.ch, Swissmilk oder sind eigene Rezepte. Bilder sind von Adobe Stock. Teile des Inhalts wurden mithilfe von ChatGPT, einem KI-Modell entwickelt von OpenAI, erstellt.</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Anwendbares Recht und Gerichtsstand</Typography>
         <Typography variant='body1'>Für allfällige Streitigkeiten zwischen Besucher und Nutzer dieser Website und Chuchiblog, welche aus dem Betrieb bzw. Besuch dieser Website herrühren, sind die Gerichte am Sitz des Chuchiblog zuständig. Anwendbar ist ausschliesslich Schweizer Recht.</Typography>
     </MainContainer>
