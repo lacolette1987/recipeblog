@@ -6,22 +6,28 @@ import blogsService from '../services/blogs.service';
 import { DocumentSnapshot } from '@firebase/firestore';
 
 
-// Custom hook to manage blog data using Firebase Firestore.
 interface UseBlogsOptions {
   blogId?: string;
   category?: string;
 }
 
+
+// Custom hook for blog operations
+
 function useBlogs({blogId, category}: UseBlogsOptions = {}) {
-  // State for blogs, loading status, and errors
   const [blogs, setBlogs] = useState<Blog[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  // Converts a Firestore document into a Blog object
+
+  // Effect hook to run when blogId or category changes
+  
   useEffect(() => {
     queryBlogs({ blogId, category });
   }, [blogId, category]);
+
+
+  // Function to handle querying of blogs based on provided options
 
   const queryBlogs = ({ blogId, category }: {
     blogId?: string;
@@ -38,7 +44,8 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
     setLoading(false);
   };
 
-  // Retrieves all blogs from Firestore
+  // Function to fetch all blogs
+
   const queryAllBlogs = () => {
     const blogsRef = collection(db, 'blogs');
     getDocs(query(blogsRef, orderBy('timestamp', 'desc')))
@@ -52,7 +59,8 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
       });
   };
 
-  // Retrieves a specific blog from Firestore
+  // Function to fetch a single blog by its UID
+
   const querySingleBlog = (uid: string) => {
     const blogRef = doc(db, 'blogs', uid);
     getDoc(blogRef)
@@ -64,7 +72,8 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
       });
   };
 
-  // Retrieves blogs of a specific category from Firestore
+  // Function to fetch blogs by category
+
   const queryCategoryBlog = (category: string) => {
     setLoading(true);
     const blogsRef = collection(db, 'blogs'); 
@@ -73,6 +82,8 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
       where('category', '==', category),
       orderBy('timestamp', 'desc')
     );
+
+    // Execute the query and process the results
 
     getDocs(categoryQuery)
       .then((data) => {
@@ -88,7 +99,8 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
   };
 
 
-  // Deletes a blog from Firestore and updates the state
+  // Function to delete a blog by its UID
+
   const deleteBlog = async (uid: string) => {
     try {
       await blogsService.deleteBlog(uid);
@@ -98,6 +110,8 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
     }
   };
 
+
+  // Function to convert Firestore DocumentSnapshot to a Blog object
 
   const convertDocToBlog = (doc: DocumentSnapshot): Blog => {
     const documentData = doc.data();
@@ -125,7 +139,6 @@ function useBlogs({blogId, category}: UseBlogsOptions = {}) {
     return {} as Blog;
   };
 
-  // Returns the functions and states to use in the component code
   return {
     blogs,
     queryBlogs,

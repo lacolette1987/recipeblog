@@ -6,7 +6,8 @@ import { DocumentSnapshot, QueryDocumentSnapshot } from '@firebase/firestore';
 import commentService from '../services/comments.service';
 
 
-// Custom hook to manage comment data in a blog using Firebase Firestore.
+
+// Custom hook to manage comments for a specific blog post
 
 function useComments(blogId: string) {
 
@@ -14,14 +15,14 @@ function useComments(blogId: string) {
   const [error, setError] = useState<string | null>(null);
 
 
-  // Function to map Firestore document to Comment model
+  // Function to map Firestore document to Comment object
 
   const mapToComment = (doc: QueryDocumentSnapshot | DocumentSnapshot) => {
     const documentData = doc?.data();
     if (!documentData) {
       return {} as Comment;
     }
-
+    
     return {
       uid: doc.id,
       authorId: documentData.authorId,
@@ -31,6 +32,8 @@ function useComments(blogId: string) {
     } as Comment;
   };
 
+
+  // Effect hook to fetch comments when blogId changes
 
   useEffect(() => {
     if (!blogId) {
@@ -42,7 +45,8 @@ function useComments(blogId: string) {
   ,
   [blogId]);
 
-  // Function to retrieve all comments for a specific blog post
+
+  // Function to fetch all comments for a specific blog post
 
   const queryAllComments = (blogId: string) => {
     const commentsRef = collection(db, 'blogs', blogId, 'comments');
@@ -58,7 +62,7 @@ function useComments(blogId: string) {
   };
 
 
-  // Function to create a new comment for a blog post
+  // Function to create a new comment
 
   const createComment = async (blogId: string, comment: Comment) => {
     if (!blogId) return;
@@ -73,7 +77,7 @@ function useComments(blogId: string) {
   };
 
 
-  // Function to delete a comment from a blog post
+  // Function to delete a comment
 
   const deleteComment = async (blogId: string, uid: string) => {
     try {
@@ -84,9 +88,6 @@ function useComments(blogId: string) {
     }
   };
 
-
-
-  // Expose the state and functions for use in component code
 
   return {
     comments,
