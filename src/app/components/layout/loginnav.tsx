@@ -61,7 +61,7 @@ const LoginNav: React.FC<LoginNavProps> = ({ user, handleLogout }) => {
                     color: Colors.secondary.main,
                   },
                   '&:hover': {
-                    background: Colors.secondary.main,
+                    background: Colors.secondary.light,
                     color: Colors.white,
                   },
                 }}
