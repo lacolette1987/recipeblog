@@ -8,8 +8,10 @@ const Imprint = () => {
   return (
     <MainContainer maxWidth='lg'>
         <Typography variant='h1'>Impressum</Typography>
+        <Typography variant='body1'>Alle Rezepte stammen von Betty Bossi, Swissmilk oder sind eigene Rezepte.</Typography>
+        <Typography variant='body1'>Ein grosser Dank geht an Familie und Freunde, die durch die Kommentare den Blog zum leben erweckt haben.</Typography>
         <Typography variant='h2'>Für den Inhalt dieser Website verantwortlich:</Typography>
-        <Typography variant='body1'>Chuchiblog</Typography>
+        <Typography variant='body1'>Colette Güntensperger, Chuchiblog</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Disclaimer</Typography>
         <Typography variant='body1'>Personen, welche auf dieser Website Informationen abrufen, erklären sich mit den nachstehenden Bedingungen einverstanden.</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Benutzung der Website</Typography>
