@@ -8,7 +8,7 @@ const Imprint = () => {
   return (
     <MainContainer maxWidth='lg'>
         <Typography variant='h1'>Impressum</Typography>
-        <Typography variant='body1'>Ein grosser Dank geht an Familie und Freunde, die durch die Kommentare den Blog zum leben erweckt haben.</Typography>
+        <Typography variant='body1'>Ein grosser Dank geht an meine Familie und Freunde für ihre Unterstützung bezüglich Design und usability des Blogs und die durch ihre Kommentare den Blog zum Leben erweckt haben.</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Für den Inhalt dieser Website verantwortlich:</Typography>
         <Typography variant='body1'>Colette Güntensperger, Chuchiblog</Typography>
         <Typography variant='h2' sx={{pt: '20px'}}>Disclaimer</Typography>
