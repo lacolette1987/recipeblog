@@ -211,6 +211,7 @@ const myTheme = createTheme({
             marginBottom: 10,
             fontWeight: 300,
             color: Colors.black,
+            whiteSpace: "break-spaces",
         },
         caption: {
             fontSize: 18,
