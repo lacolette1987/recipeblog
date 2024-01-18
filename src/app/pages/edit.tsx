@@ -42,7 +42,6 @@ const EditBlog = () => {
           user={currentUser}
           uploadProcess={0}
           setFile={() => {
-            // no img upload in edit mode
           }}
           submitForm={submit}
           initialFormState={blogForm}
