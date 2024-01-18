@@ -232,7 +232,7 @@ const Detail = () => {
           <Card elevation={0}>
             <CardContent>
               <Typography variant="h2">Zubereitung</Typography>
-              <Typography>{blogs[0]?.description}</Typography>
+              <Typography sx={{ whiteSpace: "break-spaces" }}>{blogs[0]?.description}</Typography>
               {blogs[0]?.additional && (
                 <>
                   <Typography sx={{ mt: '50px' }} variant="h4">
