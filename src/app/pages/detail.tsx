@@ -238,7 +238,7 @@ const Detail = () => {
                   <Typography sx={{ mt: '50px' }} variant="h4">
                   Tipps & Tricks
                   </Typography>
-                  <Typography>{blogs[0]?.additional}</Typography>
+                  <Typography sx={{ whiteSpace: "break-spaces" }}>{blogs[0]?.additional}</Typography>
                 </>
               )}
             </CardContent>
